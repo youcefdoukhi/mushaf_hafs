@@ -3044,15 +3044,17 @@ class Content extends StatelessWidget {
 
     String pageNum = "";
 
-    if (index! < 10) {
+    if (index! + 1 < 10) {
       pageNum = "0${index! + 1}";
     } else {
       pageNum = "${index! + 1}";
     }
 
     return Image(
-      image: AssetImage('images/mushaf_photos/$pageNum.png'),
-      fit: index! > 1 ? BoxFit.fill : BoxFit.contain,
+      image: index! > 1
+          ? AssetImage('images/mushaf_photos/$pageNum.png')
+          : AssetImage('images/mushaf_photos/$pageNum.png'),
+      fit: index! > 1 ? BoxFit.fill : BoxFit.fill,
     );
 
 /*
