@@ -15,7 +15,7 @@ class PageWidget extends StatelessWidget {
         height: double.infinity,
         width: double.infinity,
         decoration: const BoxDecoration(
-          color: Color.fromRGBO(254, 251, 236, 0.8),
+          color: Color.fromRGBO(254, 251, 236, 0.6),
           border: Border(
             left: BorderSide(
               width: 0.7,

@@ -122,9 +122,9 @@ class _ReaderWidgetState extends State<ReaderWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Stack(
+    return SafeArea(
+      child: Scaffold(
+        body: Stack(
           children: <Widget>[
             GestureDetector(
               onTap: () => {

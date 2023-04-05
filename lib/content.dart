@@ -3041,7 +3041,7 @@ class Content extends StatelessWidget {
 
   Image getPage() {
     //return pages![index!];
-
+/*
     String pageNum = "";
 
     if (index! + 1 < 10) {
@@ -3051,13 +3051,11 @@ class Content extends StatelessWidget {
     }
 
     return Image(
-      image: index! > 1
-          ? AssetImage('images/mushaf_photos/$pageNum.png')
-          : AssetImage('images/mushaf_photos/$pageNum.png'),
-      fit: index! > 1 ? BoxFit.fill : BoxFit.fill,
+      image: AssetImage('images/mushaf_photos/$pageNum.png'),
+      fit: BoxFit.fill,
     );
+*/
 
-/*
     String pageNum = "";
 
     if ((index! + 1) < 10) {
@@ -3070,8 +3068,8 @@ class Content extends StatelessWidget {
 
     return Image(
       image: AssetImage('images/mushaf_photos_2/page$pageNum.png'),
-      fit: fit: index! > 1 ? BoxFit.fill : BoxFit.contain,
-    );*/
+      fit: index! > 1 ? BoxFit.fill : BoxFit.fill,
+    );
   }
 
   @override
