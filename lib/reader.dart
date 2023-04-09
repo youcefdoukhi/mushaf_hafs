@@ -25,7 +25,11 @@ class _ReaderWidgetState extends State<ReaderWidget> {
   void initState() {
     super.initState();
 
-    _controller = PageController(initialPage: widget.page);
+    _controller = PageController(
+      initialPage: widget.page,
+      //viewportFraction: 10,
+    );
+
     _page = widget.page;
     _loadSavedBookmark();
   }
@@ -122,9 +126,9 @@ class _ReaderWidgetState extends State<ReaderWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Stack(
+    return Scaffold(
+      body: SafeArea(
+        child: Stack(
           children: <Widget>[
             GestureDetector(
               onTap: () => {
@@ -132,23 +136,55 @@ class _ReaderWidgetState extends State<ReaderWidget> {
                   _showPageInfo ? _showPageInfo = false : _showPageInfo = true;
                 })
               },
-              child: PageView.builder(
-                //physics: const CustomPageViewScrollPhysics(),
-                controller: _controller,
-                onPageChanged: (int page) => {
-                  setState(() {
-                    _page = page;
-                  }),
+              child: OrientationBuilder(
+                builder: (context, orientation) {
+                  return orientation == Orientation.portrait
+                      ? PageView.builder(
+                          // physics: const CustomPageViewScrollPhysics(),
+
+                          pageSnapping: orientation == Orientation.portrait
+                              ? true
+                              : false,
+
+                          scrollDirection: orientation == Orientation.portrait
+                              ? Axis.horizontal
+                              : Axis.vertical,
+                          controller: _controller,
+                          onPageChanged: (int page) => {
+                            setState(() {
+                              _page = page;
+                            }),
+                          },
+                          itemBuilder: (context, index) {
+                            return PageWidget(
+                              content: Content(
+                                index: index,
+                              ),
+                              keyString: index.toString(),
+                              orientation: orientation,
+                            );
+                          },
+                          itemCount: nbrPages,
+                        )
+                      : Column(
+                          children: [
+                            Expanded(
+                              child: ListView.builder(
+                                itemCount: nbrPages,
+                                itemBuilder: (context, index) {
+                                  return PageWidget(
+                                    content: Content(
+                                      index: index,
+                                    ),
+                                    keyString: index.toString(),
+                                    orientation: orientation,
+                                  );
+                                },
+                              ),
+                            ),
+                          ],
+                        );
                 },
-                itemBuilder: (context, index) {
-                  return PageWidget(
-                    content: Content(
-                      index: index,
-                    ),
-                    keyString: index.toString(),
-                  );
-                },
-                itemCount: nbrPages,
               ),
             ),
             Visibility(
