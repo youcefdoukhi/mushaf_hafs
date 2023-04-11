@@ -50,7 +50,7 @@ class MyPageInfo extends StatelessWidget {
           child: Container(),
         ),
         Container(
-          height: 140,
+          height: 70,
           width: double.infinity,
           decoration: const BoxDecoration(
             color: Color.fromARGB(220, 54, 56, 89),
@@ -76,69 +76,16 @@ class MyPageInfo extends StatelessWidget {
                               ),
                             ),
                             child: InkWell(
-                              onTap: () {
-                                /*
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const MainWidget()),
-                                );*/
-                              }, // button pressed
-                              child: Column(
-                                //mainAxisSize: MainAxisSize.min,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: const <Widget>[
-                                  Icon(
-                                    //size: 20,
-                                    Icons.home_outlined,
-                                    color: Color.fromARGB(255, 212, 180, 124),
-                                  ), // icon
-                                  Text(" الواجهة الرئيسية",
-                                      textDirection: TextDirection.rtl,
-                                      textAlign: TextAlign.justify,
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontFamily: fontTitre,
-                                      )),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Flexible(
-                child: FractionallySizedBox(
-                  widthFactor: 1,
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Flexible(
-                        child: FractionallySizedBox(
-                          widthFactor: 1,
-                          child: Container(
-                            decoration: const BoxDecoration(
-                              border: Border(
-                                top: BorderSide(
-                                  width: 0.5,
-                                  color: Color.fromARGB(255, 212, 180, 124),
-                                ),
-                              ),
-                            ),
-                            child: InkWell(
                               onTap: () {}, // button pressed
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: const <Widget>[
                                   Icon(
-                                    Icons.zoom_in_outlined,
+                                    Icons.search_outlined,
                                     color: Color.fromARGB(255, 212, 180, 124),
                                   ),
                                   Text(
-                                    "تكبير",
+                                    "بحث",
                                     textDirection: TextDirection.rtl,
                                     textAlign: TextAlign.justify,
                                     style: TextStyle(
@@ -174,11 +121,11 @@ class MyPageInfo extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: const <Widget>[
                                   Icon(
-                                    Icons.crop_free_outlined,
+                                    Icons.bookmark_add_outlined,
                                     color: Color.fromARGB(255, 212, 180, 124),
                                   ),
                                   Text(
-                                    "100%",
+                                    "حفظ العلامة",
                                     textDirection: TextDirection.rtl,
                                     textAlign: TextAlign.justify,
                                     style: TextStyle(
@@ -219,7 +166,7 @@ class MyPageInfo extends StatelessWidget {
                                     color: Color.fromARGB(255, 212, 180, 124),
                                   ),
                                   Text(
-                                    "تصغير",
+                                    "إلى العلامة",
                                     textDirection: TextDirection.rtl,
                                     textAlign: TextAlign.justify,
                                     style: TextStyle(
@@ -294,7 +241,7 @@ class MyPageInfo extends StatelessWidget {
                                     color: Color.fromARGB(255, 212, 180, 124),
                                   ),
                                   Text(
-                                    "إذهب إلى",
+                                    "إلى الصفحة",
                                     textDirection: TextDirection.rtl,
                                     textAlign: TextAlign.justify,
                                     style: TextStyle(
@@ -346,7 +293,7 @@ class MyTocBottomSheet extends StatelessWidget {
             color: Color.fromARGB(255, 212, 180, 124),
           ),
           Text(
-            "المحتوى",
+            "الفهرس",
             textDirection: TextDirection.rtl,
             textAlign: TextAlign.justify,
             style: TextStyle(

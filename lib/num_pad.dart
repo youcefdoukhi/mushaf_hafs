@@ -69,7 +69,7 @@ class MyNumPad extends StatelessWidget {
                 ? int.parse(_myController.text)
                 : null;
             if (page != null && page > 0 && page < 605) {
-              Navigator.push(
+              Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
                   builder: (context) => ReaderWidget(

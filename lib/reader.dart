@@ -27,8 +27,10 @@ class _ReaderWidgetState extends State<ReaderWidget> {
   @override
   void initState() {
     super.initState();
-
     _page = widget.page;
+    if (widget.ifGoto) {
+      _saveCurrentPage();
+    }
     _lstviewController = ScrollController(initialScrollOffset: _lstviewOffset);
     _lstviewController?.addListener(() {
       setState(() {
@@ -146,137 +148,144 @@ class _ReaderWidgetState extends State<ReaderWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Stack(
-          children: <Widget>[
-            GestureDetector(
+    return WillPopScope(
+      onWillPop: () async {
+        return false;
+      },
+      child: Scaffold(
+        body: SafeArea(
+          child: Stack(
+            children: <Widget>[
+              GestureDetector(
                 onTap: () => {
-                      setState(() {
-                        _showPageInfo
-                            ? _showPageInfo = false
-                            : _showPageInfo = true;
-                      })
-                    },
+                  setState(() {
+                    _showPageInfo
+                        ? _showPageInfo = false
+                        : _showPageInfo = true;
+                  })
+                },
                 child: widget.ifGoto == false
                     ? FutureBuilder<int>(
                         future: _loadSavedCurrentPage(),
                         builder: (context, snapshot) {
-                          return OrientationBuilder(
-                            builder: (context, orientation) {
-                              return orientation == Orientation.portrait
-                                  ? PageView.builder(
-                                      pageSnapping:
-                                          orientation == Orientation.portrait
-                                              ? true
-                                              : false,
-                                      scrollDirection:
-                                          orientation == Orientation.portrait
-                                              ? Axis.horizontal
-                                              : Axis.vertical,
-                                      controller: PageController(
-                                        initialPage: snapshot.data as int,
-                                      ),
-                                      onPageChanged: (int page) => {
-                                        setState(() {
-                                          _page = page;
-                                        }),
-                                        _saveCurrentPage()
-                                      },
-                                      itemBuilder: (context, index) {
-                                        return PageWidget(
-                                          content: Content(
-                                            index: index,
-                                          ),
-                                          orientation: orientation,
-                                        );
-                                      },
-                                      itemCount: nbrPages,
-                                    )
-                                  : Column(
-                                      children: [
-                                        Expanded(
-                                          child: ListView.builder(
-                                            controller: _lstviewController,
-                                            itemCount: nbrPages,
-                                            itemBuilder: (context, index) {
-                                              return PageWidget(
-                                                content: Content(
-                                                  index: index,
-                                                ),
-                                                orientation: orientation,
-                                              );
-                                            },
-                                          ),
+                          if (snapshot.hasData) {
+                            return OrientationBuilder(
+                              builder: (context, orientation) {
+                                return orientation == Orientation.portrait
+                                    ? PageView.builder(
+                                        pageSnapping:
+                                            orientation == Orientation.portrait
+                                                ? true
+                                                : false,
+                                        scrollDirection:
+                                            orientation == Orientation.portrait
+                                                ? Axis.horizontal
+                                                : Axis.vertical,
+                                        controller: PageController(
+                                          initialPage: snapshot.data as int,
                                         ),
-                                      ],
-                                    );
-                            },
-                          );
+                                        onPageChanged: (int page) => {
+                                          setState(() {
+                                            _page = page;
+                                          }),
+                                          _saveCurrentPage()
+                                        },
+                                        itemBuilder: (context, index) {
+                                          return PageWidget(
+                                            content: Content(
+                                              index: index,
+                                            ),
+                                            orientation: orientation,
+                                          );
+                                        },
+                                        itemCount: nbrPages,
+                                      )
+                                    : Column(
+                                        children: [
+                                          Expanded(
+                                            child: ListView.builder(
+                                              controller: _lstviewController,
+                                              itemCount: nbrPages,
+                                              itemBuilder: (context, index) {
+                                                return PageWidget(
+                                                  content: Content(
+                                                    index: index,
+                                                  ),
+                                                  orientation: orientation,
+                                                );
+                                              },
+                                            ),
+                                          ),
+                                        ],
+                                      );
+                              },
+                            );
+                          }
+                          return Container();
                         },
                       )
-                    : Text(
-                        "IfGoTo : ${widget.ifGoto} --- Page : ${widget.page}") /*OrientationBuilder(
-                      builder: (context, orientation) {
-                        return orientation == Orientation.portrait
-                            ? PageView.builder(
-                                pageSnapping:
-                                    orientation == Orientation.portrait
-                                        ? true
-                                        : false,
-                                scrollDirection:
-                                    orientation == Orientation.portrait
-                                        ? Axis.horizontal
-                                        : Axis.vertical,
-                                controller: PageController(
-                                  initialPage: _page,
-                                ),
-                                onPageChanged: (int page) => {
-                                  setState(() {
-                                    _page = page;
-                                  }),
-                                  _saveCurrentPage()
-                                },
-                                itemBuilder: (context, index) {
-                                  return PageWidget(
-                                    content: Content(
-                                      index: index,
-                                    ),
-                                    orientation: orientation,
-                                  );
-                                },
-                                itemCount: nbrPages,
-                              )
-                            : Column(
-                                children: [
-                                  Expanded(
-                                    child: ListView.builder(
-                                      controller: _lstviewController,
-                                      itemCount: nbrPages,
-                                      itemBuilder: (context, index) {
-                                        return PageWidget(
-                                          content: Content(
-                                            index: index,
-                                          ),
-                                          orientation: orientation,
-                                        );
-                                      },
-                                    ),
+                    : OrientationBuilder(
+                        builder: (context, orientation) {
+                          return orientation == Orientation.portrait
+                              ? PageView.builder(
+                                  pageSnapping:
+                                      orientation == Orientation.portrait
+                                          ? true
+                                          : false,
+                                  scrollDirection:
+                                      orientation == Orientation.portrait
+                                          ? Axis.horizontal
+                                          : Axis.vertical,
+                                  controller: PageController(
+                                    initialPage: _page,
                                   ),
-                                ],
-                              );
-                      },
-                    ),*/
-                ),
-            Visibility(
-              visible: _showPageInfo,
-              child: MyPageInfo(
-                nbrOfPages: nbrPages,
-                pageNum: _page,
-                displaySaveBookmarkDialog: _displaySaveBookmarkDialog,
+                                  onPageChanged: (int page) => {
+                                    setState(() {
+                                      _page = page;
+                                    }),
+                                    _saveCurrentPage()
+                                  },
+                                  itemBuilder: (context, index) {
+                                    return PageWidget(
+                                      content: Content(
+                                        index: index,
+                                      ),
+                                      orientation: orientation,
+                                    );
+                                  },
+                                  itemCount: nbrPages,
+                                )
+                              : Column(
+                                  children: [
+                                    Expanded(
+                                      child: ListView.builder(
+                                        controller: _lstviewController,
+                                        itemCount: nbrPages,
+                                        itemBuilder: (context, index) {
+                                          return PageWidget(
+                                            content: Content(
+                                              index: index,
+                                            ),
+                                            orientation: orientation,
+                                          );
+                                        },
+                                      ),
+                                    ),
+                                  ],
+                                );
+                        },
+                      ),
               ),
-            ),
-          ],
+              Visibility(
+                visible: _showPageInfo,
+                child: MyPageInfo(
+                  nbrOfPages: nbrPages,
+                  pageNum: _page,
+                  displaySaveBookmarkDialog: _displaySaveBookmarkDialog,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
