@@ -2,7 +2,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 import 'toc.dart';
-import 'bookmarks.dart';
 import 'content.dart';
 import 'num_pad.dart';
 
@@ -104,68 +103,6 @@ class MyPageInfo extends StatelessWidget {
                                 ],
                               ),
                             ),
-                          ),
-                        ),
-                      ),
-                      Flexible(
-                        child: FractionallySizedBox(
-                          widthFactor: 1,
-                          child: Container(
-                            decoration: const BoxDecoration(
-                              border: Border(
-                                top: BorderSide(
-                                  width: 0.5,
-                                  color: Color.fromARGB(255, 212, 180, 124),
-                                ),
-                                left: BorderSide(
-                                  width: 0.5,
-                                  color: Color.fromARGB(255, 212, 180, 124),
-                                ),
-                                right: BorderSide(
-                                  width: 0.5,
-                                  color: Color.fromARGB(255, 212, 180, 124),
-                                ),
-                              ),
-                            ),
-                            child: InkWell(
-                              onTap: () {
-                                displaySaveBookmarkDialog(context);
-                              },
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: const <Widget>[
-                                  Icon(
-                                    Icons.bookmark_add_outlined,
-                                    color: Color.fromARGB(255, 212, 180, 124),
-                                  ), // icon
-                                  Text(
-                                    "إضافة علامة",
-                                    textDirection: TextDirection.rtl,
-                                    textAlign: TextAlign.justify,
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontFamily: fontTitre,
-                                    ),
-                                  ), // text
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Flexible(
-                        child: FractionallySizedBox(
-                          widthFactor: 1,
-                          child: Container(
-                            decoration: const BoxDecoration(
-                              border: Border(
-                                top: BorderSide(
-                                  width: 0.5,
-                                  color: Color.fromARGB(255, 212, 180, 124),
-                                ),
-                              ),
-                            ),
-                            child: const MyBookmarkBottomSheet(),
                           ),
                         ),
                       ),
@@ -379,46 +316,6 @@ class MyPageInfo extends StatelessWidget {
           ),
         ),
       ],
-    );
-  }
-}
-
-class MyBookmarkBottomSheet extends StatelessWidget {
-  const MyBookmarkBottomSheet({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        Scaffold.of(context).showBottomSheet<void>(
-          (BuildContext context) {
-            return Container(
-              padding: EdgeInsets.only(
-                top: window.viewPadding.top / window.devicePixelRatio,
-              ),
-              child: const BookmarksList(),
-            );
-          },
-        );
-      },
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: const <Widget>[
-          Icon(
-            Icons.bookmarks_outlined,
-            color: Color.fromARGB(255, 212, 180, 124),
-          ),
-          Text(
-            "العلامات الموجودة",
-            textDirection: TextDirection.rtl,
-            textAlign: TextAlign.justify,
-            style: TextStyle(
-              color: Colors.white,
-              fontFamily: fontTitre,
-            ),
-          ),
-        ],
-      ),
     );
   }
 }

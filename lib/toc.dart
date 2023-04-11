@@ -115,6 +115,7 @@ class TOCWidget extends StatelessWidget {
                           MaterialPageRoute(
                             builder: (context) => ReaderWidget(
                               page: tocItem.page - 1,
+                              ifGoto: true,
                             ),
                           ),
                         ),

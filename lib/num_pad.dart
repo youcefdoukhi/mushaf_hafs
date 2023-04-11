@@ -74,6 +74,7 @@ class MyNumPad extends StatelessWidget {
                 MaterialPageRoute(
                   builder: (context) => ReaderWidget(
                     page: page - 1,
+                    ifGoto: true,
                   ),
                 ),
               );

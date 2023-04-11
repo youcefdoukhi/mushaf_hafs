@@ -6,32 +6,43 @@ import 'pageinfo.dart';
 import 'content.dart';
 
 class ReaderWidget extends StatefulWidget {
-  const ReaderWidget({Key? key, required this.page}) : super(key: key);
+  const ReaderWidget({Key? key, required this.page, required this.ifGoto})
+      : super(key: key);
   final int page;
+  final bool ifGoto;
 
   @override
   State<ReaderWidget> createState() => _ReaderWidgetState();
 }
 
 class _ReaderWidgetState extends State<ReaderWidget> {
-  int? _page;
+  late int _page;
   int nbrPages = 604;
   bool _showPageInfo = false;
   PageController? _controller;
-
+  ScrollController? _lstviewController;
+  double _lstviewOffset = 0.0;
   int _bookmark = 0;
 
   @override
   void initState() {
     super.initState();
 
-    _controller = PageController(
-      initialPage: widget.page,
-      //viewportFraction: 10,
-    );
-
     _page = widget.page;
+    _lstviewController = ScrollController(initialScrollOffset: _lstviewOffset);
+    _lstviewController?.addListener(() {
+      setState(() {
+        _lstviewOffset = _lstviewController!.offset;
+      });
+    });
+
     _loadSavedBookmark();
+  }
+
+  Future<void> _saveBookmark() async {
+    final prefs = await SharedPreferences.getInstance();
+
+    prefs.setInt('mushaf01_bookmark', _bookmark);
   }
 
   Future<void> _loadSavedBookmark() async {
@@ -44,10 +55,19 @@ class _ReaderWidgetState extends State<ReaderWidget> {
     });
   }
 
-  Future<void> _saveBookmark() async {
+  Future<void> _saveCurrentPage() async {
     final prefs = await SharedPreferences.getInstance();
+    prefs.setInt('mushaf01_page', _page);
+  }
 
-    prefs.setInt('mushaf01_bookmark', _bookmark);
+  Future<int> _loadSavedCurrentPage() async {
+    final prefs = await SharedPreferences.getInstance();
+    int? currentPage = prefs.getInt('mushaf01_page');
+    if (currentPage != null) {
+      return currentPage;
+    } else {
+      return 0;
+    }
   }
 
   _displaySaveBookmarkDialog(BuildContext context) async {
@@ -131,67 +151,128 @@ class _ReaderWidgetState extends State<ReaderWidget> {
         child: Stack(
           children: <Widget>[
             GestureDetector(
-              onTap: () => {
-                setState(() {
-                  _showPageInfo ? _showPageInfo = false : _showPageInfo = true;
-                })
-              },
-              child: OrientationBuilder(
-                builder: (context, orientation) {
-                  return orientation == Orientation.portrait
-                      ? PageView.builder(
-                          // physics: const CustomPageViewScrollPhysics(),
-
-                          pageSnapping: orientation == Orientation.portrait
-                              ? true
-                              : false,
-
-                          scrollDirection: orientation == Orientation.portrait
-                              ? Axis.horizontal
-                              : Axis.vertical,
-                          controller: _controller,
-                          onPageChanged: (int page) => {
-                            setState(() {
-                              _page = page;
-                            }),
-                          },
-                          itemBuilder: (context, index) {
-                            return PageWidget(
-                              content: Content(
-                                index: index,
-                              ),
-                              keyString: index.toString(),
-                              orientation: orientation,
-                            );
-                          },
-                          itemCount: nbrPages,
-                        )
-                      : Column(
-                          children: [
-                            Expanded(
-                              child: ListView.builder(
-                                itemCount: nbrPages,
+                onTap: () => {
+                      setState(() {
+                        _showPageInfo
+                            ? _showPageInfo = false
+                            : _showPageInfo = true;
+                      })
+                    },
+                child: widget.ifGoto == false
+                    ? FutureBuilder<int>(
+                        future: _loadSavedCurrentPage(),
+                        builder: (context, snapshot) {
+                          return OrientationBuilder(
+                            builder: (context, orientation) {
+                              return orientation == Orientation.portrait
+                                  ? PageView.builder(
+                                      pageSnapping:
+                                          orientation == Orientation.portrait
+                                              ? true
+                                              : false,
+                                      scrollDirection:
+                                          orientation == Orientation.portrait
+                                              ? Axis.horizontal
+                                              : Axis.vertical,
+                                      controller: PageController(
+                                        initialPage: snapshot.data as int,
+                                      ),
+                                      onPageChanged: (int page) => {
+                                        setState(() {
+                                          _page = page;
+                                        }),
+                                        _saveCurrentPage()
+                                      },
+                                      itemBuilder: (context, index) {
+                                        return PageWidget(
+                                          content: Content(
+                                            index: index,
+                                          ),
+                                          orientation: orientation,
+                                        );
+                                      },
+                                      itemCount: nbrPages,
+                                    )
+                                  : Column(
+                                      children: [
+                                        Expanded(
+                                          child: ListView.builder(
+                                            controller: _lstviewController,
+                                            itemCount: nbrPages,
+                                            itemBuilder: (context, index) {
+                                              return PageWidget(
+                                                content: Content(
+                                                  index: index,
+                                                ),
+                                                orientation: orientation,
+                                              );
+                                            },
+                                          ),
+                                        ),
+                                      ],
+                                    );
+                            },
+                          );
+                        },
+                      )
+                    : Text(
+                        "IfGoTo : ${widget.ifGoto} --- Page : ${widget.page}") /*OrientationBuilder(
+                      builder: (context, orientation) {
+                        return orientation == Orientation.portrait
+                            ? PageView.builder(
+                                pageSnapping:
+                                    orientation == Orientation.portrait
+                                        ? true
+                                        : false,
+                                scrollDirection:
+                                    orientation == Orientation.portrait
+                                        ? Axis.horizontal
+                                        : Axis.vertical,
+                                controller: PageController(
+                                  initialPage: _page,
+                                ),
+                                onPageChanged: (int page) => {
+                                  setState(() {
+                                    _page = page;
+                                  }),
+                                  _saveCurrentPage()
+                                },
                                 itemBuilder: (context, index) {
                                   return PageWidget(
                                     content: Content(
                                       index: index,
                                     ),
-                                    keyString: index.toString(),
                                     orientation: orientation,
                                   );
                                 },
-                              ),
-                            ),
-                          ],
-                        );
-                },
-              ),
-            ),
+                                itemCount: nbrPages,
+                              )
+                            : Column(
+                                children: [
+                                  Expanded(
+                                    child: ListView.builder(
+                                      controller: _lstviewController,
+                                      itemCount: nbrPages,
+                                      itemBuilder: (context, index) {
+                                        return PageWidget(
+                                          content: Content(
+                                            index: index,
+                                          ),
+                                          orientation: orientation,
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                ],
+                              );
+                      },
+                    ),*/
+                ),
             Visibility(
               visible: _showPageInfo,
               child: MyPageInfo(
                 nbrOfPages: nbrPages,
-                pageNum: _page!,
+                pageNum: _page,
                 displaySaveBookmarkDialog: _displaySaveBookmarkDialog,
               ),
             ),

@@ -27,7 +27,7 @@ class MainApp extends StatelessWidget {
       ],
       locale: Locale('ar'),
       title: _title,
-      home: ReaderWidget(page: 0),
+      home: ReaderWidget(page: 0, ifGoto: false),
     );
   }
 }
