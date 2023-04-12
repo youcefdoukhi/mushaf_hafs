@@ -43,8 +43,11 @@ class _ReaderWidgetState extends State<ReaderWidget> {
 
   Future<void> _saveBookmark() async {
     final prefs = await SharedPreferences.getInstance();
-
-    prefs.setInt('mushaf01_bookmark', _bookmark);
+    prefs.setInt('mushaf01_bookmark', _page);
+    setState(() {
+      _showPageInfo = false;
+      _bookmark = _page;
+    });
   }
 
   Future<void> _loadSavedBookmark() async {
@@ -66,6 +69,10 @@ class _ReaderWidgetState extends State<ReaderWidget> {
     final prefs = await SharedPreferences.getInstance();
     int? currentPage = prefs.getInt('mushaf01_page');
     if (currentPage != null) {
+      setState(() {
+        _page = currentPage;
+        //_showPageInfo = false;
+      });
       return currentPage;
     } else {
       return 0;
@@ -92,9 +99,7 @@ class _ReaderWidgetState extends State<ReaderWidget> {
                   ),
                 ),
                 onPressed: () {
-                  setState(() {
-                    Navigator.pop(context);
-                  });
+                  Navigator.pop(context);
                 },
               ),
               TextButton(
@@ -110,16 +115,26 @@ class _ReaderWidgetState extends State<ReaderWidget> {
                   ),
                 ),
                 onPressed: () {
-                  setState(() {
-                    _saveBookmark();
-                    Navigator.pop(context);
-                    showStatus(context);
-                  });
+                  _saveBookmark();
+                  Navigator.pop(context);
+                  showStatus(context);
                 },
               ),
             ],
           );
         });
+  }
+
+  _goToSavedBookmark() {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ReaderWidget(
+          page: _bookmark,
+          ifGoto: true,
+        ),
+      ),
+    );
   }
 
   showStatus(ctext) {
@@ -282,6 +297,7 @@ class _ReaderWidgetState extends State<ReaderWidget> {
                   nbrOfPages: nbrPages,
                   pageNum: _page,
                   displaySaveBookmarkDialog: _displaySaveBookmarkDialog,
+                  goToSavedBookmark: _goToSavedBookmark,
                 ),
               ),
             ],

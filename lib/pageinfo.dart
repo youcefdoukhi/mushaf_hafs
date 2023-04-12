@@ -8,13 +8,14 @@ import 'num_pad.dart';
 class MyPageInfo extends StatelessWidget {
   const MyPageInfo({
     Key? key,
-    //required this.saveMarksList,
     required this.displaySaveBookmarkDialog,
+    required this.goToSavedBookmark,
     required this.pageNum,
     required this.nbrOfPages,
   }) : super(key: key);
 
   final Function displaySaveBookmarkDialog;
+  final Function goToSavedBookmark;
   final int pageNum;
   final int nbrOfPages;
 
@@ -116,7 +117,9 @@ class MyPageInfo extends StatelessWidget {
                               ),
                             ),
                             child: InkWell(
-                              onTap: () {}, // button pressed
+                              onTap: () {
+                                displaySaveBookmarkDialog(context);
+                              }, // button pressed
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: const <Widget>[
@@ -157,12 +160,14 @@ class MyPageInfo extends StatelessWidget {
                             ),
                             child: InkWell(
                               // splash color
-                              onTap: () {}, // button pressed
+                              onTap: () {
+                                goToSavedBookmark();
+                              }, // button pressed
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: const <Widget>[
                                   Icon(
-                                    Icons.zoom_out_outlined,
+                                    Icons.book_outlined,
                                     color: Color.fromARGB(255, 212, 180, 124),
                                   ),
                                   Text(
