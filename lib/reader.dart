@@ -211,6 +211,9 @@ class _ReaderWidgetState extends State<ReaderWidget> {
                                               index: index,
                                             ),
                                             orientation: orientation,
+                                            isBookmarked: _bookmark == _page
+                                                ? true
+                                                : false,
                                           );
                                         },
                                         itemCount: nbrPages,
@@ -227,6 +230,10 @@ class _ReaderWidgetState extends State<ReaderWidget> {
                                                     index: index,
                                                   ),
                                                   orientation: orientation,
+                                                  isBookmarked:
+                                                      _bookmark == _page
+                                                          ? true
+                                                          : false,
                                                 );
                                               },
                                             ),
@@ -266,6 +273,8 @@ class _ReaderWidgetState extends State<ReaderWidget> {
                                         index: index,
                                       ),
                                       orientation: orientation,
+                                      isBookmarked:
+                                          _bookmark == _page ? true : false,
                                     );
                                   },
                                   itemCount: nbrPages,
@@ -282,6 +291,9 @@ class _ReaderWidgetState extends State<ReaderWidget> {
                                               index: index,
                                             ),
                                             orientation: orientation,
+                                            isBookmarked: _bookmark == _page
+                                                ? true
+                                                : false,
                                           );
                                         },
                                       ),

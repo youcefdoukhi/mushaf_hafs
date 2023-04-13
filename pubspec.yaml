@@ -22,6 +22,7 @@ flutter:
   uses-material-design: true
   assets:
     - images/mushaf_photos_2/
+    - images/
     
 
   fonts:
