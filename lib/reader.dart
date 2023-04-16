@@ -22,11 +22,12 @@ class _ReaderWidgetState extends State<ReaderWidget> {
   PageController? _controller;
   ScrollController? _lstviewController;
   double _lstviewOffset = 0.0;
-  int _bookmark = 0;
+  late int _bookmark;
 
   @override
   void initState() {
     super.initState();
+    _loadSavedBookmark();
     _page = widget.page;
     if (widget.ifGoto) {
       _saveCurrentPage();
@@ -37,8 +38,6 @@ class _ReaderWidgetState extends State<ReaderWidget> {
         _lstviewOffset = _lstviewController!.offset;
       });
     });
-
-    _loadSavedBookmark();
   }
 
   Future<void> _saveBookmark() async {
@@ -56,6 +55,8 @@ class _ReaderWidgetState extends State<ReaderWidget> {
     setState(() {
       if (bookmark != null) {
         _bookmark = bookmark;
+      } else {
+        _bookmark = 0;
       }
     });
   }
@@ -211,7 +212,7 @@ class _ReaderWidgetState extends State<ReaderWidget> {
                                               index: index,
                                             ),
                                             orientation: orientation,
-                                            isBookmarked: _bookmark == _page
+                                            isBookmarked: _bookmark == index
                                                 ? true
                                                 : false,
                                           );
@@ -231,7 +232,7 @@ class _ReaderWidgetState extends State<ReaderWidget> {
                                                   ),
                                                   orientation: orientation,
                                                   isBookmarked:
-                                                      _bookmark == _page
+                                                      _bookmark == index
                                                           ? true
                                                           : false,
                                                 );
@@ -274,7 +275,7 @@ class _ReaderWidgetState extends State<ReaderWidget> {
                                       ),
                                       orientation: orientation,
                                       isBookmarked:
-                                          _bookmark == _page ? true : false,
+                                          _bookmark == index ? true : false,
                                     );
                                   },
                                   itemCount: nbrPages,
@@ -291,7 +292,7 @@ class _ReaderWidgetState extends State<ReaderWidget> {
                                               index: index,
                                             ),
                                             orientation: orientation,
-                                            isBookmarked: _bookmark == _page
+                                            isBookmarked: _bookmark == index
                                                 ? true
                                                 : false,
                                           );
