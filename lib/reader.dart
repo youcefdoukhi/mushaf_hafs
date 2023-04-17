@@ -23,6 +23,7 @@ class _ReaderWidgetState extends State<ReaderWidget> {
   ScrollController? _lstviewController;
   double _lstviewOffset = 0.0;
   late int _bookmark;
+  final dataKey = GlobalKey();
 
   @override
   void initState() {
@@ -203,6 +204,7 @@ class _ReaderWidgetState extends State<ReaderWidget> {
                                         onPageChanged: (int page) => {
                                           setState(() {
                                             _page = page;
+                                            _lstviewOffset = 1000 * 2;
                                           }),
                                           _saveCurrentPage()
                                         },
@@ -219,7 +221,45 @@ class _ReaderWidgetState extends State<ReaderWidget> {
                                         },
                                         itemCount: nbrPages,
                                       )
-                                    : Column(
+                                    : SingleChildScrollView(
+                                        child: Column(
+                                          children: <Widget>[
+                                            PageWidget(
+                                              content: Content(
+                                                index: 0,
+                                              ),
+                                              orientation: orientation,
+                                              isBookmarked:
+                                                  _bookmark == 1 ? true : false,
+                                            ),
+                                            PageWidget(
+                                              content: Content(
+                                                index: 1,
+                                              ),
+                                              orientation: orientation,
+                                              isBookmarked:
+                                                  _bookmark == 1 ? true : false,
+                                            ),
+                                            PageWidget(
+                                              key: dataKey,
+                                              content: Content(
+                                                index: 2,
+                                              ),
+                                              orientation: orientation,
+                                              isBookmarked:
+                                                  _bookmark == 1 ? true : false,
+                                            ),
+                                            PageWidget(
+                                              content: Content(
+                                                index: 3,
+                                              ),
+                                              orientation: orientation,
+                                              isBookmarked:
+                                                  _bookmark == 1 ? true : false,
+                                            ),
+                                          ],
+                                        ),
+                                      ); /*Column(
                                         children: [
                                           Expanded(
                                             child: ListView.builder(
@@ -240,7 +280,7 @@ class _ReaderWidgetState extends State<ReaderWidget> {
                                             ),
                                           ),
                                         ],
-                                      );
+                                      );*/
                               },
                             );
                           }
@@ -280,7 +320,45 @@ class _ReaderWidgetState extends State<ReaderWidget> {
                                   },
                                   itemCount: nbrPages,
                                 )
-                              : Column(
+                              : SingleChildScrollView(
+                                  child: Column(
+                                    children: <Widget>[
+                                      PageWidget(
+                                        content: Content(
+                                          index: 0,
+                                        ),
+                                        orientation: orientation,
+                                        isBookmarked:
+                                            _bookmark == 1 ? true : false,
+                                      ),
+                                      PageWidget(
+                                        content: Content(
+                                          index: 1,
+                                        ),
+                                        orientation: orientation,
+                                        isBookmarked:
+                                            _bookmark == 1 ? true : false,
+                                      ),
+                                      PageWidget(
+                                        key: dataKey,
+                                        content: Content(
+                                          index: 2,
+                                        ),
+                                        orientation: orientation,
+                                        isBookmarked:
+                                            _bookmark == 1 ? true : false,
+                                      ),
+                                      PageWidget(
+                                        content: Content(
+                                          index: 3,
+                                        ),
+                                        orientation: orientation,
+                                        isBookmarked:
+                                            _bookmark == 1 ? true : false,
+                                      ),
+                                    ],
+                                  ),
+                                ); /*Column(
                                   children: [
                                     Expanded(
                                       child: ListView.builder(
@@ -300,7 +378,7 @@ class _ReaderWidgetState extends State<ReaderWidget> {
                                       ),
                                     ),
                                   ],
-                                );
+                                );*/
                         },
                       ),
               ),
@@ -312,6 +390,12 @@ class _ReaderWidgetState extends State<ReaderWidget> {
                   displaySaveBookmarkDialog: _displaySaveBookmarkDialog,
                   goToSavedBookmark: _goToSavedBookmark,
                 ),
+              ),
+              ElevatedButton(
+                onPressed: () => {
+                  Scrollable.ensureVisible(dataKey.currentContext!),
+                },
+                child: const Text("Scroll to data"),
               ),
             ],
           ),
