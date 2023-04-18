@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'page.dart';
@@ -18,12 +19,15 @@ class ReaderWidget extends StatefulWidget {
 class _ReaderWidgetState extends State<ReaderWidget> {
   late int _page;
   int nbrPages = 604;
+
   bool _showPageInfo = false;
   PageController? _controller;
-  ScrollController? _lstviewController;
-  double _lstviewOffset = 0.0;
+
   late int _bookmark;
-  final dataKey = GlobalKey();
+
+  final ItemScrollController itemScrollController = ItemScrollController();
+  final ItemPositionsListener itemPositionsListener =
+      ItemPositionsListener.create();
 
   @override
   void initState() {
@@ -33,12 +37,6 @@ class _ReaderWidgetState extends State<ReaderWidget> {
     if (widget.ifGoto) {
       _saveCurrentPage();
     }
-    _lstviewController = ScrollController(initialScrollOffset: _lstviewOffset);
-    _lstviewController?.addListener(() {
-      setState(() {
-        _lstviewOffset = _lstviewController!.offset;
-      });
-    });
   }
 
   Future<void> _saveBookmark() async {
@@ -73,7 +71,6 @@ class _ReaderWidgetState extends State<ReaderWidget> {
     if (currentPage != null) {
       setState(() {
         _page = currentPage;
-        //_showPageInfo = false;
       });
       return currentPage;
     } else {
@@ -204,7 +201,6 @@ class _ReaderWidgetState extends State<ReaderWidget> {
                                         onPageChanged: (int page) => {
                                           setState(() {
                                             _page = page;
-                                            _lstviewOffset = 1000 * 2;
                                           }),
                                           _saveCurrentPage()
                                         },
@@ -221,66 +217,26 @@ class _ReaderWidgetState extends State<ReaderWidget> {
                                         },
                                         itemCount: nbrPages,
                                       )
-                                    : SingleChildScrollView(
-                                        child: Column(
-                                          children: <Widget>[
-                                            PageWidget(
-                                              content: Content(
-                                                index: 0,
-                                              ),
-                                              orientation: orientation,
-                                              isBookmarked:
-                                                  _bookmark == 1 ? true : false,
+                                    : ScrollablePositionedList.builder(
+                                        itemCount: nbrPages,
+                                        initialScrollIndex:
+                                            snapshot.data as int,
+                                        itemBuilder: (context, index) {
+                                          return PageWidget(
+                                            content: Content(
+                                              index: index,
                                             ),
-                                            PageWidget(
-                                              content: Content(
-                                                index: 1,
-                                              ),
-                                              orientation: orientation,
-                                              isBookmarked:
-                                                  _bookmark == 1 ? true : false,
-                                            ),
-                                            PageWidget(
-                                              key: dataKey,
-                                              content: Content(
-                                                index: 2,
-                                              ),
-                                              orientation: orientation,
-                                              isBookmarked:
-                                                  _bookmark == 1 ? true : false,
-                                            ),
-                                            PageWidget(
-                                              content: Content(
-                                                index: 3,
-                                              ),
-                                              orientation: orientation,
-                                              isBookmarked:
-                                                  _bookmark == 1 ? true : false,
-                                            ),
-                                          ],
-                                        ),
-                                      ); /*Column(
-                                        children: [
-                                          Expanded(
-                                            child: ListView.builder(
-                                              controller: _lstviewController,
-                                              itemCount: nbrPages,
-                                              itemBuilder: (context, index) {
-                                                return PageWidget(
-                                                  content: Content(
-                                                    index: index,
-                                                  ),
-                                                  orientation: orientation,
-                                                  isBookmarked:
-                                                      _bookmark == index
-                                                          ? true
-                                                          : false,
-                                                );
-                                              },
-                                            ),
-                                          ),
-                                        ],
-                                      );*/
+                                            orientation: orientation,
+                                            isBookmarked: _bookmark == index
+                                                ? true
+                                                : false,
+                                          );
+                                        },
+                                        itemScrollController:
+                                            itemScrollController,
+                                        itemPositionsListener:
+                                            itemPositionsListener,
+                                      );
                               },
                             );
                           }
@@ -320,65 +276,21 @@ class _ReaderWidgetState extends State<ReaderWidget> {
                                   },
                                   itemCount: nbrPages,
                                 )
-                              : SingleChildScrollView(
-                                  child: Column(
-                                    children: <Widget>[
-                                      PageWidget(
-                                        content: Content(
-                                          index: 0,
-                                        ),
-                                        orientation: orientation,
-                                        isBookmarked:
-                                            _bookmark == 1 ? true : false,
+                              : ScrollablePositionedList.builder(
+                                  itemCount: nbrPages,
+                                  itemBuilder: (context, index) {
+                                    return PageWidget(
+                                      content: Content(
+                                        index: index,
                                       ),
-                                      PageWidget(
-                                        content: Content(
-                                          index: 1,
-                                        ),
-                                        orientation: orientation,
-                                        isBookmarked:
-                                            _bookmark == 1 ? true : false,
-                                      ),
-                                      PageWidget(
-                                        key: dataKey,
-                                        content: Content(
-                                          index: 2,
-                                        ),
-                                        orientation: orientation,
-                                        isBookmarked:
-                                            _bookmark == 1 ? true : false,
-                                      ),
-                                      PageWidget(
-                                        content: Content(
-                                          index: 3,
-                                        ),
-                                        orientation: orientation,
-                                        isBookmarked:
-                                            _bookmark == 1 ? true : false,
-                                      ),
-                                    ],
-                                  ),
-                                ); /*Column(
-                                  children: [
-                                    Expanded(
-                                      child: ListView.builder(
-                                        controller: _lstviewController,
-                                        itemCount: nbrPages,
-                                        itemBuilder: (context, index) {
-                                          return PageWidget(
-                                            content: Content(
-                                              index: index,
-                                            ),
-                                            orientation: orientation,
-                                            isBookmarked: _bookmark == index
-                                                ? true
-                                                : false,
-                                          );
-                                        },
-                                      ),
-                                    ),
-                                  ],
-                                );*/
+                                      orientation: orientation,
+                                      isBookmarked:
+                                          _bookmark == index ? true : false,
+                                    );
+                                  },
+                                  itemScrollController: itemScrollController,
+                                  itemPositionsListener: itemPositionsListener,
+                                );
                         },
                       ),
               ),
@@ -390,12 +302,6 @@ class _ReaderWidgetState extends State<ReaderWidget> {
                   displaySaveBookmarkDialog: _displaySaveBookmarkDialog,
                   goToSavedBookmark: _goToSavedBookmark,
                 ),
-              ),
-              ElevatedButton(
-                onPressed: () => {
-                  Scrollable.ensureVisible(dataKey.currentContext!),
-                },
-                child: const Text("Scroll to data"),
               ),
             ],
           ),
