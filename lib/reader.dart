@@ -32,11 +32,48 @@ class _ReaderWidgetState extends State<ReaderWidget> {
   @override
   void initState() {
     super.initState();
-    _loadSavedBookmark();
+
     _page = widget.page;
-    if (widget.ifGoto) {
-      _saveCurrentPage();
-    }
+    _saveCurrentPage();
+
+    _loadSavedBookmark();
+    itemPositionsListener.itemPositions.addListener(
+      () {
+        int? min;
+        int? max;
+        if (itemPositionsListener.itemPositions.value.isNotEmpty) {
+          min = itemPositionsListener.itemPositions.value
+              .where((ItemPosition position) => position.itemTrailingEdge > 0)
+              .reduce((ItemPosition min, ItemPosition position) =>
+                  position.itemTrailingEdge < min.itemTrailingEdge
+                      ? position
+                      : min)
+              .index;
+          max = itemPositionsListener.itemPositions.value
+              .where((ItemPosition position) => position.itemLeadingEdge < 1)
+              .reduce((ItemPosition max, ItemPosition position) =>
+                  position.itemLeadingEdge > max.itemLeadingEdge
+                      ? position
+                      : max)
+              .index;
+
+          if (max != min && max > _page) {
+            setState(() {
+              _page = max!;
+            });
+            _saveCurrentPage();
+            print("Page === $_page");
+          }
+          if (min < _page && max < _page) {
+            setState(() {
+              _page = min!;
+            });
+            _saveCurrentPage();
+            print("Page 2 === $_page");
+          }
+        }
+      },
+    );
   }
 
   Future<void> _saveBookmark() async {
@@ -63,19 +100,6 @@ class _ReaderWidgetState extends State<ReaderWidget> {
   Future<void> _saveCurrentPage() async {
     final prefs = await SharedPreferences.getInstance();
     prefs.setInt('mushaf01_page', _page);
-  }
-
-  Future<int> _loadSavedCurrentPage() async {
-    final prefs = await SharedPreferences.getInstance();
-    int? currentPage = prefs.getInt('mushaf01_page');
-    if (currentPage != null) {
-      setState(() {
-        _page = currentPage;
-      });
-      return currentPage;
-    } else {
-      return 0;
-    }
   }
 
   _displaySaveBookmarkDialog(BuildContext context) async {
@@ -125,15 +149,17 @@ class _ReaderWidgetState extends State<ReaderWidget> {
   }
 
   _goToSavedBookmark() {
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-        builder: (context) => ReaderWidget(
-          page: _bookmark,
-          ifGoto: true,
-        ),
-      ),
-    );
+    MediaQuery.of(context).orientation == Orientation.portrait
+        ? Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ReaderWidget(
+                page: _bookmark,
+                ifGoto: true,
+              ),
+            ),
+          )
+        : itemScrollController.jumpTo(index: _bookmark);
   }
 
   showStatus(ctext) {
@@ -156,7 +182,6 @@ class _ReaderWidgetState extends State<ReaderWidget> {
   @override
   void dispose() {
     _controller?.dispose();
-
     super.dispose();
   }
 
@@ -178,121 +203,53 @@ class _ReaderWidgetState extends State<ReaderWidget> {
                         : _showPageInfo = true;
                   })
                 },
-                child: widget.ifGoto == false
-                    ? FutureBuilder<int>(
-                        future: _loadSavedCurrentPage(),
-                        builder: (context, snapshot) {
-                          if (snapshot.hasData) {
-                            return OrientationBuilder(
-                              builder: (context, orientation) {
-                                return orientation == Orientation.portrait
-                                    ? PageView.builder(
-                                        pageSnapping:
-                                            orientation == Orientation.portrait
-                                                ? true
-                                                : false,
-                                        scrollDirection:
-                                            orientation == Orientation.portrait
-                                                ? Axis.horizontal
-                                                : Axis.vertical,
-                                        controller: PageController(
-                                          initialPage: snapshot.data as int,
-                                        ),
-                                        onPageChanged: (int page) => {
-                                          setState(() {
-                                            _page = page;
-                                          }),
-                                          _saveCurrentPage()
-                                        },
-                                        itemBuilder: (context, index) {
-                                          return PageWidget(
-                                            content: Content(
-                                              index: index,
-                                            ),
-                                            orientation: orientation,
-                                            isBookmarked: _bookmark == index
-                                                ? true
-                                                : false,
-                                          );
-                                        },
-                                        itemCount: nbrPages,
-                                      )
-                                    : ScrollablePositionedList.builder(
-                                        itemCount: nbrPages,
-                                        initialScrollIndex:
-                                            snapshot.data as int,
-                                        itemBuilder: (context, index) {
-                                          return PageWidget(
-                                            content: Content(
-                                              index: index,
-                                            ),
-                                            orientation: orientation,
-                                            isBookmarked: _bookmark == index
-                                                ? true
-                                                : false,
-                                          );
-                                        },
-                                        itemScrollController:
-                                            itemScrollController,
-                                        itemPositionsListener:
-                                            itemPositionsListener,
-                                      );
-                              },
-                            );
-                          }
-                          return Container();
-                        },
-                      )
-                    : OrientationBuilder(
-                        builder: (context, orientation) {
-                          return orientation == Orientation.portrait
-                              ? PageView.builder(
-                                  pageSnapping:
-                                      orientation == Orientation.portrait
-                                          ? true
-                                          : false,
-                                  scrollDirection:
-                                      orientation == Orientation.portrait
-                                          ? Axis.horizontal
-                                          : Axis.vertical,
-                                  controller: PageController(
-                                    initialPage: _page,
-                                  ),
-                                  onPageChanged: (int page) => {
-                                    setState(() {
-                                      _page = page;
-                                    }),
-                                    _saveCurrentPage()
-                                  },
-                                  itemBuilder: (context, index) {
-                                    return PageWidget(
-                                      content: Content(
-                                        index: index,
-                                      ),
-                                      orientation: orientation,
-                                      isBookmarked:
-                                          _bookmark == index ? true : false,
-                                    );
-                                  },
-                                  itemCount: nbrPages,
-                                )
-                              : ScrollablePositionedList.builder(
-                                  itemCount: nbrPages,
-                                  itemBuilder: (context, index) {
-                                    return PageWidget(
-                                      content: Content(
-                                        index: index,
-                                      ),
-                                      orientation: orientation,
-                                      isBookmarked:
-                                          _bookmark == index ? true : false,
-                                    );
-                                  },
-                                  itemScrollController: itemScrollController,
-                                  itemPositionsListener: itemPositionsListener,
-                                );
-                        },
-                      ),
+                child: OrientationBuilder(
+                  builder: (context, orientation) {
+                    return orientation == Orientation.portrait
+                        ? PageView.builder(
+                            pageSnapping: orientation == Orientation.portrait
+                                ? true
+                                : false,
+                            scrollDirection: orientation == Orientation.portrait
+                                ? Axis.horizontal
+                                : Axis.vertical,
+                            controller: PageController(
+                              initialPage: _page,
+                            ),
+                            onPageChanged: (int page) => {
+                              setState(() {
+                                _page = page;
+                              }),
+                              _saveCurrentPage()
+                            },
+                            itemBuilder: (context, index) {
+                              return PageWidget(
+                                content: Content(
+                                  index: index,
+                                ),
+                                orientation: orientation,
+                                isBookmarked: _bookmark == index ? true : false,
+                              );
+                            },
+                            itemCount: nbrPages,
+                          )
+                        : ScrollablePositionedList.builder(
+                            itemCount: nbrPages,
+                            itemBuilder: (context, index) {
+                              return PageWidget(
+                                content: Content(
+                                  index: index,
+                                ),
+                                orientation: orientation,
+                                isBookmarked: _bookmark == index ? true : false,
+                              );
+                            },
+                            initialScrollIndex: _page,
+                            itemScrollController: itemScrollController,
+                            itemPositionsListener: itemPositionsListener,
+                          );
+                  },
+                ),
               ),
               Visibility(
                 visible: _showPageInfo,
@@ -310,22 +267,3 @@ class _ReaderWidgetState extends State<ReaderWidget> {
     );
   }
 }
-
-/*
-class CustomPageViewScrollPhysics extends ScrollPhysics {
-  const CustomPageViewScrollPhysics({ScrollPhysics? parent})
-      : super(parent: parent);
-
-  @override
-  CustomPageViewScrollPhysics applyTo(ScrollPhysics? ancestor) {
-    return CustomPageViewScrollPhysics(parent: buildParent(ancestor));
-  }
-
-  @override
-  SpringDescription get spring => const SpringDescription(
-        mass: 80,
-        stiffness: 100,
-        damping: 1,
-      );
-}
-*/
