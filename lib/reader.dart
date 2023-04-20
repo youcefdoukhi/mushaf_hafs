@@ -320,11 +320,28 @@ class _ReaderWidgetState extends State<ReaderWidget> {
                               },
                             ),
                             Text('Current brightness: $changedBrightness'),
-                            Slider.adaptive(
-                              value: changedBrightness,
-                              onChanged: (value) {
-                                setBrightness(value);
-                              },
+                            SliderTheme(
+                              data: SliderTheme.of(context).copyWith(
+                                trackHeight: 40.0,
+                                trackShape: const RectangularSliderTrackShape(),
+                                activeTrackColor:
+                                    const Color.fromARGB(220, 54, 56, 89),
+                                inactiveTrackColor: Colors.transparent,
+                                thumbShape: const RoundSliderThumbShape(
+                                  enabledThumbRadius: 0.0,
+                                  pressedElevation: 0.0,
+                                ),
+                                thumbColor: Colors.transparent,
+                                overlayColor: Colors.transparent,
+                                overlayShape: const RoundSliderOverlayShape(
+                                    overlayRadius: 32.0),
+                              ),
+                              child: Slider.adaptive(
+                                value: changedBrightness,
+                                onChanged: (value) {
+                                  setBrightness(value);
+                                },
+                              ),
                             ),
                             ElevatedButton(
                               onPressed: () {
