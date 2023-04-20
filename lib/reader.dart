@@ -18,12 +18,11 @@ class ReaderWidget extends StatefulWidget {
 
 class _ReaderWidgetState extends State<ReaderWidget> {
   late int _page;
+  int _bookmark = 0;
   int nbrPages = 604;
 
   bool _showPageInfo = false;
   PageController? _controller;
-
-  late int _bookmark;
 
   final ItemScrollController itemScrollController = ItemScrollController();
   final ItemPositionsListener itemPositionsListener =
@@ -62,14 +61,12 @@ class _ReaderWidgetState extends State<ReaderWidget> {
               _page = max!;
             });
             _saveCurrentPage();
-            print("Page === $_page");
           }
           if (min < _page && max < _page) {
             setState(() {
               _page = min!;
             });
             _saveCurrentPage();
-            print("Page 2 === $_page");
           }
         }
       },
@@ -206,58 +203,74 @@ class _ReaderWidgetState extends State<ReaderWidget> {
                 child: OrientationBuilder(
                   builder: (context, orientation) {
                     return orientation == Orientation.portrait
-                        ? PageView.builder(
-                            pageSnapping: orientation == Orientation.portrait
-                                ? true
-                                : false,
-                            scrollDirection: orientation == Orientation.portrait
-                                ? Axis.horizontal
-                                : Axis.vertical,
-                            controller: PageController(
-                              initialPage: _page,
+                        ? ScrollConfiguration(
+                            behavior: AppBehavior(),
+                            child: PageView.builder(
+                              pageSnapping: orientation == Orientation.portrait
+                                  ? true
+                                  : false,
+                              scrollDirection:
+                                  orientation == Orientation.portrait
+                                      ? Axis.horizontal
+                                      : Axis.vertical,
+                              controller: PageController(
+                                initialPage: _page,
+                              ),
+                              onPageChanged: (int page) => {
+                                setState(() {
+                                  _page = page;
+                                }),
+                                _saveCurrentPage()
+                              },
+                              itemBuilder: (context, index) {
+                                return PageWidget(
+                                  content: Content(
+                                    index: index,
+                                  ),
+                                  orientation: orientation,
+                                  isBookmarked:
+                                      _bookmark == index ? true : false,
+                                );
+                              },
+                              itemCount: nbrPages,
                             ),
-                            onPageChanged: (int page) => {
-                              setState(() {
-                                _page = page;
-                              }),
-                              _saveCurrentPage()
-                            },
-                            itemBuilder: (context, index) {
-                              return PageWidget(
-                                content: Content(
-                                  index: index,
-                                ),
-                                orientation: orientation,
-                                isBookmarked: _bookmark == index ? true : false,
-                              );
-                            },
-                            itemCount: nbrPages,
                           )
-                        : ScrollablePositionedList.builder(
-                            itemCount: nbrPages,
-                            itemBuilder: (context, index) {
-                              return PageWidget(
-                                content: Content(
-                                  index: index,
-                                ),
-                                orientation: orientation,
-                                isBookmarked: _bookmark == index ? true : false,
-                              );
-                            },
-                            initialScrollIndex: _page,
-                            itemScrollController: itemScrollController,
-                            itemPositionsListener: itemPositionsListener,
+                        : ScrollConfiguration(
+                            behavior: AppBehavior(),
+                            child: ScrollablePositionedList.builder(
+                              itemCount: nbrPages,
+                              itemBuilder: (context, index) {
+                                return PageWidget(
+                                  content: Content(
+                                    index: index,
+                                  ),
+                                  orientation: orientation,
+                                  isBookmarked:
+                                      _bookmark == index ? true : false,
+                                );
+                              },
+                              initialScrollIndex: _page,
+                              itemScrollController: itemScrollController,
+                              itemPositionsListener: itemPositionsListener,
+                            ),
                           );
                   },
                 ),
               ),
               Visibility(
                 visible: _showPageInfo,
-                child: MyPageInfo(
-                  nbrOfPages: nbrPages,
-                  pageNum: _page,
-                  displaySaveBookmarkDialog: _displaySaveBookmarkDialog,
-                  goToSavedBookmark: _goToSavedBookmark,
+                child: OrientationBuilder(
+                  builder: (context, orientation) {
+                    return orientation == Orientation.portrait
+                        ? MyPageInfo(
+                            nbrOfPages: nbrPages,
+                            pageNum: _page,
+                            displaySaveBookmarkDialog:
+                                _displaySaveBookmarkDialog,
+                            goToSavedBookmark: _goToSavedBookmark,
+                          )
+                        : Container();
+                  },
                 ),
               ),
             ],
@@ -265,5 +278,13 @@ class _ReaderWidgetState extends State<ReaderWidget> {
         ),
       ),
     );
+  }
+}
+
+class AppBehavior extends ScrollBehavior {
+  @override
+  Widget buildOverscrollIndicator(
+      BuildContext context, Widget child, ScrollableDetails details) {
+    return child;
   }
 }
