@@ -37,7 +37,7 @@ class MyPageInfo extends StatelessWidget {
           ),
           child: Center(
             child: Text(
-              "الصفحة : $nbrOfPages/${pageNum + 1}",
+              "${pageNum + 1}",
               textDirection: TextDirection.rtl,
               textAlign: TextAlign.justify,
               style: const TextStyle(

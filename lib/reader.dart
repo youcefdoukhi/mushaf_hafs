@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:screen_brightness/screen_brightness.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -27,6 +28,24 @@ class _ReaderWidgetState extends State<ReaderWidget> {
   final ItemScrollController itemScrollController = ItemScrollController();
   final ItemPositionsListener itemPositionsListener =
       ItemPositionsListener.create();
+
+  Future<void> setBrightness(double brightness) async {
+    try {
+      await ScreenBrightness().setScreenBrightness(brightness);
+    } catch (e) {
+      debugPrint(e.toString());
+      throw 'Failed to set brightness';
+    }
+  }
+
+  Future<void> resetBrightness() async {
+    try {
+      await ScreenBrightness().resetScreenBrightness();
+    } catch (e) {
+      debugPrint(e.toString());
+      throw 'Failed to reset brightness';
+    }
+  }
 
   @override
   void initState() {
@@ -273,6 +292,53 @@ class _ReaderWidgetState extends State<ReaderWidget> {
                   },
                 ),
               ),
+              Center(
+                child: FutureBuilder<double>(
+                  future: ScreenBrightness().current,
+                  builder: (context, snapshot) {
+                    double currentBrightness = 0;
+                    if (snapshot.hasData) {
+                      currentBrightness = snapshot.data!;
+                    }
+
+                    return StreamBuilder<double>(
+                      stream: ScreenBrightness().onCurrentBrightnessChanged,
+                      builder: (context, snapshot) {
+                        double changedBrightness = currentBrightness;
+                        if (snapshot.hasData) {
+                          changedBrightness = snapshot.data!;
+                        }
+
+                        return Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            FutureBuilder<bool>(
+                              future: ScreenBrightness().hasChanged,
+                              builder: (context, snapshot) {
+                                return Text(
+                                    'Brightness has changed via plugin: ${snapshot.data}');
+                              },
+                            ),
+                            Text('Current brightness: $changedBrightness'),
+                            Slider.adaptive(
+                              value: changedBrightness,
+                              onChanged: (value) {
+                                setBrightness(value);
+                              },
+                            ),
+                            ElevatedButton(
+                              onPressed: () {
+                                resetBrightness();
+                              },
+                              child: const Text('reset brightness'),
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  },
+                ),
+              )
             ],
           ),
         ),
