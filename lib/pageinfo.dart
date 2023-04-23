@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:screen_brightness/screen_brightness.dart';
 
 import 'toc.dart';
 import 'content.dart';
@@ -19,33 +20,111 @@ class MyPageInfo extends StatelessWidget {
   final int pageNum;
   final int nbrOfPages;
 
+  Future<void> setBrightness(double brightness) async {
+    try {
+      await ScreenBrightness().setScreenBrightness(brightness);
+    } catch (e) {
+      debugPrint(e.toString());
+      throw 'Failed to set brightness';
+    }
+  }
+
+  Future<void> resetBrightness() async {
+    try {
+      await ScreenBrightness().resetScreenBrightness();
+    } catch (e) {
+      debugPrint(e.toString());
+      throw 'Failed to reset brightness';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        Container(
-          margin: const EdgeInsets.all(10),
-          height: 40,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            color: const Color.fromARGB(220, 54, 56, 89),
-            border: Border.all(
-              color: const Color.fromARGB(255, 54, 56, 89),
-              width: 0.4,
-            ),
-            borderRadius: BorderRadius.circular(5),
-          ),
-          child: Center(
-            child: Text(
-              "${pageNum + 1}",
-              textDirection: TextDirection.rtl,
-              textAlign: TextAlign.justify,
-              style: const TextStyle(
-                color: Colors.white,
-                fontFamily: fontText,
+        Stack(
+          children: [
+            Container(
+              margin: const EdgeInsets.all(10),
+              height: 44,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: const Color.fromARGB(220, 54, 56, 89),
+                border: Border.all(
+                  color: const Color.fromARGB(255, 212, 180, 124),
+                  width: 0.5,
+                ),
+                borderRadius: BorderRadius.circular(5),
+              ),
+              child: Center(
+                child: Text(
+                  "${pageNum + 1}",
+                  textDirection: TextDirection.rtl,
+                  textAlign: TextAlign.justify,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontFamily: fontText,
+                  ),
+                ),
               ),
             ),
-          ),
+            Container(
+              margin: const EdgeInsets.only(
+                left: 12,
+                right: 12,
+              ),
+              child: FutureBuilder<double>(
+                future: ScreenBrightness().current,
+                builder: (context, snapshot) {
+                  double currentBrightness = 0;
+                  if (snapshot.hasData) {
+                    currentBrightness = snapshot.data!;
+                  }
+
+                  return StreamBuilder<double>(
+                    stream: ScreenBrightness().onCurrentBrightnessChanged,
+                    builder: (context, snapshot) {
+                      double changedBrightness = currentBrightness;
+                      if (snapshot.hasData) {
+                        changedBrightness = snapshot.data!;
+                      }
+
+                      return SliderTheme(
+                        data: SliderTheme.of(context).copyWith(
+                          trackHeight: 40.0,
+                          trackShape: CustomTrackShape(),
+                          activeTrackColor:
+                              const Color.fromARGB(179, 54, 56, 89),
+                          inactiveTrackColor: Colors.transparent,
+                          thumbShape: const RoundSliderThumbShape(
+                            enabledThumbRadius: 0.0,
+                            pressedElevation: 0.0,
+                          ),
+                          thumbColor: Colors.transparent,
+                          overlayColor: Colors.transparent,
+                          overlayShape: const RoundSliderOverlayShape(
+                              overlayRadius: 32.0),
+                        ),
+                        child: Slider.adaptive(
+                          value: changedBrightness,
+                          onChanged: (value) {
+                            setBrightness(value);
+                          },
+                        ),
+
+                        /*ElevatedButton(
+                      onPressed: () {
+                        resetBrightness();
+                      },
+                      child: const Text('reset brightness'),
+                    ),*/
+                      );
+                    },
+                  );
+                },
+              ),
+            ),
+          ],
         ),
         Expanded(
           child: Container(),
@@ -309,5 +388,22 @@ class MyTocBottomSheet extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+class CustomTrackShape extends RectangularSliderTrackShape {
+  @override
+  Rect getPreferredRect({
+    required RenderBox parentBox,
+    Offset offset = Offset.zero,
+    required SliderThemeData sliderTheme,
+    bool isEnabled = false,
+    bool isDiscrete = false,
+  }) {
+    final trackHeight = sliderTheme.trackHeight;
+    final trackLeft = offset.dx;
+    final trackTop = offset.dy + (parentBox.size.height - trackHeight!) / 2;
+    final trackWidth = parentBox.size.width;
+    return Rect.fromLTWH(trackLeft, trackTop, trackWidth, trackHeight);
   }
 }
