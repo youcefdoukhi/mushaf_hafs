@@ -12,13 +12,11 @@ class MyPageInfo extends StatelessWidget {
     required this.displaySaveBookmarkDialog,
     required this.goToSavedBookmark,
     required this.pageNum,
-    required this.nbrOfPages,
   }) : super(key: key);
 
   final Function displaySaveBookmarkDialog;
   final Function goToSavedBookmark;
   final int pageNum;
-  final int nbrOfPages;
 
   Future<void> setBrightness(double brightness) async {
     try {
@@ -364,7 +362,7 @@ class MyTocBottomSheet extends StatelessWidget {
               padding: EdgeInsets.only(
                 top: window.viewPadding.top / window.devicePixelRatio,
               ),
-              child: TOCWidget(),
+              child: const TOCWidget(),
             );
           },
         );

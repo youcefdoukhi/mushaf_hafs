@@ -263,7 +263,6 @@ class _ReaderWidgetState extends State<ReaderWidget> {
                   builder: (context, orientation) {
                     return orientation == Orientation.portrait
                         ? MyPageInfo(
-                            nbrOfPages: nbrPages,
                             pageNum: _page,
                             displaySaveBookmarkDialog:
                                 _displaySaveBookmarkDialog,
