@@ -1,12 +1,14 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:mushaf_hafs/data.dart';
 import 'package:screen_brightness/screen_brightness.dart';
 
 import 'toc.dart';
 import 'content.dart';
 import 'num_pad.dart';
 
-class MyPageInfo extends StatelessWidget {
+class MyPageInfo extends HookConsumerWidget {
   const MyPageInfo({
     Key? key,
     required this.displaySaveBookmarkDialog,
@@ -37,7 +39,7 @@ class MyPageInfo extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Column(
       children: <Widget>[
         Stack(
@@ -154,7 +156,18 @@ class MyPageInfo extends StatelessWidget {
                               ),
                             ),
                             child: InkWell(
-                              onTap: () {}, // button pressed
+                              onTap: () {
+                                ref.read(filterProvider.notifier).state =
+                                    Filter.impair;
+                              },
+                              onLongPress: () {
+                                ref.read(filterProvider.notifier).state =
+                                    Filter.pair;
+                              },
+                              onDoubleTap: () {
+                                ref.read(filterProvider.notifier).state =
+                                    Filter.none;
+                              }, // button pressed
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: const <Widget>[

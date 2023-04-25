@@ -29,7 +29,8 @@ class TOCWidget extends HookConsumerWidget {
                   text: "فهرس القرآن الكريم",
                   style: TextStyle(
                     //fontSize: 16,
-                    fontSize: ref.watch(textSizeProvider),
+                    fontSize: ref.watch(
+                        filteredFontSizeProvider.select((value) => value)),
                     fontFamily: fontText,
                   ),
                 ),
@@ -42,7 +43,7 @@ class TOCWidget extends HookConsumerWidget {
               //endIndent: 50,
               color: Color.fromRGBO(233, 218, 193, 1),
             ),
-            Consumer(
+            HookConsumer(
               builder: (context, ref, child) {
                 final objetsAsyncValue = ref.watch(objetsProvider);
                 return objetsAsyncValue.when(

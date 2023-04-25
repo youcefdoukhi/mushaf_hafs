@@ -35,7 +35,35 @@ final objetsProvider = FutureProvider<List<MonObjet>>((ref) async {
   return objets;
 });
 
-final textSizeProvider = Provider((_) => 50.0);
+class SizeFont extends StateNotifier<double> {
+  SizeFont() : super(1);
+/*
+  void increment() {
+    state = state + 5;
+  }*/
+}
 
-final myAutoDisposeProvider = StateProvider.autoDispose<int>((ref) => 0);
-final myFamilyProvider = Provider.family<String, int>((ref, id) => '$id');
+final textSizeProvider =
+    StateNotifierProvider<SizeFont, double>((ref) => SizeFont());
+
+enum Filter {
+  none,
+  pair,
+  impair,
+}
+
+final filterProvider = StateProvider((ref) => Filter.none);
+
+final filteredFontSizeProvider = Provider<double>((ref) {
+  final numberType = ref.watch(filterProvider);
+  final fontSize = ref.watch(textSizeProvider);
+
+  switch (numberType) {
+    case Filter.none:
+      return 16 * fontSize;
+    case Filter.pair:
+      return 100 * fontSize;
+    case Filter.impair:
+      return 45 * fontSize;
+  }
+});
