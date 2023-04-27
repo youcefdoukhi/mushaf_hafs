@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mushaf_hafs/reader.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,37 +21,18 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      localizationsDelegates: const [
+    return const MaterialApp(
+      localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      supportedLocales: const <Locale>[
+      supportedLocales: <Locale>[
         Locale('ar', ''),
       ],
-      locale: const Locale('ar'),
+      locale: Locale('ar'),
       title: _title,
-      home: FutureBuilder<int>(
-        future: _loadSavedCurrentPage(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return ReaderWidget(page: snapshot.data as int, ifGoto: false);
-          } else {
-            return Container();
-          }
-        },
-      ),
+      home: ReaderWidget(),
     );
-  }
-}
-
-Future<int> _loadSavedCurrentPage() async {
-  final prefs = await SharedPreferences.getInstance();
-  int? currentPage = prefs.getInt('mushaf01_page');
-  if (currentPage != null) {
-    return currentPage;
-  } else {
-    return 0;
   }
 }

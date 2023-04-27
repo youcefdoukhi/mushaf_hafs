@@ -1,27 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'data.dart';
 import 'page.dart';
 import 'pageinfo.dart';
 import 'content.dart';
 
-class ReaderWidget extends StatefulWidget {
-  const ReaderWidget({Key? key, required this.page, required this.ifGoto})
-      : super(key: key);
-  final int page;
-  final bool ifGoto;
+class ReaderWidget extends StatefulHookConsumerWidget {
+  const ReaderWidget({Key? key}) : super(key: key);
 
   @override
-  State<ReaderWidget> createState() => _ReaderWidgetState();
+  ConsumerState<ReaderWidget> createState() => _ReaderWidgetState();
 }
 
-class _ReaderWidgetState extends State<ReaderWidget> {
-  late int _page;
-  int _bookmark = 0;
-  int nbrPages = 604;
+class _ReaderWidgetState extends ConsumerState<ReaderWidget> {
+  static const int nbrPages = 604;
 
-  bool _showPageInfo = false;
   PageController? _controller;
 
   final ItemScrollController itemScrollController = ItemScrollController();
@@ -32,10 +28,6 @@ class _ReaderWidgetState extends State<ReaderWidget> {
   void initState() {
     super.initState();
 
-    _page = widget.page;
-    _saveCurrentPage();
-
-    _loadSavedBookmark();
     itemPositionsListener.itemPositions.addListener(
       () {
         int? min;
@@ -56,16 +48,15 @@ class _ReaderWidgetState extends State<ReaderWidget> {
                       : max)
               .index;
 
-          if (max != min && max > _page) {
-            setState(() {
-              _page = max!;
-            });
+          if (max != min && max > ref.read(pageIndexProvider)) {
+            ref.read(pageIndexProvider.notifier).state = max;
+
             _saveCurrentPage();
           }
-          if (min < _page && max < _page) {
-            setState(() {
-              _page = min!;
-            });
+          if (min < ref.read(pageIndexProvider) &&
+              max < ref.read(pageIndexProvider)) {
+            ref.read(pageIndexProvider.notifier).state = min;
+
             _saveCurrentPage();
           }
         }
@@ -73,107 +64,24 @@ class _ReaderWidgetState extends State<ReaderWidget> {
     );
   }
 
-  Future<void> _saveBookmark() async {
-    final prefs = await SharedPreferences.getInstance();
-    prefs.setInt('mushaf01_bookmark', _page);
-    setState(() {
-      _showPageInfo = false;
-      _bookmark = _page;
-    });
-  }
-
-  Future<void> _loadSavedBookmark() async {
-    final prefs = await SharedPreferences.getInstance();
-    int? bookmark = prefs.getInt('mushaf01_bookmark');
-    setState(() {
-      if (bookmark != null) {
-        _bookmark = bookmark;
-      } else {
-        _bookmark = 0;
-      }
-    });
-  }
-
   Future<void> _saveCurrentPage() async {
     final prefs = await SharedPreferences.getInstance();
-    prefs.setInt('mushaf01_page', _page);
-  }
-
-  _displaySaveBookmarkDialog(BuildContext context) async {
-    return showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            content: const Text("حفظ المرجعية؟"),
-            actions: <Widget>[
-              TextButton(
-                style: TextButton.styleFrom(
-                  foregroundColor: Colors.white,
-                  backgroundColor: const Color.fromRGBO(233, 218, 193, 1),
-                ),
-                child: const Text(
-                  'إلغاء',
-                  style: TextStyle(
-                    fontFamily: fontText,
-                    fontSize: 14,
-                  ),
-                ),
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-              ),
-              TextButton(
-                style: TextButton.styleFrom(
-                  foregroundColor: Colors.white,
-                  backgroundColor: const Color.fromRGBO(84, 186, 185, 1),
-                ),
-                child: const Text(
-                  'حفظ',
-                  style: TextStyle(
-                    fontFamily: fontText,
-                    fontSize: 14,
-                  ),
-                ),
-                onPressed: () {
-                  _saveBookmark();
-                  Navigator.pop(context);
-                  showStatus(context);
-                },
-              ),
-            ],
-          );
-        });
+    prefs.setInt('mushaf01_page', ref.read(pageIndexProvider));
   }
 
   _goToSavedBookmark() {
     MediaQuery.of(context).orientation == Orientation.portrait
-        ? Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (context) => ReaderWidget(
-                page: _bookmark,
-                ifGoto: true,
+        ? {
+            ref.read(pageIndexProvider.notifier).state =
+                ref.read(savedBookmarkProvider),
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const ReaderWidget(),
               ),
             ),
-          )
-        : itemScrollController.jumpTo(index: _bookmark);
-  }
-
-  showStatus(ctext) {
-    return ScaffoldMessenger.of(ctext).showSnackBar(
-      const SnackBar(
-        content: Text(
-          'حفظ',
-          textAlign: TextAlign.center,
-        ),
-        margin: EdgeInsets.only(bottom: 150),
-        elevation: 10,
-        behavior: SnackBarBehavior.floating,
-        duration: Duration(milliseconds: 1000),
-        backgroundColor: Color.fromRGBO(233, 218, 193, 0.9),
-        shape: CircleBorder(),
-      ),
-    );
+          }
+        : itemScrollController.jumpTo(index: ref.read(savedBookmarkProvider));
   }
 
   @override
@@ -195,9 +103,9 @@ class _ReaderWidgetState extends State<ReaderWidget> {
               GestureDetector(
                 onTap: () => {
                   setState(() {
-                    _showPageInfo
-                        ? _showPageInfo = false
-                        : _showPageInfo = true;
+                    ref.read(showPageInfoProvider)
+                        ? ref.read(showPageInfoProvider.notifier).state = false
+                        : ref.read(showPageInfoProvider.notifier).state = true;
                   })
                 },
                 child: OrientationBuilder(
@@ -214,12 +122,11 @@ class _ReaderWidgetState extends State<ReaderWidget> {
                                       ? Axis.horizontal
                                       : Axis.vertical,
                               controller: PageController(
-                                initialPage: _page,
+                                initialPage: ref.watch(pageIndexProvider),
                               ),
                               onPageChanged: (int page) => {
-                                setState(() {
-                                  _page = page;
-                                }),
+                                ref.read(pageIndexProvider.notifier).state =
+                                    page,
                                 _saveCurrentPage()
                               },
                               itemBuilder: (context, index) {
@@ -229,7 +136,9 @@ class _ReaderWidgetState extends State<ReaderWidget> {
                                   ),
                                   orientation: orientation,
                                   isBookmarked:
-                                      _bookmark == index ? true : false,
+                                      ref.read(savedBookmarkProvider) == index
+                                          ? true
+                                          : false,
                                 );
                               },
                               itemCount: nbrPages,
@@ -246,10 +155,12 @@ class _ReaderWidgetState extends State<ReaderWidget> {
                                   ),
                                   orientation: orientation,
                                   isBookmarked:
-                                      _bookmark == index ? true : false,
+                                      ref.read(savedBookmarkProvider) == index
+                                          ? true
+                                          : false,
                                 );
                               },
-                              initialScrollIndex: _page,
+                              initialScrollIndex: ref.watch(pageIndexProvider),
                               itemScrollController: itemScrollController,
                               itemPositionsListener: itemPositionsListener,
                             ),
@@ -258,14 +169,11 @@ class _ReaderWidgetState extends State<ReaderWidget> {
                 ),
               ),
               Visibility(
-                visible: _showPageInfo,
+                visible: ref.watch(showPageInfoProvider),
                 child: OrientationBuilder(
                   builder: (context, orientation) {
                     return orientation == Orientation.portrait
                         ? MyPageInfo(
-                            pageNum: _page,
-                            displaySaveBookmarkDialog:
-                                _displaySaveBookmarkDialog,
                             goToSavedBookmark: _goToSavedBookmark,
                           )
                         : Container();

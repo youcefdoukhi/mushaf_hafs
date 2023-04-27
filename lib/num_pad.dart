@@ -72,10 +72,7 @@ class MyNumPad extends StatelessWidget {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ReaderWidget(
-                    page: page - 1,
-                    ifGoto: true,
-                  ),
+                  builder: (context) => const ReaderWidget(),
                 ),
               );
             }

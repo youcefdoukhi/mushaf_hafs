@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MonObjet {
   final int index;
@@ -35,35 +36,43 @@ final objetsProvider = FutureProvider<List<MonObjet>>((ref) async {
   return objets;
 });
 
-class SizeFont extends StateNotifier<double> {
-  SizeFont() : super(1);
-/*
-  void increment() {
-    state = state + 5;
-  }*/
-}
-
-final textSizeProvider =
-    StateNotifierProvider<SizeFont, double>((ref) => SizeFont());
-
-enum Filter {
-  none,
-  pair,
-  impair,
-}
-
-final filterProvider = StateProvider((ref) => Filter.none);
-
-final filteredFontSizeProvider = Provider<double>((ref) {
-  final numberType = ref.watch(filterProvider);
-  final fontSize = ref.watch(textSizeProvider);
-
-  switch (numberType) {
-    case Filter.none:
-      return 16 * fontSize;
-    case Filter.pair:
-      return 100 * fontSize;
-    case Filter.impair:
-      return 45 * fontSize;
+final pageIndexFromSharedPref = FutureProvider<int>((ref) async {
+  final prefs = await SharedPreferences.getInstance();
+  int? currentPage = prefs.getInt('mushaf01_page');
+  if (currentPage != null) {
+    return currentPage;
+  } else {
+    return 0;
   }
 });
+
+final pageIndexProvider = StateProvider<int>(
+  (ref) {
+    final futureValue = ref.watch(pageIndexFromSharedPref);
+    return futureValue.asData?.value ?? 0;
+  },
+);
+
+final savedBookmarkFromSharedPref = FutureProvider<int>((ref) async {
+  final prefs = await SharedPreferences.getInstance();
+  int? bookmark = prefs.getInt('mushaf01_bookmark');
+
+  if (bookmark != null) {
+    return bookmark;
+  } else {
+    return 0;
+  }
+});
+
+final savedBookmarkProvider = StateProvider<int>(
+  (ref) {
+    final futureValue = ref.watch(savedBookmarkFromSharedPref);
+    return futureValue.asData?.value ?? 0;
+  },
+);
+
+final showPageInfoProvider = StateProvider<bool>(
+  (ref) {
+    return false;
+  },
+);

@@ -1,9 +1,10 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:mushaf_hafs/data.dart';
 import 'package:screen_brightness/screen_brightness.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
+import 'data.dart';
 import 'toc.dart';
 import 'content.dart';
 import 'num_pad.dart';
@@ -11,14 +12,10 @@ import 'num_pad.dart';
 class MyPageInfo extends HookConsumerWidget {
   const MyPageInfo({
     Key? key,
-    required this.displaySaveBookmarkDialog,
     required this.goToSavedBookmark,
-    required this.pageNum,
   }) : super(key: key);
 
-  final Function displaySaveBookmarkDialog;
   final Function goToSavedBookmark;
-  final int pageNum;
 
   Future<void> setBrightness(double brightness) async {
     try {
@@ -36,6 +33,77 @@ class MyPageInfo extends HookConsumerWidget {
       debugPrint(e.toString());
       throw 'Failed to reset brightness';
     }
+  }
+
+  Future<void> _saveBookmark(ref) async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setInt('mushaf01_bookmark', ref.read(pageIndexProvider));
+    ref.read(savedBookmarkProvider.notifier).state =
+        ref.read(pageIndexProvider);
+    ref.read(showPageInfoProvider.notifier).state = false;
+  }
+
+  displaySaveBookmarkDialog(BuildContext context, WidgetRef ref) async {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            content: const Text("حفظ المرجعية؟"),
+            actions: <Widget>[
+              TextButton(
+                style: TextButton.styleFrom(
+                  foregroundColor: Colors.white,
+                  backgroundColor: const Color.fromRGBO(233, 218, 193, 1),
+                ),
+                child: const Text(
+                  'إلغاء',
+                  style: TextStyle(
+                    fontFamily: fontText,
+                    fontSize: 14,
+                  ),
+                ),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+              TextButton(
+                style: TextButton.styleFrom(
+                  foregroundColor: Colors.white,
+                  backgroundColor: const Color.fromRGBO(84, 186, 185, 1),
+                ),
+                child: const Text(
+                  'حفظ',
+                  style: TextStyle(
+                    fontFamily: fontText,
+                    fontSize: 14,
+                  ),
+                ),
+                onPressed: () {
+                  _saveBookmark(ref);
+                  Navigator.pop(context);
+                  showStatus(context);
+                },
+              ),
+            ],
+          );
+        });
+  }
+
+  showStatus(ctext) {
+    return ScaffoldMessenger.of(ctext).showSnackBar(
+      const SnackBar(
+        content: Text(
+          'حفظ',
+          textAlign: TextAlign.center,
+        ),
+        margin: EdgeInsets.only(bottom: 150),
+        elevation: 10,
+        behavior: SnackBarBehavior.floating,
+        duration: Duration(milliseconds: 1000),
+        backgroundColor: Color.fromRGBO(233, 218, 193, 0.9),
+        shape: CircleBorder(),
+      ),
+    );
   }
 
   @override
@@ -58,7 +126,7 @@ class MyPageInfo extends HookConsumerWidget {
               ),
               child: Center(
                 child: Text(
-                  "${pageNum + 1}",
+                  "${ref.watch(pageIndexProvider) + 1}",
                   textDirection: TextDirection.rtl,
                   textAlign: TextAlign.justify,
                   style: const TextStyle(
@@ -156,18 +224,7 @@ class MyPageInfo extends HookConsumerWidget {
                               ),
                             ),
                             child: InkWell(
-                              onTap: () {
-                                ref.read(filterProvider.notifier).state =
-                                    Filter.impair;
-                              },
-                              onLongPress: () {
-                                ref.read(filterProvider.notifier).state =
-                                    Filter.pair;
-                              },
-                              onDoubleTap: () {
-                                ref.read(filterProvider.notifier).state =
-                                    Filter.none;
-                              }, // button pressed
+                              onTap: () {},
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: const <Widget>[
@@ -208,7 +265,7 @@ class MyPageInfo extends HookConsumerWidget {
                             ),
                             child: InkWell(
                               onTap: () {
-                                displaySaveBookmarkDialog(context);
+                                displaySaveBookmarkDialog(context, ref);
                               }, // button pressed
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -249,10 +306,9 @@ class MyPageInfo extends HookConsumerWidget {
                               ),
                             ),
                             child: InkWell(
-                              // splash color
                               onTap: () {
                                 goToSavedBookmark();
-                              }, // button pressed
+                              },
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: const <Widget>[

@@ -24,13 +24,11 @@ class TOCWidget extends HookConsumerWidget {
                 ),
               ),
               padding: const EdgeInsets.all(15),
-              child: Text.rich(
+              child: const Text.rich(
                 TextSpan(
                   text: "فهرس القرآن الكريم",
                   style: TextStyle(
-                    //fontSize: 16,
-                    fontSize: ref.watch(
-                        filteredFontSizeProvider.select((value) => value)),
+                    fontSize: 16,
                     fontFamily: fontText,
                   ),
                 ),
@@ -62,13 +60,14 @@ class TOCWidget extends HookConsumerWidget {
                             final objet = objets[index];
                             return GestureDetector(
                               onTap: () => {
+                                ref.read(pageIndexProvider.notifier).state =
+                                    objet.start - 1,
+                                ref.read(showPageInfoProvider.notifier).state =
+                                    false,
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => ReaderWidget(
-                                      page: objet.start - 1,
-                                      ifGoto: true,
-                                    ),
+                                    builder: (context) => const ReaderWidget(),
                                   ),
                                 ),
                               },
