@@ -6,8 +6,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'data.dart';
 import 'toc.dart';
-import 'content.dart';
+
 import 'num_pad.dart';
+
+const fontText = "ScheherazadeNew";
+const fontTitre = "Lateef";
+const fontTitle = "ScheherazadeNew";
 
 class MyPageInfo extends HookConsumerWidget {
   const MyPageInfo({
@@ -81,29 +85,11 @@ class MyPageInfo extends HookConsumerWidget {
                 onPressed: () {
                   _saveBookmark(ref);
                   Navigator.pop(context);
-                  showStatus(context);
                 },
               ),
             ],
           );
         });
-  }
-
-  showStatus(ctext) {
-    return ScaffoldMessenger.of(ctext).showSnackBar(
-      const SnackBar(
-        content: Text(
-          'حفظ',
-          textAlign: TextAlign.center,
-        ),
-        margin: EdgeInsets.only(bottom: 150),
-        elevation: 10,
-        behavior: SnackBarBehavior.floating,
-        duration: Duration(milliseconds: 1000),
-        backgroundColor: Color.fromRGBO(233, 218, 193, 0.9),
-        shape: CircleBorder(),
-      ),
-    );
   }
 
   @override

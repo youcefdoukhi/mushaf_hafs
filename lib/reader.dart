@@ -6,7 +6,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'data.dart';
 import 'page.dart';
 import 'pageinfo.dart';
-import 'content.dart';
 
 class ReaderWidget extends StatefulHookConsumerWidget {
   const ReaderWidget({Key? key}) : super(key: key);
@@ -131,9 +130,11 @@ class _ReaderWidgetState extends ConsumerState<ReaderWidget> {
                               },
                               itemBuilder: (context, index) {
                                 return PageWidget(
-                                  content: Content(
+                                  /*content: Content(
                                     index: index,
-                                  ),
+                                  ),*/
+                                  content:
+                                      ref.read(imagesProvider).value![index],
                                   orientation: orientation,
                                   isBookmarked:
                                       ref.read(savedBookmarkProvider) == index
@@ -150,9 +151,11 @@ class _ReaderWidgetState extends ConsumerState<ReaderWidget> {
                               itemCount: nbrPages,
                               itemBuilder: (context, index) {
                                 return PageWidget(
-                                  content: Content(
+                                  /*content: Content(
                                     index: index,
-                                  ),
+                                  ),*/
+                                  content:
+                                      ref.read(imagesProvider).value![index],
                                   orientation: orientation,
                                   isBookmarked:
                                       ref.read(savedBookmarkProvider) == index

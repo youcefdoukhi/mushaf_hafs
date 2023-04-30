@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'content.dart';
-
 class PageWidget extends StatelessWidget {
   const PageWidget(
       {Key? key,
@@ -10,7 +8,8 @@ class PageWidget extends StatelessWidget {
       required this.isBookmarked})
       : super(key: key);
 
-  final Content content;
+  //final Content content;
+  final Image content;
   final Orientation orientation;
   final bool isBookmarked;
 

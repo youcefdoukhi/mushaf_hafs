@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mushaf_hafs/data.dart';
-import 'content.dart';
 import 'reader.dart';
 
 class TOCWidget extends HookConsumerWidget {
   const TOCWidget({Key? key}) : super(key: key);
-
+  static const fontText = "ScheherazadeNew";
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
@@ -64,7 +63,7 @@ class TOCWidget extends HookConsumerWidget {
                                     objet.start - 1,
                                 ref.read(showPageInfoProvider.notifier).state =
                                     false,
-                                Navigator.push(
+                                Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => const ReaderWidget(),

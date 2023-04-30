@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
-import 'content.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'data.dart';
 import 'reader.dart';
 
-class MyNumPad extends StatelessWidget {
+const fontText = "ScheherazadeNew";
+const fontTitre = "Lateef";
+const fontTitle = "ScheherazadeNew";
+
+class MyNumPad extends HookConsumerWidget {
   MyNumPad({Key? key}) : super(key: key);
   final TextEditingController _myController = TextEditingController();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       mainAxisSize: MainAxisSize.min,
@@ -69,6 +74,8 @@ class MyNumPad extends StatelessWidget {
                 ? int.parse(_myController.text)
                 : null;
             if (page != null && page > 0 && page < 605) {
+              ref.read(pageIndexProvider.notifier).state = page - 1;
+              ref.read(showPageInfoProvider.notifier).state = false;
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(

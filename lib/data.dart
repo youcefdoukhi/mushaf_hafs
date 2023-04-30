@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -76,3 +77,26 @@ final showPageInfoProvider = StateProvider<bool>(
     return false;
   },
 );
+
+final imagesProvider = FutureProvider<List<Image>>((ref) async {
+  final List<Image> imagesList = [];
+
+  for (var index = 0; index < 604; index++) {
+    String pageNum = "";
+
+    if ((index + 1) < 10) {
+      pageNum = "00${index + 1}";
+    } else if ((index + 1) < 100 && (index + 1) > 9) {
+      pageNum = "0${index + 1}";
+    } else {
+      pageNum = "${index + 1}";
+    }
+    imagesList.insert(
+        index,
+        Image(
+          image: AssetImage('images/mushaf_photos_2/page$pageNum.png'),
+          fit: BoxFit.fill,
+        ));
+  }
+  return imagesList;
+});
