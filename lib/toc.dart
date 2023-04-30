@@ -42,7 +42,7 @@ class TOCWidget extends HookConsumerWidget {
             ),
             HookConsumer(
               builder: (context, ref, child) {
-                final objetsAsyncValue = ref.watch(objetsProvider);
+                final objetsAsyncValue = ref.read(objetsProvider);
                 return objetsAsyncValue.when(
                   data: (objets) {
                     return Expanded(

@@ -73,6 +73,7 @@ class _ReaderWidgetState extends ConsumerState<ReaderWidget> {
         ? {
             ref.read(pageIndexProvider.notifier).state =
                 ref.read(savedBookmarkProvider),
+            ref.read(showPageInfoProvider.notifier).state = false,
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(
@@ -80,7 +81,14 @@ class _ReaderWidgetState extends ConsumerState<ReaderWidget> {
               ),
             ),
           }
-        : itemScrollController.jumpTo(index: ref.read(savedBookmarkProvider));
+        : {
+            ref.read(pageIndexProvider.notifier).state =
+                ref.read(savedBookmarkProvider),
+            ref.read(showPageInfoProvider.notifier).state = false,
+            itemScrollController.jumpTo(
+              index: ref.read(savedBookmarkProvider),
+            ),
+          };
   }
 
   @override
@@ -121,7 +129,7 @@ class _ReaderWidgetState extends ConsumerState<ReaderWidget> {
                                       ? Axis.horizontal
                                       : Axis.vertical,
                               controller: PageController(
-                                initialPage: ref.watch(pageIndexProvider),
+                                initialPage: ref.read(pageIndexProvider),
                               ),
                               onPageChanged: (int page) => {
                                 ref.read(pageIndexProvider.notifier).state =
@@ -130,9 +138,6 @@ class _ReaderWidgetState extends ConsumerState<ReaderWidget> {
                               },
                               itemBuilder: (context, index) {
                                 return PageWidget(
-                                  /*content: Content(
-                                    index: index,
-                                  ),*/
                                   content:
                                       ref.read(imagesProvider).value![index],
                                   orientation: orientation,
@@ -151,9 +156,6 @@ class _ReaderWidgetState extends ConsumerState<ReaderWidget> {
                               itemCount: nbrPages,
                               itemBuilder: (context, index) {
                                 return PageWidget(
-                                  /*content: Content(
-                                    index: index,
-                                  ),*/
                                   content:
                                       ref.read(imagesProvider).value![index],
                                   orientation: orientation,
@@ -163,7 +165,7 @@ class _ReaderWidgetState extends ConsumerState<ReaderWidget> {
                                           : false,
                                 );
                               },
-                              initialScrollIndex: ref.watch(pageIndexProvider),
+                              initialScrollIndex: ref.read(pageIndexProvider),
                               itemScrollController: itemScrollController,
                               itemPositionsListener: itemPositionsListener,
                             ),
@@ -175,7 +177,8 @@ class _ReaderWidgetState extends ConsumerState<ReaderWidget> {
                 visible: ref.watch(showPageInfoProvider),
                 child: OrientationBuilder(
                   builder: (context, orientation) {
-                    return orientation == Orientation.portrait
+                    //return orientation == Orientation.portrait
+                    return 1 == 1
                         ? MyPageInfo(
                             goToSavedBookmark: _goToSavedBookmark,
                           )

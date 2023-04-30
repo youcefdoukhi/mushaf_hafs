@@ -39,7 +39,17 @@ class MainApp extends StatelessWidget {
           final objetsAsyncValue = ref.watch(imagesProvider);
           return objetsAsyncValue.when(
             data: (objets) {
-              return const ReaderWidget();
+              return HookConsumer(builder: (context, ref, child) {
+                final page = ref.watch(pageIndexFromSharedPref);
+                return page.when(
+                  data: (objets) {
+                    return const ReaderWidget();
+                  },
+                  loading: () =>
+                      const Center(child: CircularProgressIndicator()),
+                  error: (error, _) => Text('Error: $error'),
+                );
+              });
             },
             loading: () => const Center(child: CircularProgressIndicator()),
             error: (error, _) => Text('Error: $error'),
