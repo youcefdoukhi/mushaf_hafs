@@ -7,7 +7,7 @@ import 'data.dart';
 import 'page.dart';
 import 'pageinfo.dart';
 
-class ReaderWidget extends StatefulHookConsumerWidget {
+class ReaderWidget extends ConsumerStatefulWidget {
   const ReaderWidget({Key? key}) : super(key: key);
 
   @override
@@ -26,6 +26,9 @@ class _ReaderWidgetState extends ConsumerState<ReaderWidget> {
   @override
   void initState() {
     super.initState();
+    int currentPage = ref.read(pageIndexProvider);
+
+    _controller = PageController(initialPage: currentPage);
 
     itemPositionsListener.itemPositions.addListener(
       () {
@@ -74,12 +77,6 @@ class _ReaderWidgetState extends ConsumerState<ReaderWidget> {
             ref.read(pageIndexProvider.notifier).state =
                 ref.read(savedBookmarkProvider),
             ref.read(showPageInfoProvider.notifier).state = false,
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const ReaderWidget(),
-              ),
-            ),
           }
         : {
             ref.read(pageIndexProvider.notifier).state =
@@ -99,6 +96,19 @@ class _ReaderWidgetState extends ConsumerState<ReaderWidget> {
 
   @override
   Widget build(BuildContext context) {
+    MediaQuery.of(context).orientation == Orientation.portrait
+        ? {
+            _controller = PageController(
+              initialPage: ref.read(pageIndexProvider),
+              // initialPage: ref.watch(pageIndexProvider),
+            ),
+            ref.listen<int>(pageIndexProvider,
+                (int? previousCount, int newCount) {
+              _controller?.jumpToPage(newCount);
+            }),
+          }
+        : {};
+
     return WillPopScope(
       onWillPop: () async {
         return false;
@@ -109,11 +119,9 @@ class _ReaderWidgetState extends ConsumerState<ReaderWidget> {
             children: <Widget>[
               GestureDetector(
                 onTap: () => {
-                  setState(() {
-                    ref.read(showPageInfoProvider)
-                        ? ref.read(showPageInfoProvider.notifier).state = false
-                        : ref.read(showPageInfoProvider.notifier).state = true;
-                  })
+                  ref.read(showPageInfoProvider)
+                      ? ref.read(showPageInfoProvider.notifier).state = false
+                      : ref.read(showPageInfoProvider.notifier).state = true,
                 },
                 child: OrientationBuilder(
                   builder: (context, orientation) {
@@ -128,9 +136,11 @@ class _ReaderWidgetState extends ConsumerState<ReaderWidget> {
                                   orientation == Orientation.portrait
                                       ? Axis.horizontal
                                       : Axis.vertical,
-                              controller: PageController(
-                                initialPage: ref.read(pageIndexProvider),
-                              ),
+                              /* controller: PageController(
+                                // initialPage: ref.read(pageIndexProvider),
+                                initialPage: ref.watch(pageIndexProvider),
+                              ),*/
+                              controller: _controller,
                               onPageChanged: (int page) => {
                                 ref.read(pageIndexProvider.notifier).state =
                                     page,
@@ -153,6 +163,7 @@ class _ReaderWidgetState extends ConsumerState<ReaderWidget> {
                         : ScrollConfiguration(
                             behavior: AppBehavior(),
                             child: ScrollablePositionedList.builder(
+                              shrinkWrap: false,
                               itemCount: nbrPages,
                               itemBuilder: (context, index) {
                                 return PageWidget(

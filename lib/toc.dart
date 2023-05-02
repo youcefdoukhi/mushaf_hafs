@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mushaf_hafs/data.dart';
-import 'reader.dart';
 
-class TOCWidget extends HookConsumerWidget {
+class TOCWidget extends ConsumerWidget {
   const TOCWidget({Key? key}) : super(key: key);
   static const fontText = "ScheherazadeNew";
   @override
@@ -40,7 +39,7 @@ class TOCWidget extends HookConsumerWidget {
               //endIndent: 50,
               color: Color.fromRGBO(233, 218, 193, 1),
             ),
-            HookConsumer(
+            Consumer(
               builder: (context, ref, child) {
                 final objetsAsyncValue = ref.read(objetsProvider);
                 return objetsAsyncValue.when(
@@ -63,12 +62,7 @@ class TOCWidget extends HookConsumerWidget {
                                     objet.start - 1,
                                 ref.read(showPageInfoProvider.notifier).state =
                                     false,
-                                Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => const ReaderWidget(),
-                                  ),
-                                ),
+                                Navigator.pop(context),
                               },
                               child: Container(
                                 color: Colors.transparent,
