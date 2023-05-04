@@ -85,8 +85,9 @@ final rubProvider = FutureProvider<List<PageRubHizbJuz>>((ref) async {
     }
   }
   newRubList.asMap().forEach((index, value) {
+    int hizb = ((value.rub - 1) ~/ 4) + 1;
     print(
-        "Page = $index / Rub = ${value.rub} / Hizb = ${(value.rub ~/ 4) + 1} / Juz = ${value.juz} / Show = ${value.show}");
+        "Page = ${index + 1} / Rub = ${value.rub} / Hizb = $hizb / Juz = ${value.juz} / Show = ${value.show}");
   });
   return newRubList;
 });
