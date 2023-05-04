@@ -53,12 +53,42 @@ final objetsProvider = FutureProvider<List<MonObjet>>((ref) async {
   return objets;
 });
 
-final rubProvider = FutureProvider<List<RubObjet>>((ref) async {
+class PageRubHizbJuz {
+  final int rub;
+  final int hizb;
+  final int juz;
+  final bool show;
+  PageRubHizbJuz(
+      {required this.rub,
+      required this.hizb,
+      required this.juz,
+      required this.show});
+}
+
+final rubProvider = FutureProvider<List<PageRubHizbJuz>>((ref) async {
   final jsonString = await rootBundle.loadString('data/rubinfo.json');
   final jsonData = json.decode(jsonString);
   final rubObjets =
       List<RubObjet>.from(jsonData.map((json) => RubObjet.fromJson(json)));
-  return rubObjets;
+  List<PageRubHizbJuz> newRubList = List<PageRubHizbJuz>.filled(
+      604, PageRubHizbJuz(rub: 74, hizb: 60, juz: 30, show: false),
+      growable: false);
+
+  for (var i = 0; i < 73; i++) {
+    RubObjet currentRub = rubObjets.elementAt(i);
+    RubObjet nextRub = rubObjets.elementAt(i + 1);
+    int pageNumOfCurrentRub = currentRub.pagenum - 1;
+    int pageNumOfNextRub = nextRub.pagenum - 1;
+    for (var j = pageNumOfCurrentRub; j < pageNumOfNextRub; j++) {
+      newRubList[j] =
+          PageRubHizbJuz(rub: currentRub.rub, hizb: 0, juz: 0, show: false);
+    }
+  }
+  newRubList.asMap().forEach((index, value) {
+    print(
+        "Page = $index / Rub = ${value.rub} / Hizb = ${(value.rub ~/ 4) + 1} / Juz = ${value.juz} / Show = ${value.show}");
+  });
+  return newRubList;
 });
 
 final pageIndexFromSharedPref = FutureProvider<int>((ref) async {
