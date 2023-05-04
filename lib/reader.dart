@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -7,28 +7,69 @@ import 'data.dart';
 import 'page.dart';
 import 'pageinfo.dart';
 
-class ReaderWidget extends ConsumerStatefulWidget {
-  const ReaderWidget({Key? key}) : super(key: key);
+class ReaderWidget extends ConsumerWidget {
+  ReaderWidget({super.key});
 
-  @override
-  ConsumerState<ReaderWidget> createState() => _ReaderWidgetState();
-}
-
-class _ReaderWidgetState extends ConsumerState<ReaderWidget> {
   static const int nbrPages = 604;
-
-  PageController? _controller;
-
   final ItemScrollController itemScrollController = ItemScrollController();
   final ItemPositionsListener itemPositionsListener =
       ItemPositionsListener.create();
 
   @override
-  void initState() {
-    super.initState();
-    int currentPage = ref.read(pageIndexProvider);
+  Widget build(BuildContext context, WidgetRef ref) {
+    print("\nAAAAAAAAA ${ref.read(pageIndexProvider)} AAAAAAAAAAA");
+    final pageIndex = ref.read(pageIndexProvider);
+    final PageController pageController =
+        PageController(initialPage: pageIndex);
 
-    _controller = PageController(initialPage: currentPage);
+    MediaQuery.of(context).orientation == Orientation.portrait
+        ? {
+            ref.listen<int>(
+              pageIndexProvider,
+              (int? previousCount, int newCount) {
+                /*  if (ref.read(scroolOrNotProvider) == true) {
+                  print("\n Scrooooooolll");
+                  pageController.animateToPage(newCount,
+                      duration: const Duration(milliseconds: 200),
+                      curve: Curves.ease);
+                }*/
+                if (ref.read(scroolOrNotProvider) == false) {
+                  pageController.jumpToPage(newCount);
+                  ref.read(scroolOrNotProvider.notifier).state = true;
+                }
+              },
+            ),
+          }
+        : {};
+
+    Future<void> saveCurrentPage() async {
+      final prefs = await SharedPreferences.getInstance();
+      prefs.setInt('mushaf01_page', ref.read(pageIndexProvider));
+    }
+
+    goToSavedBookmark() {
+      MediaQuery.of(context).orientation == Orientation.portrait
+          ? {
+              ref.read(scroolOrNotProvider.notifier).state = false,
+              ref.read(pageIndexProvider.notifier).state =
+                  ref.read(savedBookmarkProvider),
+              ref.read(showPageInfoProvider.notifier).state = false,
+              /* Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ReaderWidget(),
+                ),
+              ),*/
+            }
+          : {
+              ref.read(pageIndexProvider.notifier).state =
+                  ref.read(savedBookmarkProvider),
+              ref.read(showPageInfoProvider.notifier).state = false,
+              itemScrollController.jumpTo(
+                index: ref.read(savedBookmarkProvider),
+              ),
+            };
+    }
 
     itemPositionsListener.itemPositions.addListener(
       () {
@@ -53,61 +94,17 @@ class _ReaderWidgetState extends ConsumerState<ReaderWidget> {
           if (max != min && max > ref.read(pageIndexProvider)) {
             ref.read(pageIndexProvider.notifier).state = max;
 
-            _saveCurrentPage();
+            saveCurrentPage();
           }
           if (min < ref.read(pageIndexProvider) &&
               max < ref.read(pageIndexProvider)) {
             ref.read(pageIndexProvider.notifier).state = min;
 
-            _saveCurrentPage();
+            saveCurrentPage();
           }
         }
       },
     );
-  }
-
-  Future<void> _saveCurrentPage() async {
-    final prefs = await SharedPreferences.getInstance();
-    prefs.setInt('mushaf01_page', ref.read(pageIndexProvider));
-  }
-
-  _goToSavedBookmark() {
-    MediaQuery.of(context).orientation == Orientation.portrait
-        ? {
-            ref.read(pageIndexProvider.notifier).state =
-                ref.read(savedBookmarkProvider),
-            ref.read(showPageInfoProvider.notifier).state = false,
-          }
-        : {
-            ref.read(pageIndexProvider.notifier).state =
-                ref.read(savedBookmarkProvider),
-            ref.read(showPageInfoProvider.notifier).state = false,
-            itemScrollController.jumpTo(
-              index: ref.read(savedBookmarkProvider),
-            ),
-          };
-  }
-
-  @override
-  void dispose() {
-    _controller?.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    MediaQuery.of(context).orientation == Orientation.portrait
-        ? {
-            _controller = PageController(
-              initialPage: ref.read(pageIndexProvider),
-              // initialPage: ref.watch(pageIndexProvider),
-            ),
-            ref.listen<int>(pageIndexProvider,
-                (int? previousCount, int newCount) {
-              _controller?.jumpToPage(newCount);
-            }),
-          }
-        : {};
 
     return WillPopScope(
       onWillPop: () async {
@@ -136,15 +133,15 @@ class _ReaderWidgetState extends ConsumerState<ReaderWidget> {
                                   orientation == Orientation.portrait
                                       ? Axis.horizontal
                                       : Axis.vertical,
-                              /* controller: PageController(
-                                // initialPage: ref.read(pageIndexProvider),
-                                initialPage: ref.watch(pageIndexProvider),
-                              ),*/
-                              controller: _controller,
+                              //controller: PageController(
+                              // initialPage: ref.read(pageIndexProvider),
+                              //   initialPage: ref.watch(pageIndexProvider),
+                              // ),
+                              controller: pageController,
                               onPageChanged: (int page) => {
                                 ref.read(pageIndexProvider.notifier).state =
                                     page,
-                                _saveCurrentPage()
+                                saveCurrentPage()
                               },
                               itemBuilder: (context, index) {
                                 return PageWidget(
@@ -179,6 +176,8 @@ class _ReaderWidgetState extends ConsumerState<ReaderWidget> {
                               initialScrollIndex: ref.read(pageIndexProvider),
                               itemScrollController: itemScrollController,
                               itemPositionsListener: itemPositionsListener,
+                              addAutomaticKeepAlives: false,
+                              addRepaintBoundaries: false,
                             ),
                           );
                   },
@@ -191,7 +190,7 @@ class _ReaderWidgetState extends ConsumerState<ReaderWidget> {
                     //return orientation == Orientation.portrait
                     return 1 == 1
                         ? MyPageInfo(
-                            goToSavedBookmark: _goToSavedBookmark,
+                            goToSavedBookmark: goToSavedBookmark,
                           )
                         : Container();
                   },

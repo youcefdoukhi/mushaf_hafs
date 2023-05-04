@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mushaf_hafs/data.dart';
 
 class TOCWidget extends ConsumerWidget {
@@ -41,7 +41,7 @@ class TOCWidget extends ConsumerWidget {
             ),
             Consumer(
               builder: (context, ref, child) {
-                final objetsAsyncValue = ref.read(objetsProvider);
+                final objetsAsyncValue = ref.watch(objetsProvider);
                 return objetsAsyncValue.when(
                   data: (objets) {
                     return Expanded(
@@ -58,11 +58,19 @@ class TOCWidget extends ConsumerWidget {
                             final objet = objets[index];
                             return GestureDetector(
                               onTap: () => {
+                                ref.read(scroolOrNotProvider.notifier).state =
+                                    false,
                                 ref.read(pageIndexProvider.notifier).state =
                                     objet.start - 1,
                                 ref.read(showPageInfoProvider.notifier).state =
                                     false,
                                 Navigator.pop(context),
+                                /*  Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => ReaderWidget(),
+                                  ),
+                                ),*/
                               },
                               child: Container(
                                 color: Colors.transparent,
@@ -172,8 +180,11 @@ class TOCWidget extends ConsumerWidget {
                       ),
                     );
                   },
-                  loading: () =>
-                      const Center(child: CircularProgressIndicator()),
+                  loading: () => const Expanded(
+                    child: Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                  ),
                   error: (error, _) => Text('Error: $error'),
                 );
               },

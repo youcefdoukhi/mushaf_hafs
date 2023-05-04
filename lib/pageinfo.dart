@@ -1,6 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:screen_brightness/screen_brightness.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -13,7 +13,7 @@ const fontText = "ScheherazadeNew";
 const fontTitre = "Lateef";
 const fontTitle = "ScheherazadeNew";
 
-class MyPageInfo extends HookConsumerWidget {
+class MyPageInfo extends ConsumerWidget {
   const MyPageInfo({
     Key? key,
     required this.goToSavedBookmark,

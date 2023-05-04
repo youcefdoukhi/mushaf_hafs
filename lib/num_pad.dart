@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'data.dart';
-import 'reader.dart';
 
 const fontText = "ScheherazadeNew";
 const fontTitre = "Lateef";
 const fontTitle = "ScheherazadeNew";
 
-class MyNumPad extends HookConsumerWidget {
+class MyNumPad extends ConsumerWidget {
   MyNumPad({Key? key}) : super(key: key);
   final TextEditingController _myController = TextEditingController();
 
@@ -74,14 +73,16 @@ class MyNumPad extends HookConsumerWidget {
                 ? int.parse(_myController.text)
                 : null;
             if (page != null && page > 0 && page < 605) {
+              ref.read(scroolOrNotProvider.notifier).state = false;
               ref.read(pageIndexProvider.notifier).state = page - 1;
               ref.read(showPageInfoProvider.notifier).state = false;
-              Navigator.pushReplacement(
+              Navigator.pop(context);
+              /*  Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const ReaderWidget(),
+                  builder: (context) => ReaderWidget(),
                 ),
-              );
+              );*/
             }
           },
         ),

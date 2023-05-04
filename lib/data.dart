@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart' show rootBundle;
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class MonObjet {
@@ -29,12 +29,36 @@ class MonObjet {
   }
 }
 
+class RubObjet {
+  final int rub;
+  final int pagenum;
+  final String ayah;
+
+  RubObjet({required this.rub, required this.pagenum, required this.ayah});
+
+  factory RubObjet.fromJson(Map<String, dynamic> json) {
+    return RubObjet(
+      rub: json['rub'],
+      pagenum: json['pagenum'],
+      ayah: json['ayah'],
+    );
+  }
+}
+
 final objetsProvider = FutureProvider<List<MonObjet>>((ref) async {
   final jsonString = await rootBundle.loadString('data/surah.json');
   final jsonData = json.decode(jsonString);
   final objets =
       List<MonObjet>.from(jsonData.map((json) => MonObjet.fromJson(json)));
   return objets;
+});
+
+final rubProvider = FutureProvider<List<RubObjet>>((ref) async {
+  final jsonString = await rootBundle.loadString('data/rubinfo.json');
+  final jsonData = json.decode(jsonString);
+  final rubObjets =
+      List<RubObjet>.from(jsonData.map((json) => RubObjet.fromJson(json)));
+  return rubObjets;
 });
 
 final pageIndexFromSharedPref = FutureProvider<int>((ref) async {
@@ -75,6 +99,12 @@ final savedBookmarkProvider = StateProvider<int>(
 final showPageInfoProvider = StateProvider<bool>(
   (ref) {
     return false;
+  },
+);
+
+final scroolOrNotProvider = StateProvider<bool>(
+  (ref) {
+    return true;
   },
 );
 

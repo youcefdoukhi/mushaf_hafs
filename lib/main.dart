@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mushaf_hafs/reader.dart';
 
 import 'data.dart';
@@ -34,16 +34,16 @@ class MainApp extends StatelessWidget {
       ],
       locale: const Locale('ar'),
       title: _title,
-      home: HookConsumer(
+      home: Consumer(
         builder: (context, ref, child) {
           final objetsAsyncValue = ref.watch(imagesProvider);
           return objetsAsyncValue.when(
             data: (objets) {
-              return HookConsumer(builder: (context, ref, child) {
+              return Consumer(builder: (context, ref, child) {
                 final page = ref.watch(pageIndexFromSharedPref);
                 return page.when(
                   data: (objets) {
-                    return const ReaderWidget();
+                    return ReaderWidget();
                   },
                   loading: () =>
                       const Center(child: CircularProgressIndicator()),
