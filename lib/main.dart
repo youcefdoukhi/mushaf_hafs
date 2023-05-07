@@ -38,18 +38,30 @@ class MainApp extends StatelessWidget {
         builder: (context, ref, child) {
           final objetsAsyncValue = ref.watch(imagesProvider);
           return objetsAsyncValue.when(
-            data: (objets) {
+            data: (objets1) {
               return Consumer(
                 builder: (context, ref, child) {
-                  final page = ref.watch(pageIndexFromSharedPref);
-                  return page.when(
-                    data: (objets) {
+                  final pageIndex = ref.watch(pageIndexFromSharedPref);
+                  return pageIndex.when(
+                    data: (objets2) {
                       return Consumer(
                         builder: (context, ref, child) {
-                          final page = ref.watch(rubProvider);
-                          return page.when(
-                            data: (objets) {
-                              return ReaderWidget();
+                          final rub = ref.watch(rubProvider);
+                          return rub.when(
+                            data: (objets3) {
+                              return Consumer(
+                                builder: (context, ref, child) {
+                                  final listSurah = ref.watch(chaptersProvider);
+                                  return listSurah.when(
+                                    data: (objets4) {
+                                      return ReaderWidget();
+                                    },
+                                    loading: () => const Center(
+                                        child: CircularProgressIndicator()),
+                                    error: (error, _) => Text('Error: $error'),
+                                  );
+                                },
+                              );
                             },
                             loading: () => const Center(
                                 child: CircularProgressIndicator()),

@@ -94,312 +94,401 @@ class MyPageInfo extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Column(
-      children: <Widget>[
-        Stack(
-          children: [
-            Container(
-              margin: const EdgeInsets.all(10),
-              height: 44,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: const Color.fromARGB(220, 54, 56, 89),
-                border: Border.all(
-                  color: const Color.fromARGB(255, 212, 180, 124),
-                  width: 0.5,
-                ),
-                borderRadius: BorderRadius.circular(5),
-              ),
-              child: Center(
-                child: Text(
-                  "${ref.watch(pageIndexProvider) + 1}",
-                  textDirection: TextDirection.rtl,
-                  textAlign: TextAlign.justify,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontFamily: fontText,
-                  ),
-                ),
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.only(
-                left: 12,
-                right: 12,
-              ),
-              child: FutureBuilder<double>(
-                future: ScreenBrightness().current,
-                builder: (context, snapshot) {
-                  double currentBrightness = 0;
-                  if (snapshot.hasData) {
-                    currentBrightness = snapshot.data!;
-                  }
+    int page = ref.watch(pageIndexProvider) + 1;
+    String getSurahFromPage(int page) {
+      final listChaperts = ref.read(chaptersProvider).value!;
+      String surah = "";
+      for (var i = 0; i < 114; i++) {
+        Chapters currentChapter = listChaperts[i];
+        Chapters nextChapter = listChaperts[i + 1];
+        if (page < nextChapter.start) {
+          print("\n---------- ${currentChapter.name}");
+          surah = currentChapter.name;
+          break;
+        }
+      }
+      return surah;
+    }
 
-                  return StreamBuilder<double>(
-                    stream: ScreenBrightness().onCurrentBrightnessChanged,
-                    builder: (context, snapshot) {
-                      double changedBrightness = currentBrightness;
-                      if (snapshot.hasData) {
-                        changedBrightness = snapshot.data!;
-                      }
-
-                      return SliderTheme(
-                        data: SliderTheme.of(context).copyWith(
-                          trackHeight: 40.0,
-                          trackShape: CustomTrackShape(),
-                          activeTrackColor:
-                              const Color.fromARGB(179, 54, 56, 89),
-                          inactiveTrackColor: Colors.transparent,
-                          thumbShape: const RoundSliderThumbShape(
-                            enabledThumbRadius: 0.0,
-                            pressedElevation: 0.0,
+    return Visibility(
+      visible: ref.watch(showPageInfoProvider),
+      child: OrientationBuilder(
+        builder: (context, orientation) {
+          //return orientation == Orientation.portrait
+          return 1 == 1
+              ? Column(
+                  children: <Widget>[
+                    Stack(
+                      children: [
+                        Container(
+                          margin: const EdgeInsets.all(10),
+                          height: 44,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            color: const Color.fromARGB(220, 54, 56, 89),
+                            border: Border.all(
+                              color: const Color.fromARGB(255, 212, 180, 124),
+                              width: 0.5,
+                            ),
+                            borderRadius: BorderRadius.circular(5),
                           ),
-                          thumbColor: Colors.transparent,
-                          overlayColor: Colors.transparent,
-                          overlayShape: const RoundSliderOverlayShape(
-                              overlayRadius: 32.0),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                flex: 4,
+                                child: Align(
+                                  alignment: Alignment.centerRight,
+                                  child: Text(
+                                    "${ref.read(rubProvider).value![page].juz}",
+                                    textDirection: TextDirection.rtl,
+                                    textAlign: TextAlign.justify,
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      fontFamily: fontText,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                flex: 2,
+                                child: Center(
+                                  child: Text(
+                                    "$page",
+                                    textDirection: TextDirection.rtl,
+                                    textAlign: TextAlign.justify,
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      fontFamily: fontText,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                flex: 4,
+                                child: Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                    getSurahFromPage(page),
+                                    textDirection: TextDirection.rtl,
+                                    textAlign: TextAlign.justify,
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      fontFamily: fontText,
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
                         ),
-                        child: Slider.adaptive(
-                          value: changedBrightness,
-                          onChanged: (value) {
-                            setBrightness(value);
-                          },
-                        ),
+                        Container(
+                          margin: const EdgeInsets.only(
+                            left: 12,
+                            right: 12,
+                          ),
+                          child: FutureBuilder<double>(
+                            future: ScreenBrightness().current,
+                            builder: (context, snapshot) {
+                              double currentBrightness = 0;
+                              if (snapshot.hasData) {
+                                currentBrightness = snapshot.data!;
+                              }
 
-                        /*ElevatedButton(
+                              return StreamBuilder<double>(
+                                stream: ScreenBrightness()
+                                    .onCurrentBrightnessChanged,
+                                builder: (context, snapshot) {
+                                  double changedBrightness = currentBrightness;
+                                  if (snapshot.hasData) {
+                                    changedBrightness = snapshot.data!;
+                                  }
+
+                                  return SliderTheme(
+                                    data: SliderTheme.of(context).copyWith(
+                                      trackHeight: 40.0,
+                                      trackShape: CustomTrackShape(),
+                                      activeTrackColor:
+                                          const Color.fromARGB(179, 54, 56, 89),
+                                      inactiveTrackColor: Colors.transparent,
+                                      thumbShape: const RoundSliderThumbShape(
+                                        enabledThumbRadius: 0.0,
+                                        pressedElevation: 0.0,
+                                      ),
+                                      thumbColor: Colors.transparent,
+                                      overlayColor: Colors.transparent,
+                                      overlayShape:
+                                          const RoundSliderOverlayShape(
+                                              overlayRadius: 32.0),
+                                    ),
+                                    child: Slider.adaptive(
+                                      value: changedBrightness,
+                                      onChanged: (value) {
+                                        setBrightness(value);
+                                      },
+                                    ),
+
+                                    /*ElevatedButton(
                       onPressed: () {
                         resetBrightness();
                       },
                       child: const Text('reset brightness'),
                     ),*/
-                      );
-                    },
-                  );
-                },
-              ),
-            ),
-          ],
-        ),
-        Expanded(
-          child: Container(),
-        ),
-        Container(
-          height: 70,
-          width: double.infinity,
-          decoration: const BoxDecoration(
-            color: Color.fromARGB(220, 54, 56, 89),
-          ),
-          child: Column(
-            children: [
-              Flexible(
-                child: FractionallySizedBox(
-                  widthFactor: 1,
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Flexible(
-                        child: FractionallySizedBox(
-                          widthFactor: 1,
-                          child: Container(
-                            decoration: const BoxDecoration(
-                              border: Border(
-                                top: BorderSide(
-                                  width: 0.5,
-                                  color: Color.fromARGB(255, 212, 180, 124),
-                                ),
-                              ),
-                            ),
-                            child: InkWell(
-                              onTap: () {},
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: const <Widget>[
-                                  Icon(
-                                    Icons.search_outlined,
-                                    color: Color.fromARGB(255, 212, 180, 124),
+                                  );
+                                },
+                              );
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                    Expanded(
+                      child: Container(),
+                    ),
+                    Container(
+                      height: 70,
+                      width: double.infinity,
+                      decoration: const BoxDecoration(
+                        color: Color.fromARGB(220, 54, 56, 89),
+                      ),
+                      child: Column(
+                        children: [
+                          Flexible(
+                            child: FractionallySizedBox(
+                              widthFactor: 1,
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Flexible(
+                                    child: FractionallySizedBox(
+                                      widthFactor: 1,
+                                      child: Container(
+                                        decoration: const BoxDecoration(
+                                          border: Border(
+                                            top: BorderSide(
+                                              width: 0.5,
+                                              color: Color.fromARGB(
+                                                  255, 212, 180, 124),
+                                            ),
+                                          ),
+                                        ),
+                                        child: InkWell(
+                                          onTap: () {},
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: const <Widget>[
+                                              Icon(
+                                                Icons.search_outlined,
+                                                color: Color.fromARGB(
+                                                    255, 212, 180, 124),
+                                              ),
+                                              Text(
+                                                "بحث",
+                                                textDirection:
+                                                    TextDirection.rtl,
+                                                textAlign: TextAlign.justify,
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontFamily: fontTitre,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
                                   ),
-                                  Text(
-                                    "بحث",
-                                    textDirection: TextDirection.rtl,
-                                    textAlign: TextAlign.justify,
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontFamily: fontTitre,
+                                  Flexible(
+                                    child: FractionallySizedBox(
+                                      widthFactor: 1,
+                                      child: Container(
+                                        decoration: const BoxDecoration(
+                                          border: Border(
+                                            top: BorderSide(
+                                              width: 0.5,
+                                              color: Color.fromARGB(
+                                                  255, 212, 180, 124),
+                                            ),
+                                            right: BorderSide(
+                                              width: 0.5,
+                                              color: Color.fromARGB(
+                                                  255, 212, 180, 124),
+                                            ),
+                                          ),
+                                        ),
+                                        child: InkWell(
+                                          onTap: () {
+                                            displaySaveBookmarkDialog(
+                                                context, ref);
+                                          }, // button pressed
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: const <Widget>[
+                                              Icon(
+                                                Icons.bookmark_add_outlined,
+                                                color: Color.fromARGB(
+                                                    255, 212, 180, 124),
+                                              ),
+                                              Text(
+                                                "حفظ العلامة",
+                                                textDirection:
+                                                    TextDirection.rtl,
+                                                textAlign: TextAlign.justify,
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontFamily: fontTitre,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Flexible(
+                                    child: FractionallySizedBox(
+                                      widthFactor: 1,
+                                      child: Container(
+                                        decoration: const BoxDecoration(
+                                          border: Border(
+                                            top: BorderSide(
+                                              width: 0.5,
+                                              color: Color.fromARGB(
+                                                  255, 212, 180, 124),
+                                            ),
+                                            right: BorderSide(
+                                              width: 0.5,
+                                              color: Color.fromARGB(
+                                                  255, 212, 180, 124),
+                                            ),
+                                          ),
+                                        ),
+                                        child: InkWell(
+                                          onTap: () {
+                                            goToSavedBookmark();
+                                          },
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: const <Widget>[
+                                              Icon(
+                                                Icons.book_outlined,
+                                                color: Color.fromARGB(
+                                                    255, 212, 180, 124),
+                                              ),
+                                              Text(
+                                                "إلى العلامة",
+                                                textDirection:
+                                                    TextDirection.rtl,
+                                                textAlign: TextAlign.justify,
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontFamily: fontTitre,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Flexible(
+                                    child: FractionallySizedBox(
+                                      widthFactor: 1,
+                                      child: Container(
+                                        decoration: const BoxDecoration(
+                                          border: Border(
+                                            top: BorderSide(
+                                              width: 0.5,
+                                              color: Color.fromARGB(
+                                                  255, 212, 180, 124),
+                                            ),
+                                            right: BorderSide(
+                                              width: 0.5,
+                                              color: Color.fromARGB(
+                                                  255, 212, 180, 124),
+                                            ),
+                                          ),
+                                        ),
+                                        child: const MyTocBottomSheet(),
+                                      ),
+                                    ),
+                                  ),
+                                  Flexible(
+                                    child: FractionallySizedBox(
+                                      widthFactor: 1,
+                                      child: Container(
+                                        decoration: const BoxDecoration(
+                                          border: Border(
+                                            top: BorderSide(
+                                              width: 0.5,
+                                              color: Color.fromARGB(
+                                                  255, 212, 180, 124),
+                                            ),
+                                            right: BorderSide(
+                                              width: 0.5,
+                                              color: Color.fromARGB(
+                                                  255, 212, 180, 124),
+                                            ),
+                                          ),
+                                        ),
+                                        child: InkWell(
+                                          onTap: () {
+                                            showModalBottomSheet(
+                                              elevation: 10,
+                                              barrierColor: Colors.transparent,
+                                              backgroundColor:
+                                                  Colors.transparent,
+                                              context: context,
+                                              enableDrag: true,
+                                              builder: (ctx) => Container(
+                                                width: double.infinity,
+                                                height: double.infinity,
+                                                color: Colors.transparent,
+                                                alignment: Alignment.center,
+                                                child: MyNumPad(),
+                                              ),
+                                            );
+                                          },
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: const <Widget>[
+                                              Icon(
+                                                Icons
+                                                    .switch_access_shortcut_outlined,
+                                                color: Color.fromARGB(
+                                                    255, 212, 180, 124),
+                                              ),
+                                              Text(
+                                                "إلى الصفحة",
+                                                textDirection:
+                                                    TextDirection.rtl,
+                                                textAlign: TextAlign.justify,
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontFamily: fontTitre,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ],
                               ),
                             ),
                           ),
-                        ),
+                        ],
                       ),
-                      Flexible(
-                        child: FractionallySizedBox(
-                          widthFactor: 1,
-                          child: Container(
-                            decoration: const BoxDecoration(
-                              border: Border(
-                                top: BorderSide(
-                                  width: 0.5,
-                                  color: Color.fromARGB(255, 212, 180, 124),
-                                ),
-                                right: BorderSide(
-                                  width: 0.5,
-                                  color: Color.fromARGB(255, 212, 180, 124),
-                                ),
-                              ),
-                            ),
-                            child: InkWell(
-                              onTap: () {
-                                displaySaveBookmarkDialog(context, ref);
-                              }, // button pressed
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: const <Widget>[
-                                  Icon(
-                                    Icons.bookmark_add_outlined,
-                                    color: Color.fromARGB(255, 212, 180, 124),
-                                  ),
-                                  Text(
-                                    "حفظ العلامة",
-                                    textDirection: TextDirection.rtl,
-                                    textAlign: TextAlign.justify,
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontFamily: fontTitre,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Flexible(
-                        child: FractionallySizedBox(
-                          widthFactor: 1,
-                          child: Container(
-                            decoration: const BoxDecoration(
-                              border: Border(
-                                top: BorderSide(
-                                  width: 0.5,
-                                  color: Color.fromARGB(255, 212, 180, 124),
-                                ),
-                                right: BorderSide(
-                                  width: 0.5,
-                                  color: Color.fromARGB(255, 212, 180, 124),
-                                ),
-                              ),
-                            ),
-                            child: InkWell(
-                              onTap: () {
-                                goToSavedBookmark();
-                              },
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: const <Widget>[
-                                  Icon(
-                                    Icons.book_outlined,
-                                    color: Color.fromARGB(255, 212, 180, 124),
-                                  ),
-                                  Text(
-                                    "إلى العلامة",
-                                    textDirection: TextDirection.rtl,
-                                    textAlign: TextAlign.justify,
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontFamily: fontTitre,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Flexible(
-                        child: FractionallySizedBox(
-                          widthFactor: 1,
-                          child: Container(
-                            decoration: const BoxDecoration(
-                              border: Border(
-                                top: BorderSide(
-                                  width: 0.5,
-                                  color: Color.fromARGB(255, 212, 180, 124),
-                                ),
-                                right: BorderSide(
-                                  width: 0.5,
-                                  color: Color.fromARGB(255, 212, 180, 124),
-                                ),
-                              ),
-                            ),
-                            child: const MyTocBottomSheet(),
-                          ),
-                        ),
-                      ),
-                      Flexible(
-                        child: FractionallySizedBox(
-                          widthFactor: 1,
-                          child: Container(
-                            decoration: const BoxDecoration(
-                              border: Border(
-                                top: BorderSide(
-                                  width: 0.5,
-                                  color: Color.fromARGB(255, 212, 180, 124),
-                                ),
-                                right: BorderSide(
-                                  width: 0.5,
-                                  color: Color.fromARGB(255, 212, 180, 124),
-                                ),
-                              ),
-                            ),
-                            child: InkWell(
-                              onTap: () {
-                                showModalBottomSheet(
-                                  elevation: 10,
-                                  barrierColor: Colors.transparent,
-                                  backgroundColor: Colors.transparent,
-                                  context: context,
-                                  enableDrag: true,
-                                  builder: (ctx) => Container(
-                                    width: double.infinity,
-                                    height: double.infinity,
-                                    color: Colors.transparent,
-                                    alignment: Alignment.center,
-                                    child: MyNumPad(),
-                                  ),
-                                );
-                              },
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: const <Widget>[
-                                  Icon(
-                                    Icons.switch_access_shortcut_outlined,
-                                    color: Color.fromARGB(255, 212, 180, 124),
-                                  ),
-                                  Text(
-                                    "إلى الصفحة",
-                                    textDirection: TextDirection.rtl,
-                                    textAlign: TextAlign.justify,
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontFamily: fontTitre,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
+                    ),
+                  ],
+                )
+              : Container();
+        },
+      ),
     );
   }
 }

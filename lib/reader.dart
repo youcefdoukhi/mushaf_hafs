@@ -17,7 +17,6 @@ class ReaderWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    print("\nAAAAAAAAA ${ref.read(pageIndexProvider)} AAAAAAAAAAA");
     final pageIndex = ref.read(pageIndexProvider);
     final PageController pageController =
         PageController(initialPage: pageIndex);
@@ -27,12 +26,6 @@ class ReaderWidget extends ConsumerWidget {
             ref.listen<int>(
               pageIndexProvider,
               (int? previousCount, int newCount) {
-                /*  if (ref.read(scroolOrNotProvider) == true) {
-                  print("\n Scrooooooolll");
-                  pageController.animateToPage(newCount,
-                      duration: const Duration(milliseconds: 200),
-                      curve: Curves.ease);
-                }*/
                 if (ref.read(scroolOrNotProvider) == false) {
                   pageController.jumpToPage(newCount);
                   ref.read(scroolOrNotProvider.notifier).state = true;
@@ -54,12 +47,6 @@ class ReaderWidget extends ConsumerWidget {
               ref.read(pageIndexProvider.notifier).state =
                   ref.read(savedBookmarkProvider),
               ref.read(showPageInfoProvider.notifier).state = false,
-              /* Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ReaderWidget(),
-                ),
-              ),*/
             }
           : {
               ref.read(pageIndexProvider.notifier).state =
@@ -183,18 +170,8 @@ class ReaderWidget extends ConsumerWidget {
                   },
                 ),
               ),
-              Visibility(
-                visible: ref.watch(showPageInfoProvider),
-                child: OrientationBuilder(
-                  builder: (context, orientation) {
-                    //return orientation == Orientation.portrait
-                    return 1 == 1
-                        ? MyPageInfo(
-                            goToSavedBookmark: goToSavedBookmark,
-                          )
-                        : Container();
-                  },
-                ),
+              MyPageInfo(
+                goToSavedBookmark: goToSavedBookmark,
               ),
             ],
           ),

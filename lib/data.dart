@@ -4,22 +4,23 @@ import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class MonObjet {
+class Chapters {
   final int index;
   final String name;
   final String type;
   final int verses;
   final int start;
 
-  MonObjet(
-      {required this.index,
-      required this.name,
-      required this.type,
-      required this.verses,
-      required this.start});
+  Chapters({
+    required this.index,
+    required this.name,
+    required this.type,
+    required this.verses,
+    required this.start,
+  });
 
-  factory MonObjet.fromJson(Map<String, dynamic> json) {
-    return MonObjet(
+  factory Chapters.fromJson(Map<String, dynamic> json) {
+    return Chapters(
       index: json['index'],
       name: json['name'],
       type: json['type'],
@@ -45,24 +46,24 @@ class RubObjet {
   }
 }
 
-final objetsProvider = FutureProvider<List<MonObjet>>((ref) async {
+final chaptersProvider = FutureProvider<List<Chapters>>((ref) async {
   final jsonString = await rootBundle.loadString('data/surah.json');
   final jsonData = json.decode(jsonString);
   final objets =
-      List<MonObjet>.from(jsonData.map((json) => MonObjet.fromJson(json)));
+      List<Chapters>.from(jsonData.map((json) => Chapters.fromJson(json)));
   return objets;
 });
 
 class PageRubHizbJuz {
   final int rub;
+  final String pageInfo;
   final int hizb;
   final int juz;
-  final bool show;
   PageRubHizbJuz(
       {required this.rub,
+      required this.pageInfo,
       required this.hizb,
-      required this.juz,
-      required this.show});
+      required this.juz});
 }
 
 final rubProvider = FutureProvider<List<PageRubHizbJuz>>((ref) async {
@@ -71,23 +72,48 @@ final rubProvider = FutureProvider<List<PageRubHizbJuz>>((ref) async {
   final rubObjets =
       List<RubObjet>.from(jsonData.map((json) => RubObjet.fromJson(json)));
   List<PageRubHizbJuz> newRubList = List<PageRubHizbJuz>.filled(
-      604, PageRubHizbJuz(rub: 74, hizb: 60, juz: 30, show: false),
+      604, PageRubHizbJuz(rub: 74, pageInfo: "", hizb: 60, juz: 30),
       growable: false);
-
+  int step = 1;
   for (var i = 0; i < 73; i++) {
     RubObjet currentRub = rubObjets.elementAt(i);
     RubObjet nextRub = rubObjets.elementAt(i + 1);
     int pageNumOfCurrentRub = currentRub.pagenum - 1;
     int pageNumOfNextRub = nextRub.pagenum - 1;
+    int hizb = ((currentRub.rub - 1) ~/ 4) + 1;
+    int juz = ((hizb - 1) ~/ 2) + 1;
+    String pageInfo = "-";
+    if (step == 1) {
+      if ((hizb % 2) == 0) {
+        pageInfo = "الحزب $hizb";
+      } else {
+        pageInfo = "الجزء $juz\n" "الحزب $hizb";
+      }
+
+      step++;
+    } else if (step == 2) {
+      pageInfo = "ربع الحزب $hizb";
+      step++;
+    } else if (step == 3) {
+      pageInfo = "نصف الحزب $hizb";
+      step++;
+    } else if (step == 4) {
+      pageInfo = "ثلاثة أرباع الحزب $hizb";
+      step = 1;
+    }
     for (var j = pageNumOfCurrentRub; j < pageNumOfNextRub; j++) {
-      newRubList[j] =
-          PageRubHizbJuz(rub: currentRub.rub, hizb: 0, juz: 0, show: false);
+      newRubList[j] = PageRubHizbJuz(
+        rub: currentRub.rub,
+        pageInfo: pageInfo,
+        hizb: hizb,
+        juz: juz,
+      );
+      pageInfo = "-";
     }
   }
   newRubList.asMap().forEach((index, value) {
-    int hizb = ((value.rub - 1) ~/ 4) + 1;
-    print(
-        "Page = ${index + 1} / Rub = ${value.rub} / Hizb = $hizb / Juz = ${value.juz} / Show = ${value.show}");
+    // print(
+    //     "Page = ${index + 1} / pageInfo = ${value.pageInfo} / Hizb = ${value.hizb} / Juz = ${value.juz} }");
   });
   return newRubList;
 });
