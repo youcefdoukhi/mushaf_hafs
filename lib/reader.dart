@@ -120,10 +120,6 @@ class ReaderWidget extends ConsumerWidget {
                                   orientation == Orientation.portrait
                                       ? Axis.horizontal
                                       : Axis.vertical,
-                              //controller: PageController(
-                              // initialPage: ref.read(pageIndexProvider),
-                              //   initialPage: ref.watch(pageIndexProvider),
-                              // ),
                               controller: pageController,
                               onPageChanged: (int page) => {
                                 ref.read(pageIndexProvider.notifier).state =
