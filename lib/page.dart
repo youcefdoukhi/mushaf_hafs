@@ -1,29 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mushaf_hafs/data.dart';
 
-class PageWidget extends StatelessWidget {
-  const PageWidget(
-      {Key? key,
-      required this.content,
-      required this.orientation,
-      required this.isBookmarked})
-      : super(key: key);
+class PageWidget extends ConsumerWidget {
+  final int index;
 
-  //final Content content;
-  final Image content;
-  final Orientation orientation;
-  final bool isBookmarked;
+  const PageWidget({
+    Key? key,
+    required this.index,
+  }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Stack(
-      fit: orientation == Orientation.portrait
+      fit: MediaQuery.of(context).orientation == Orientation.portrait
           ? StackFit.expand
           : StackFit.loose,
       children: <Widget>[
         Container(
           decoration: BoxDecoration(
             color: Colors.white,
-            border: orientation == Orientation.portrait
+            border: MediaQuery.of(context).orientation == Orientation.portrait
                 ? const Border(
                     left: BorderSide(
                       width: 0.7,
@@ -45,10 +42,11 @@ class PageWidget extends StatelessWidget {
                     ),
                   ),
           ),
-          child: content,
+          child: ref.read(imagesProvider(index)),
+          //child: ref.read(imagesProvider)[index],
         ),
         Visibility(
-          visible: isBookmarked,
+          visible: ref.watch(savedBookmarkProvider) == index ? true : false,
           child: const Align(
             alignment: Alignment.topLeft,
             child: SizedBox(

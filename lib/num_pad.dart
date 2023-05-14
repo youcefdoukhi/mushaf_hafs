@@ -73,7 +73,7 @@ class MyNumPad extends ConsumerWidget {
                 ? int.parse(_myController.text)
                 : null;
             if (page != null && page > 0 && page < 605) {
-              ref.read(scroolOrNotProvider.notifier).state = false;
+              ref.read(scrollOrNotProvider.notifier).state = false;
               ref.read(pageIndexProvider.notifier).state = page - 1;
               ref.read(showPageInfoProvider.notifier).state = false;
               Navigator.pop(context);

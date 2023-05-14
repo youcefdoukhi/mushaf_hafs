@@ -53,17 +53,11 @@ class TOCWidget extends ConsumerWidget {
                     final objet = objets[index];
                     return GestureDetector(
                       onTap: () => {
-                        ref.read(scroolOrNotProvider.notifier).state = false,
+                        ref.read(scrollOrNotProvider.notifier).state = false,
                         ref.read(pageIndexProvider.notifier).state =
                             objet.start - 1,
                         ref.read(showPageInfoProvider.notifier).state = false,
                         Navigator.pop(context),
-                        /*  Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => ReaderWidget(),
-                                  ),
-                                ),*/
                       },
                       child: Container(
                         color: Colors.transparent,
@@ -73,13 +67,9 @@ class TOCWidget extends ConsumerWidget {
                             Expanded(
                               flex: 2,
                               child: Container(
-                                //color: Colors.black,
                                 alignment: Alignment.center,
                                 child: Text(
                                   "${objet.index}",
-                                  style: const TextStyle(
-                                      //color: Colors.white,
-                                      ),
                                 ),
                               ),
                             ),

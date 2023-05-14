@@ -1,6 +1,5 @@
-import 'dart:async';
-import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:screen_brightness/screen_brightness.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -17,10 +16,7 @@ const fontTitle = "ScheherazadeNew";
 class MyPageInfo extends ConsumerWidget {
   const MyPageInfo({
     Key? key,
-    required this.goToSavedBookmark,
   }) : super(key: key);
-
-  final Function goToSavedBookmark;
 
   Future<void> setBrightness(double brightness) async {
     try {
@@ -96,6 +92,12 @@ class MyPageInfo extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     int page = ref.watch(pageIndexProvider);
+    Future(() {
+      ref
+          .read(hideWidgetAfterScrollProvider)
+          .showAndHide(const Duration(milliseconds: 1300));
+    });
+
     String getSurahFromPage(int page) {
       final listChaperts = ref.read(chaptersProvider).value!;
       String surah = "";
@@ -109,6 +111,24 @@ class MyPageInfo extends ConsumerWidget {
         }
       }
       return surah;
+    }
+
+    goToSavedBookmark() {
+      MediaQuery.of(context).orientation == Orientation.portrait
+          ? {
+              ref.read(scrollOrNotProvider.notifier).state = false,
+              ref.read(pageIndexProvider.notifier).state =
+                  ref.read(savedBookmarkProvider),
+              ref.read(showPageInfoProvider.notifier).state = false,
+            }
+          : {
+              ref.read(pageIndexProvider.notifier).state =
+                  ref.read(savedBookmarkProvider),
+              ref.read(showPageInfoProvider.notifier).state = false,
+              ref.read(itemScrollControllerProvider).jumpTo(
+                    index: ref.read(savedBookmarkProvider),
+                  ),
+            };
     }
 
     return Stack(
@@ -509,10 +529,29 @@ class MyPageInfo extends ConsumerWidget {
           visible: (ref.read(rubProvider).value![page].pageInfo != "-") &&
               ref.watch(showPageInfoProvider),
           child: Center(
-            child: Text(ref.read(rubProvider).value![page].pageInfo),
+            child: Container(
+              decoration: BoxDecoration(
+                color: const Color.fromARGB(220, 54, 56, 89),
+                borderRadius: BorderRadius.circular(5),
+              ),
+              padding: const EdgeInsets.all(10),
+              child: Text(
+                textAlign: TextAlign.center,
+                ref
+                    .read(rubProvider)
+                    .value![ref.watch(pageIndexProvider)]
+                    .pageInfo,
+                style: const TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+            ),
           ),
         ),
-        MonWidgetMasque()
+        (ref.read(showPageInfoProvider) == false) &&
+                (ref.read(rubProvider).value![page].pageInfo != "-")
+            ? const MonWidgetMasque()
+            : Container(),
       ],
     );
   }
@@ -525,6 +564,7 @@ class MyTocBottomSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
+        /*
         Scaffold.of(context).showBottomSheet<void>(
           (BuildContext context) {
             return Container(
@@ -534,6 +574,13 @@ class MyTocBottomSheet extends StatelessWidget {
               child: const TOCWidget(),
             );
           },
+        );*/
+
+        showModalBottomSheet(
+          isScrollControlled: true,
+          context: context,
+          enableDrag: true,
+          builder: (ctx) => const TOCWidget(),
         );
       },
       child: Column(
@@ -575,39 +622,29 @@ class CustomTrackShape extends RectangularSliderTrackShape {
   }
 }
 
-class MonWidgetMasque extends ConsumerStatefulWidget {
+class MonWidgetMasque extends ConsumerWidget {
   const MonWidgetMasque({super.key});
 
   @override
-  MonWidgetMasqueState createState() => MonWidgetMasqueState();
-}
-
-class MonWidgetMasqueState extends ConsumerState<MonWidgetMasque> {
-  bool _isVisible = true;
-
-  @override
-  void initState() {
-    super.initState();
-    Timer(const Duration(seconds: 2), () {
-      print("\n 111111111111 Non mounted");
-      if (mounted) {
-        print("\n 22222222222 mounted");
-        setState(() {
-          _isVisible = false;
-        });
-      }
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final hideNotifier = ref.watch(hideWidgetAfterScrollProvider);
     return Visibility(
-      visible: _isVisible,
+      visible: hideNotifier.isVisible,
       child: Center(
-        child: Text(ref
-            .read(rubProvider)
-            .value![ref.watch(pageIndexProvider)]
-            .pageInfo),
+        child: Container(
+          decoration: BoxDecoration(
+            color: const Color.fromARGB(220, 54, 56, 89),
+            borderRadius: BorderRadius.circular(5),
+          ),
+          padding: const EdgeInsets.all(10),
+          child: Text(
+            textAlign: TextAlign.center,
+            ref.read(rubProvider).value![ref.watch(pageIndexProvider)].pageInfo,
+            style: const TextStyle(
+              color: Colors.white,
+            ),
+          ),
+        ),
       ),
     );
   }

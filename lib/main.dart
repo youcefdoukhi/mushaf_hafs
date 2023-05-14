@@ -9,6 +9,7 @@ import 'data.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+
   runApp(
     const ProviderScope(
       child: MainApp(),
@@ -36,32 +37,20 @@ class MainApp extends StatelessWidget {
       title: _title,
       home: Consumer(
         builder: (context, ref, child) {
-          final objetsAsyncValue = ref.watch(imagesProvider);
-          return objetsAsyncValue.when(
-            data: (objets1) {
+          final pageIndex = ref.watch(pageIndexFromSharedPref);
+          return pageIndex.when(
+            data: (objets2) {
               return Consumer(
                 builder: (context, ref, child) {
-                  final pageIndex = ref.watch(pageIndexFromSharedPref);
-                  return pageIndex.when(
-                    data: (objets2) {
+                  final rub = ref.watch(rubProvider);
+                  return rub.when(
+                    data: (objets3) {
                       return Consumer(
                         builder: (context, ref, child) {
-                          final rub = ref.watch(rubProvider);
-                          return rub.when(
-                            data: (objets3) {
-                              return Consumer(
-                                builder: (context, ref, child) {
-                                  final listSurah = ref.watch(chaptersProvider);
-                                  return listSurah.when(
-                                    data: (objets4) {
-                                      return ReaderWidget();
-                                    },
-                                    loading: () => const Center(
-                                        child: CircularProgressIndicator()),
-                                    error: (error, _) => Text('Error: $error'),
-                                  );
-                                },
-                              );
+                          final listSurah = ref.watch(chaptersProvider);
+                          return listSurah.when(
+                            data: (objets4) {
+                              return const ReaderWidget();
                             },
                             loading: () => const Center(
                                 child: CircularProgressIndicator()),
