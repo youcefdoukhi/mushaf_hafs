@@ -303,10 +303,10 @@ class MyPageInfo extends ConsumerWidget {
                                             ),
                                             child: InkWell(
                                               onTap: () {},
-                                              child: Column(
+                                              child: const Column(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.center,
-                                                children: const <Widget>[
+                                                children: <Widget>[
                                                   Icon(
                                                     Icons.search_outlined,
                                                     color: Color.fromARGB(
@@ -352,10 +352,10 @@ class MyPageInfo extends ConsumerWidget {
                                                 displaySaveBookmarkDialog(
                                                     context, ref);
                                               }, // button pressed
-                                              child: Column(
+                                              child: const Column(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.center,
-                                                children: const <Widget>[
+                                                children: <Widget>[
                                                   Icon(
                                                     Icons.bookmark_add_outlined,
                                                     color: Color.fromARGB(
@@ -400,10 +400,10 @@ class MyPageInfo extends ConsumerWidget {
                                               onTap: () {
                                                 goToSavedBookmark();
                                               },
-                                              child: Column(
+                                              child: const Column(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.center,
-                                                children: const <Widget>[
+                                                children: <Widget>[
                                                   Icon(
                                                     Icons.book_outlined,
                                                     color: Color.fromARGB(
@@ -485,10 +485,10 @@ class MyPageInfo extends ConsumerWidget {
                                                   ),
                                                 );
                                               },
-                                              child: Column(
+                                              child: const Column(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.center,
-                                                children: const <Widget>[
+                                                children: <Widget>[
                                                   Icon(
                                                     Icons
                                                         .switch_access_shortcut_outlined,
@@ -583,9 +583,9 @@ class MyTocBottomSheet extends StatelessWidget {
           builder: (ctx) => const TOCWidget(),
         );
       },
-      child: Column(
+      child: const Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: const <Widget>[
+        children: <Widget>[
           Icon(
             Icons.menu_book_outlined,
             color: Color.fromARGB(255, 212, 180, 124),

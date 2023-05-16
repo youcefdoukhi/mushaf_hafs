@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/services.dart' show rootBundle;
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mushaf_hafs/page.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
@@ -202,6 +202,7 @@ final imagesProvider = Provider.family<Image, int>((ref, index) {
     image: AssetImage('images/mushaf_photos_2/page001.png'),
     fit: BoxFit.fill,
   );
+
   imagesList[1] = const Image(
     image: AssetImage('images/mushaf_photos_2/page002.png'),
     fit: BoxFit.fill,

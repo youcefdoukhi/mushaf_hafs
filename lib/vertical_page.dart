@@ -9,7 +9,7 @@ class VerticalPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    print("\n XXX   Vertical   XXX");
+    //print("\n XXX   Vertical   XXX");
     final ItemPositionsListener itemPositionsListener =
         ItemPositionsListener.create();
 
@@ -68,7 +68,6 @@ class VerticalPage extends ConsumerWidget {
     return ScrollConfiguration(
       behavior: AppBehavior(),
       child: ScrollablePositionedList.builder(
-        shrinkWrap: true,
         itemCount: 604,
         itemBuilder: (context, index) {
           return ref.read(pageWidgetProvider(index));
