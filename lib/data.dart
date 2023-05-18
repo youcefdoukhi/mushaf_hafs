@@ -167,7 +167,7 @@ final scrollOrNotProvider = StateProvider<bool>(
 
 final imagesProvider = Provider.family<Image, int>((ref, index) {
 //final imagesProvider = Provider<List<Image>>((ref) {
-  /*
+/*
   final List<Image> imagesList = [];
 
   for (var index = 0; index < 604; index++) {
@@ -183,7 +183,6 @@ final imagesProvider = Provider.family<Image, int>((ref, index) {
     imagesList.insert(
         index,
         Image(
-         
           image: AssetImage('images/mushaf_photos_2/page$pageNum.png'),
           fit: BoxFit.fill,
         ));
@@ -2681,6 +2680,7 @@ final imagesProvider = Provider.family<Image, int>((ref, index) {
 });
 
 final pageWidgetProvider = Provider.family<PageWidget, int>((ref, index) {
+//final pageWidgetProvider = Provider<List<PageWidget>>((ref) {
   final objets = List<PageWidget>.filled(604, const PageWidget(index: 0));
 
   objets[0] = const PageWidget(index: 0);

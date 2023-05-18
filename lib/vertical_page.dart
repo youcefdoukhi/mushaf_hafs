@@ -9,7 +9,6 @@ class VerticalPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    //print("\n XXX   Vertical   XXX");
     final ItemPositionsListener itemPositionsListener =
         ItemPositionsListener.create();
 

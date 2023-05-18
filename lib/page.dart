@@ -12,7 +12,6 @@ class PageWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    //print("\n XXX   Page   XXX");
     return Stack(
       fit: MediaQuery.of(context).orientation == Orientation.portrait
           ? StackFit.expand
@@ -44,7 +43,6 @@ class PageWidget extends ConsumerWidget {
                   ),
           ),
           child: ref.read(imagesProvider(index)),
-          //child: ref.read(imagesProvider)[index],
         ),
         Visibility(
           visible: ref.watch(savedBookmarkProvider) == index ? true : false,
