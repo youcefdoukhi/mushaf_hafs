@@ -43,6 +43,7 @@ class PageWidget extends ConsumerWidget {
                   ),
           ),
           child: ref.read(imagesProvider(index)),
+          //child: ref.read(imagesProvider)[index],
         ),
         Visibility(
           visible: ref.watch(savedBookmarkProvider) == index ? true : false,

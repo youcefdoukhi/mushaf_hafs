@@ -167,6 +167,7 @@ final scrollOrNotProvider = StateProvider<bool>(
 
 final imagesProvider = Provider.family<Image, int>((ref, index) {
 //final imagesProvider = Provider<List<Image>>((ref) {
+  print("\n XXXXXX");
 /*
   final List<Image> imagesList = [];
 
@@ -182,2496 +183,2497 @@ final imagesProvider = Provider.family<Image, int>((ref, index) {
     }
     imagesList.insert(
         index,
-        Image(
-          image: AssetImage('images/mushaf_photos_2/page$pageNum.png'),
+        Image.asset(
+          'images/img/page$pageNum.png',
           fit: BoxFit.fill,
         ));
-  }*/
+  }
+  */
 
   final imagesList = List<Image>.filled(
     604,
     const Image(
-      image: AssetImage('images/mushaf_photos_2/page001.png'),
+      image: AssetImage('images/img/page001.png'),
       fit: BoxFit.fill,
     ),
   );
 //---------------------------------------------------
 
   imagesList[0] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page001.png'),
+    image: AssetImage('images/img/page001.png'),
     fit: BoxFit.fill,
   );
 
   imagesList[1] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page002.png'),
+    image: AssetImage('images/img/page002.png'),
     fit: BoxFit.fill,
   );
   imagesList[2] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page003.png'),
+    image: AssetImage('images/img/page003.png'),
     fit: BoxFit.fill,
   );
   imagesList[3] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page004.png'),
+    image: AssetImage('images/img/page004.png'),
     fit: BoxFit.fill,
   );
   imagesList[4] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page005.png'),
+    image: AssetImage('images/img/page005.png'),
     fit: BoxFit.fill,
   );
   imagesList[5] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page006.png'),
+    image: AssetImage('images/img/page006.png'),
     fit: BoxFit.fill,
   );
   imagesList[6] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page007.png'),
+    image: AssetImage('images/img/page007.png'),
     fit: BoxFit.fill,
   );
   imagesList[7] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page008.png'),
+    image: AssetImage('images/img/page008.png'),
     fit: BoxFit.fill,
   );
   imagesList[8] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page009.png'),
+    image: AssetImage('images/img/page009.png'),
     fit: BoxFit.fill,
   );
 
   imagesList[9] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page010.png'),
+    image: AssetImage('images/img/page010.png'),
     fit: BoxFit.fill,
   );
   imagesList[10] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page011.png'),
+    image: AssetImage('images/img/page011.png'),
     fit: BoxFit.fill,
   );
   imagesList[11] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page012.png'),
+    image: AssetImage('images/img/page012.png'),
     fit: BoxFit.fill,
   );
   imagesList[12] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page013.png'),
+    image: AssetImage('images/img/page013.png'),
     fit: BoxFit.fill,
   );
   imagesList[13] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page014.png'),
+    image: AssetImage('images/img/page014.png'),
     fit: BoxFit.fill,
   );
   imagesList[14] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page015.png'),
+    image: AssetImage('images/img/page015.png'),
     fit: BoxFit.fill,
   );
   imagesList[15] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page016.png'),
+    image: AssetImage('images/img/page016.png'),
     fit: BoxFit.fill,
   );
   imagesList[16] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page017.png'),
+    image: AssetImage('images/img/page017.png'),
     fit: BoxFit.fill,
   );
   imagesList[17] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page018.png'),
+    image: AssetImage('images/img/page018.png'),
     fit: BoxFit.fill,
   );
   imagesList[18] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page019.png'),
+    image: AssetImage('images/img/page019.png'),
     fit: BoxFit.fill,
   );
 
   imagesList[19] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page020.png'),
+    image: AssetImage('images/img/page020.png'),
     fit: BoxFit.fill,
   );
   imagesList[20] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page021.png'),
+    image: AssetImage('images/img/page021.png'),
     fit: BoxFit.fill,
   );
   imagesList[21] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page022.png'),
+    image: AssetImage('images/img/page022.png'),
     fit: BoxFit.fill,
   );
   imagesList[22] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page023.png'),
+    image: AssetImage('images/img/page023.png'),
     fit: BoxFit.fill,
   );
   imagesList[23] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page024.png'),
+    image: AssetImage('images/img/page024.png'),
     fit: BoxFit.fill,
   );
   imagesList[24] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page025.png'),
+    image: AssetImage('images/img/page025.png'),
     fit: BoxFit.fill,
   );
   imagesList[25] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page026.png'),
+    image: AssetImage('images/img/page026.png'),
     fit: BoxFit.fill,
   );
   imagesList[26] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page027.png'),
+    image: AssetImage('images/img/page027.png'),
     fit: BoxFit.fill,
   );
   imagesList[27] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page028.png'),
+    image: AssetImage('images/img/page028.png'),
     fit: BoxFit.fill,
   );
   imagesList[28] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page029.png'),
+    image: AssetImage('images/img/page029.png'),
     fit: BoxFit.fill,
   );
 
   imagesList[29] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page030.png'),
+    image: AssetImage('images/img/page030.png'),
     fit: BoxFit.fill,
   );
   imagesList[30] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page031.png'),
+    image: AssetImage('images/img/page031.png'),
     fit: BoxFit.fill,
   );
   imagesList[31] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page032.png'),
+    image: AssetImage('images/img/page032.png'),
     fit: BoxFit.fill,
   );
   imagesList[32] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page033.png'),
+    image: AssetImage('images/img/page033.png'),
     fit: BoxFit.fill,
   );
   imagesList[33] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page034.png'),
+    image: AssetImage('images/img/page034.png'),
     fit: BoxFit.fill,
   );
   imagesList[34] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page035.png'),
+    image: AssetImage('images/img/page035.png'),
     fit: BoxFit.fill,
   );
   imagesList[35] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page036.png'),
+    image: AssetImage('images/img/page036.png'),
     fit: BoxFit.fill,
   );
   imagesList[36] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page037.png'),
+    image: AssetImage('images/img/page037.png'),
     fit: BoxFit.fill,
   );
   imagesList[37] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page038.png'),
+    image: AssetImage('images/img/page038.png'),
     fit: BoxFit.fill,
   );
   imagesList[38] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page039.png'),
+    image: AssetImage('images/img/page039.png'),
     fit: BoxFit.fill,
   );
 
   imagesList[39] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page040.png'),
+    image: AssetImage('images/img/page040.png'),
     fit: BoxFit.fill,
   );
   imagesList[40] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page041.png'),
+    image: AssetImage('images/img/page041.png'),
     fit: BoxFit.fill,
   );
   imagesList[41] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page042.png'),
+    image: AssetImage('images/img/page042.png'),
     fit: BoxFit.fill,
   );
   imagesList[42] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page043.png'),
+    image: AssetImage('images/img/page043.png'),
     fit: BoxFit.fill,
   );
   imagesList[43] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page044.png'),
+    image: AssetImage('images/img/page044.png'),
     fit: BoxFit.fill,
   );
   imagesList[44] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page045.png'),
+    image: AssetImage('images/img/page045.png'),
     fit: BoxFit.fill,
   );
   imagesList[45] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page046.png'),
+    image: AssetImage('images/img/page046.png'),
     fit: BoxFit.fill,
   );
   imagesList[46] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page047.png'),
+    image: AssetImage('images/img/page047.png'),
     fit: BoxFit.fill,
   );
   imagesList[47] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page048.png'),
+    image: AssetImage('images/img/page048.png'),
     fit: BoxFit.fill,
   );
   imagesList[48] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page049.png'),
+    image: AssetImage('images/img/page049.png'),
     fit: BoxFit.fill,
   );
 
   imagesList[49] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page050.png'),
+    image: AssetImage('images/img/page050.png'),
     fit: BoxFit.fill,
   );
   imagesList[50] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page051.png'),
+    image: AssetImage('images/img/page051.png'),
     fit: BoxFit.fill,
   );
   imagesList[51] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page052.png'),
+    image: AssetImage('images/img/page052.png'),
     fit: BoxFit.fill,
   );
   imagesList[52] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page053.png'),
+    image: AssetImage('images/img/page053.png'),
     fit: BoxFit.fill,
   );
   imagesList[53] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page054.png'),
+    image: AssetImage('images/img/page054.png'),
     fit: BoxFit.fill,
   );
   imagesList[54] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page055.png'),
+    image: AssetImage('images/img/page055.png'),
     fit: BoxFit.fill,
   );
   imagesList[55] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page056.png'),
+    image: AssetImage('images/img/page056.png'),
     fit: BoxFit.fill,
   );
   imagesList[56] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page057.png'),
+    image: AssetImage('images/img/page057.png'),
     fit: BoxFit.fill,
   );
   imagesList[57] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page058.png'),
+    image: AssetImage('images/img/page058.png'),
     fit: BoxFit.fill,
   );
   imagesList[58] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page059.png'),
+    image: AssetImage('images/img/page059.png'),
     fit: BoxFit.fill,
   );
 
   imagesList[59] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page060.png'),
+    image: AssetImage('images/img/page060.png'),
     fit: BoxFit.fill,
   );
   imagesList[60] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page061.png'),
+    image: AssetImage('images/img/page061.png'),
     fit: BoxFit.fill,
   );
   imagesList[61] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page062.png'),
+    image: AssetImage('images/img/page062.png'),
     fit: BoxFit.fill,
   );
   imagesList[62] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page063.png'),
+    image: AssetImage('images/img/page063.png'),
     fit: BoxFit.fill,
   );
   imagesList[63] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page064.png'),
+    image: AssetImage('images/img/page064.png'),
     fit: BoxFit.fill,
   );
   imagesList[64] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page065.png'),
+    image: AssetImage('images/img/page065.png'),
     fit: BoxFit.fill,
   );
   imagesList[65] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page066.png'),
+    image: AssetImage('images/img/page066.png'),
     fit: BoxFit.fill,
   );
   imagesList[66] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page067.png'),
+    image: AssetImage('images/img/page067.png'),
     fit: BoxFit.fill,
   );
   imagesList[67] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page068.png'),
+    image: AssetImage('images/img/page068.png'),
     fit: BoxFit.fill,
   );
   imagesList[68] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page069.png'),
+    image: AssetImage('images/img/page069.png'),
     fit: BoxFit.fill,
   );
 
   imagesList[69] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page070.png'),
+    image: AssetImage('images/img/page070.png'),
     fit: BoxFit.fill,
   );
   imagesList[70] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page071.png'),
+    image: AssetImage('images/img/page071.png'),
     fit: BoxFit.fill,
   );
   imagesList[71] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page072.png'),
+    image: AssetImage('images/img/page072.png'),
     fit: BoxFit.fill,
   );
   imagesList[72] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page073.png'),
+    image: AssetImage('images/img/page073.png'),
     fit: BoxFit.fill,
   );
   imagesList[73] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page074.png'),
+    image: AssetImage('images/img/page074.png'),
     fit: BoxFit.fill,
   );
   imagesList[74] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page075.png'),
+    image: AssetImage('images/img/page075.png'),
     fit: BoxFit.fill,
   );
   imagesList[75] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page076.png'),
+    image: AssetImage('images/img/page076.png'),
     fit: BoxFit.fill,
   );
   imagesList[76] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page077.png'),
+    image: AssetImage('images/img/page077.png'),
     fit: BoxFit.fill,
   );
   imagesList[77] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page078.png'),
+    image: AssetImage('images/img/page078.png'),
     fit: BoxFit.fill,
   );
   imagesList[78] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page079.png'),
+    image: AssetImage('images/img/page079.png'),
     fit: BoxFit.fill,
   );
 
   imagesList[79] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page080.png'),
+    image: AssetImage('images/img/page080.png'),
     fit: BoxFit.fill,
   );
   imagesList[80] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page081.png'),
+    image: AssetImage('images/img/page081.png'),
     fit: BoxFit.fill,
   );
   imagesList[81] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page082.png'),
+    image: AssetImage('images/img/page082.png'),
     fit: BoxFit.fill,
   );
   imagesList[82] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page083.png'),
+    image: AssetImage('images/img/page083.png'),
     fit: BoxFit.fill,
   );
   imagesList[83] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page084.png'),
+    image: AssetImage('images/img/page084.png'),
     fit: BoxFit.fill,
   );
   imagesList[84] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page085.png'),
+    image: AssetImage('images/img/page085.png'),
     fit: BoxFit.fill,
   );
   imagesList[85] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page086.png'),
+    image: AssetImage('images/img/page086.png'),
     fit: BoxFit.fill,
   );
   imagesList[86] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page087.png'),
+    image: AssetImage('images/img/page087.png'),
     fit: BoxFit.fill,
   );
   imagesList[87] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page088.png'),
+    image: AssetImage('images/img/page088.png'),
     fit: BoxFit.fill,
   );
   imagesList[88] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page089.png'),
+    image: AssetImage('images/img/page089.png'),
     fit: BoxFit.fill,
   );
 
   imagesList[89] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page090.png'),
+    image: AssetImage('images/img/page090.png'),
     fit: BoxFit.fill,
   );
   imagesList[90] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page091.png'),
+    image: AssetImage('images/img/page091.png'),
     fit: BoxFit.fill,
   );
   imagesList[91] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page092.png'),
+    image: AssetImage('images/img/page092.png'),
     fit: BoxFit.fill,
   );
   imagesList[92] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page093.png'),
+    image: AssetImage('images/img/page093.png'),
     fit: BoxFit.fill,
   );
   imagesList[93] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page094.png'),
+    image: AssetImage('images/img/page094.png'),
     fit: BoxFit.fill,
   );
   imagesList[94] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page095.png'),
+    image: AssetImage('images/img/page095.png'),
     fit: BoxFit.fill,
   );
   imagesList[95] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page096.png'),
+    image: AssetImage('images/img/page096.png'),
     fit: BoxFit.fill,
   );
   imagesList[96] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page097.png'),
+    image: AssetImage('images/img/page097.png'),
     fit: BoxFit.fill,
   );
   imagesList[97] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page098.png'),
+    image: AssetImage('images/img/page098.png'),
     fit: BoxFit.fill,
   );
   imagesList[98] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page099.png'),
+    image: AssetImage('images/img/page099.png'),
     fit: BoxFit.fill,
   );
 
   imagesList[99] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page100.png'),
+    image: AssetImage('images/img/page100.png'),
     fit: BoxFit.fill,
   );
   imagesList[100] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page101.png'),
+    image: AssetImage('images/img/page101.png'),
     fit: BoxFit.fill,
   );
   imagesList[101] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page102.png'),
+    image: AssetImage('images/img/page102.png'),
     fit: BoxFit.fill,
   );
   imagesList[102] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page103.png'),
+    image: AssetImage('images/img/page103.png'),
     fit: BoxFit.fill,
   );
   imagesList[103] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page104.png'),
+    image: AssetImage('images/img/page104.png'),
     fit: BoxFit.fill,
   );
   imagesList[104] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page105.png'),
+    image: AssetImage('images/img/page105.png'),
     fit: BoxFit.fill,
   );
   imagesList[105] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page106.png'),
+    image: AssetImage('images/img/page106.png'),
     fit: BoxFit.fill,
   );
   imagesList[106] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page107.png'),
+    image: AssetImage('images/img/page107.png'),
     fit: BoxFit.fill,
   );
   imagesList[107] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page108.png'),
+    image: AssetImage('images/img/page108.png'),
     fit: BoxFit.fill,
   );
   imagesList[108] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page109.png'),
+    image: AssetImage('images/img/page109.png'),
     fit: BoxFit.fill,
   );
 
   imagesList[109] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page110.png'),
+    image: AssetImage('images/img/page110.png'),
     fit: BoxFit.fill,
   );
   imagesList[110] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page111.png'),
+    image: AssetImage('images/img/page111.png'),
     fit: BoxFit.fill,
   );
   imagesList[111] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page112.png'),
+    image: AssetImage('images/img/page112.png'),
     fit: BoxFit.fill,
   );
   imagesList[112] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page113.png'),
+    image: AssetImage('images/img/page113.png'),
     fit: BoxFit.fill,
   );
   imagesList[113] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page114.png'),
+    image: AssetImage('images/img/page114.png'),
     fit: BoxFit.fill,
   );
   imagesList[114] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page115.png'),
+    image: AssetImage('images/img/page115.png'),
     fit: BoxFit.fill,
   );
   imagesList[115] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page116.png'),
+    image: AssetImage('images/img/page116.png'),
     fit: BoxFit.fill,
   );
   imagesList[116] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page117.png'),
+    image: AssetImage('images/img/page117.png'),
     fit: BoxFit.fill,
   );
   imagesList[117] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page118.png'),
+    image: AssetImage('images/img/page118.png'),
     fit: BoxFit.fill,
   );
   imagesList[118] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page119.png'),
+    image: AssetImage('images/img/page119.png'),
     fit: BoxFit.fill,
   );
 
   imagesList[119] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page120.png'),
+    image: AssetImage('images/img/page120.png'),
     fit: BoxFit.fill,
   );
   imagesList[120] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page121.png'),
+    image: AssetImage('images/img/page121.png'),
     fit: BoxFit.fill,
   );
   imagesList[121] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page122.png'),
+    image: AssetImage('images/img/page122.png'),
     fit: BoxFit.fill,
   );
   imagesList[122] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page123.png'),
+    image: AssetImage('images/img/page123.png'),
     fit: BoxFit.fill,
   );
   imagesList[123] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page124.png'),
+    image: AssetImage('images/img/page124.png'),
     fit: BoxFit.fill,
   );
   imagesList[124] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page125.png'),
+    image: AssetImage('images/img/page125.png'),
     fit: BoxFit.fill,
   );
   imagesList[125] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page126.png'),
+    image: AssetImage('images/img/page126.png'),
     fit: BoxFit.fill,
   );
   imagesList[126] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page127.png'),
+    image: AssetImage('images/img/page127.png'),
     fit: BoxFit.fill,
   );
   imagesList[127] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page128.png'),
+    image: AssetImage('images/img/page128.png'),
     fit: BoxFit.fill,
   );
   imagesList[128] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page129.png'),
+    image: AssetImage('images/img/page129.png'),
     fit: BoxFit.fill,
   );
 
   imagesList[129] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page130.png'),
+    image: AssetImage('images/img/page130.png'),
     fit: BoxFit.fill,
   );
   imagesList[130] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page131.png'),
+    image: AssetImage('images/img/page131.png'),
     fit: BoxFit.fill,
   );
   imagesList[131] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page132.png'),
+    image: AssetImage('images/img/page132.png'),
     fit: BoxFit.fill,
   );
   imagesList[132] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page133.png'),
+    image: AssetImage('images/img/page133.png'),
     fit: BoxFit.fill,
   );
   imagesList[133] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page134.png'),
+    image: AssetImage('images/img/page134.png'),
     fit: BoxFit.fill,
   );
   imagesList[134] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page135.png'),
+    image: AssetImage('images/img/page135.png'),
     fit: BoxFit.fill,
   );
   imagesList[135] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page136.png'),
+    image: AssetImage('images/img/page136.png'),
     fit: BoxFit.fill,
   );
   imagesList[136] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page137.png'),
+    image: AssetImage('images/img/page137.png'),
     fit: BoxFit.fill,
   );
   imagesList[137] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page138.png'),
+    image: AssetImage('images/img/page138.png'),
     fit: BoxFit.fill,
   );
   imagesList[138] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page139.png'),
+    image: AssetImage('images/img/page139.png'),
     fit: BoxFit.fill,
   );
 
   imagesList[139] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page140.png'),
+    image: AssetImage('images/img/page140.png'),
     fit: BoxFit.fill,
   );
   imagesList[140] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page141.png'),
+    image: AssetImage('images/img/page141.png'),
     fit: BoxFit.fill,
   );
   imagesList[141] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page142.png'),
+    image: AssetImage('images/img/page142.png'),
     fit: BoxFit.fill,
   );
   imagesList[142] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page143.png'),
+    image: AssetImage('images/img/page143.png'),
     fit: BoxFit.fill,
   );
   imagesList[143] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page144.png'),
+    image: AssetImage('images/img/page144.png'),
     fit: BoxFit.fill,
   );
   imagesList[144] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page145.png'),
+    image: AssetImage('images/img/page145.png'),
     fit: BoxFit.fill,
   );
   imagesList[145] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page146.png'),
+    image: AssetImage('images/img/page146.png'),
     fit: BoxFit.fill,
   );
   imagesList[146] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page147.png'),
+    image: AssetImage('images/img/page147.png'),
     fit: BoxFit.fill,
   );
   imagesList[147] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page148.png'),
+    image: AssetImage('images/img/page148.png'),
     fit: BoxFit.fill,
   );
   imagesList[148] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page149.png'),
+    image: AssetImage('images/img/page149.png'),
     fit: BoxFit.fill,
   );
 
   imagesList[149] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page150.png'),
+    image: AssetImage('images/img/page150.png'),
     fit: BoxFit.fill,
   );
   imagesList[150] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page151.png'),
+    image: AssetImage('images/img/page151.png'),
     fit: BoxFit.fill,
   );
   imagesList[151] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page152.png'),
+    image: AssetImage('images/img/page152.png'),
     fit: BoxFit.fill,
   );
   imagesList[152] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page153.png'),
+    image: AssetImage('images/img/page153.png'),
     fit: BoxFit.fill,
   );
   imagesList[153] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page154.png'),
+    image: AssetImage('images/img/page154.png'),
     fit: BoxFit.fill,
   );
   imagesList[154] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page155.png'),
+    image: AssetImage('images/img/page155.png'),
     fit: BoxFit.fill,
   );
   imagesList[155] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page156.png'),
+    image: AssetImage('images/img/page156.png'),
     fit: BoxFit.fill,
   );
   imagesList[156] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page157.png'),
+    image: AssetImage('images/img/page157.png'),
     fit: BoxFit.fill,
   );
   imagesList[157] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page158.png'),
+    image: AssetImage('images/img/page158.png'),
     fit: BoxFit.fill,
   );
   imagesList[158] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page159.png'),
+    image: AssetImage('images/img/page159.png'),
     fit: BoxFit.fill,
   );
 
   imagesList[159] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page160.png'),
+    image: AssetImage('images/img/page160.png'),
     fit: BoxFit.fill,
   );
   imagesList[160] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page161.png'),
+    image: AssetImage('images/img/page161.png'),
     fit: BoxFit.fill,
   );
   imagesList[161] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page162.png'),
+    image: AssetImage('images/img/page162.png'),
     fit: BoxFit.fill,
   );
   imagesList[162] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page163.png'),
+    image: AssetImage('images/img/page163.png'),
     fit: BoxFit.fill,
   );
   imagesList[163] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page164.png'),
+    image: AssetImage('images/img/page164.png'),
     fit: BoxFit.fill,
   );
   imagesList[164] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page165.png'),
+    image: AssetImage('images/img/page165.png'),
     fit: BoxFit.fill,
   );
   imagesList[165] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page166.png'),
+    image: AssetImage('images/img/page166.png'),
     fit: BoxFit.fill,
   );
   imagesList[166] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page167.png'),
+    image: AssetImage('images/img/page167.png'),
     fit: BoxFit.fill,
   );
   imagesList[167] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page168.png'),
+    image: AssetImage('images/img/page168.png'),
     fit: BoxFit.fill,
   );
   imagesList[168] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page169.png'),
+    image: AssetImage('images/img/page169.png'),
     fit: BoxFit.fill,
   );
 
   imagesList[169] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page170.png'),
+    image: AssetImage('images/img/page170.png'),
     fit: BoxFit.fill,
   );
   imagesList[170] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page171.png'),
+    image: AssetImage('images/img/page171.png'),
     fit: BoxFit.fill,
   );
   imagesList[171] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page172.png'),
+    image: AssetImage('images/img/page172.png'),
     fit: BoxFit.fill,
   );
   imagesList[172] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page173.png'),
+    image: AssetImage('images/img/page173.png'),
     fit: BoxFit.fill,
   );
   imagesList[173] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page174.png'),
+    image: AssetImage('images/img/page174.png'),
     fit: BoxFit.fill,
   );
   imagesList[174] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page175.png'),
+    image: AssetImage('images/img/page175.png'),
     fit: BoxFit.fill,
   );
   imagesList[175] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page176.png'),
+    image: AssetImage('images/img/page176.png'),
     fit: BoxFit.fill,
   );
   imagesList[176] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page177.png'),
+    image: AssetImage('images/img/page177.png'),
     fit: BoxFit.fill,
   );
   imagesList[177] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page178.png'),
+    image: AssetImage('images/img/page178.png'),
     fit: BoxFit.fill,
   );
   imagesList[178] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page179.png'),
+    image: AssetImage('images/img/page179.png'),
     fit: BoxFit.fill,
   );
 
   imagesList[179] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page180.png'),
+    image: AssetImage('images/img/page180.png'),
     fit: BoxFit.fill,
   );
   imagesList[180] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page181.png'),
+    image: AssetImage('images/img/page181.png'),
     fit: BoxFit.fill,
   );
   imagesList[181] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page182.png'),
+    image: AssetImage('images/img/page182.png'),
     fit: BoxFit.fill,
   );
   imagesList[182] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page183.png'),
+    image: AssetImage('images/img/page183.png'),
     fit: BoxFit.fill,
   );
   imagesList[183] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page184.png'),
+    image: AssetImage('images/img/page184.png'),
     fit: BoxFit.fill,
   );
   imagesList[184] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page185.png'),
+    image: AssetImage('images/img/page185.png'),
     fit: BoxFit.fill,
   );
   imagesList[185] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page186.png'),
+    image: AssetImage('images/img/page186.png'),
     fit: BoxFit.fill,
   );
   imagesList[186] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page187.png'),
+    image: AssetImage('images/img/page187.png'),
     fit: BoxFit.fill,
   );
   imagesList[187] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page188.png'),
+    image: AssetImage('images/img/page188.png'),
     fit: BoxFit.fill,
   );
   imagesList[188] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page189.png'),
+    image: AssetImage('images/img/page189.png'),
     fit: BoxFit.fill,
   );
 
   imagesList[189] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page190.png'),
+    image: AssetImage('images/img/page190.png'),
     fit: BoxFit.fill,
   );
   imagesList[190] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page191.png'),
+    image: AssetImage('images/img/page191.png'),
     fit: BoxFit.fill,
   );
   imagesList[191] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page192.png'),
+    image: AssetImage('images/img/page192.png'),
     fit: BoxFit.fill,
   );
   imagesList[192] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page193.png'),
+    image: AssetImage('images/img/page193.png'),
     fit: BoxFit.fill,
   );
   imagesList[193] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page194.png'),
+    image: AssetImage('images/img/page194.png'),
     fit: BoxFit.fill,
   );
   imagesList[194] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page195.png'),
+    image: AssetImage('images/img/page195.png'),
     fit: BoxFit.fill,
   );
   imagesList[195] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page196.png'),
+    image: AssetImage('images/img/page196.png'),
     fit: BoxFit.fill,
   );
   imagesList[196] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page197.png'),
+    image: AssetImage('images/img/page197.png'),
     fit: BoxFit.fill,
   );
   imagesList[197] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page198.png'),
+    image: AssetImage('images/img/page198.png'),
     fit: BoxFit.fill,
   );
   imagesList[198] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page199.png'),
+    image: AssetImage('images/img/page199.png'),
     fit: BoxFit.fill,
   );
 
   imagesList[199] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page200.png'),
+    image: AssetImage('images/img/page200.png'),
     fit: BoxFit.fill,
   );
   imagesList[200] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page201.png'),
+    image: AssetImage('images/img/page201.png'),
     fit: BoxFit.fill,
   );
   imagesList[201] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page202.png'),
+    image: AssetImage('images/img/page202.png'),
     fit: BoxFit.fill,
   );
   imagesList[202] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page203.png'),
+    image: AssetImage('images/img/page203.png'),
     fit: BoxFit.fill,
   );
   imagesList[203] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page204.png'),
+    image: AssetImage('images/img/page204.png'),
     fit: BoxFit.fill,
   );
   imagesList[204] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page205.png'),
+    image: AssetImage('images/img/page205.png'),
     fit: BoxFit.fill,
   );
   imagesList[205] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page206.png'),
+    image: AssetImage('images/img/page206.png'),
     fit: BoxFit.fill,
   );
   imagesList[206] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page207.png'),
+    image: AssetImage('images/img/page207.png'),
     fit: BoxFit.fill,
   );
   imagesList[207] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page208.png'),
+    image: AssetImage('images/img/page208.png'),
     fit: BoxFit.fill,
   );
   imagesList[208] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page209.png'),
+    image: AssetImage('images/img/page209.png'),
     fit: BoxFit.fill,
   );
 
   imagesList[209] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page210.png'),
+    image: AssetImage('images/img/page210.png'),
     fit: BoxFit.fill,
   );
   imagesList[210] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page211.png'),
+    image: AssetImage('images/img/page211.png'),
     fit: BoxFit.fill,
   );
   imagesList[211] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page212.png'),
+    image: AssetImage('images/img/page212.png'),
     fit: BoxFit.fill,
   );
   imagesList[212] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page213.png'),
+    image: AssetImage('images/img/page213.png'),
     fit: BoxFit.fill,
   );
   imagesList[213] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page214.png'),
+    image: AssetImage('images/img/page214.png'),
     fit: BoxFit.fill,
   );
   imagesList[214] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page215.png'),
+    image: AssetImage('images/img/page215.png'),
     fit: BoxFit.fill,
   );
   imagesList[215] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page216.png'),
+    image: AssetImage('images/img/page216.png'),
     fit: BoxFit.fill,
   );
   imagesList[216] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page217.png'),
+    image: AssetImage('images/img/page217.png'),
     fit: BoxFit.fill,
   );
   imagesList[217] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page218.png'),
+    image: AssetImage('images/img/page218.png'),
     fit: BoxFit.fill,
   );
   imagesList[218] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page219.png'),
+    image: AssetImage('images/img/page219.png'),
     fit: BoxFit.fill,
   );
 
   imagesList[219] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page220.png'),
+    image: AssetImage('images/img/page220.png'),
     fit: BoxFit.fill,
   );
   imagesList[220] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page221.png'),
+    image: AssetImage('images/img/page221.png'),
     fit: BoxFit.fill,
   );
   imagesList[221] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page222.png'),
+    image: AssetImage('images/img/page222.png'),
     fit: BoxFit.fill,
   );
   imagesList[222] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page223.png'),
+    image: AssetImage('images/img/page223.png'),
     fit: BoxFit.fill,
   );
   imagesList[223] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page224.png'),
+    image: AssetImage('images/img/page224.png'),
     fit: BoxFit.fill,
   );
   imagesList[224] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page225.png'),
+    image: AssetImage('images/img/page225.png'),
     fit: BoxFit.fill,
   );
   imagesList[225] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page226.png'),
+    image: AssetImage('images/img/page226.png'),
     fit: BoxFit.fill,
   );
   imagesList[226] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page227.png'),
+    image: AssetImage('images/img/page227.png'),
     fit: BoxFit.fill,
   );
   imagesList[227] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page228.png'),
+    image: AssetImage('images/img/page228.png'),
     fit: BoxFit.fill,
   );
   imagesList[228] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page229.png'),
+    image: AssetImage('images/img/page229.png'),
     fit: BoxFit.fill,
   );
 
   imagesList[229] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page230.png'),
+    image: AssetImage('images/img/page230.png'),
     fit: BoxFit.fill,
   );
   imagesList[230] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page231.png'),
+    image: AssetImage('images/img/page231.png'),
     fit: BoxFit.fill,
   );
   imagesList[231] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page232.png'),
+    image: AssetImage('images/img/page232.png'),
     fit: BoxFit.fill,
   );
   imagesList[232] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page233.png'),
+    image: AssetImage('images/img/page233.png'),
     fit: BoxFit.fill,
   );
   imagesList[233] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page234.png'),
+    image: AssetImage('images/img/page234.png'),
     fit: BoxFit.fill,
   );
   imagesList[234] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page235.png'),
+    image: AssetImage('images/img/page235.png'),
     fit: BoxFit.fill,
   );
   imagesList[235] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page236.png'),
+    image: AssetImage('images/img/page236.png'),
     fit: BoxFit.fill,
   );
   imagesList[236] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page237.png'),
+    image: AssetImage('images/img/page237.png'),
     fit: BoxFit.fill,
   );
   imagesList[237] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page238.png'),
+    image: AssetImage('images/img/page238.png'),
     fit: BoxFit.fill,
   );
   imagesList[238] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page239.png'),
+    image: AssetImage('images/img/page239.png'),
     fit: BoxFit.fill,
   );
 
   imagesList[239] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page240.png'),
+    image: AssetImage('images/img/page240.png'),
     fit: BoxFit.fill,
   );
   imagesList[240] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page241.png'),
+    image: AssetImage('images/img/page241.png'),
     fit: BoxFit.fill,
   );
   imagesList[241] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page242.png'),
+    image: AssetImage('images/img/page242.png'),
     fit: BoxFit.fill,
   );
   imagesList[242] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page243.png'),
+    image: AssetImage('images/img/page243.png'),
     fit: BoxFit.fill,
   );
   imagesList[243] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page244.png'),
+    image: AssetImage('images/img/page244.png'),
     fit: BoxFit.fill,
   );
   imagesList[244] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page245.png'),
+    image: AssetImage('images/img/page245.png'),
     fit: BoxFit.fill,
   );
   imagesList[245] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page246.png'),
+    image: AssetImage('images/img/page246.png'),
     fit: BoxFit.fill,
   );
   imagesList[246] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page247.png'),
+    image: AssetImage('images/img/page247.png'),
     fit: BoxFit.fill,
   );
   imagesList[247] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page248.png'),
+    image: AssetImage('images/img/page248.png'),
     fit: BoxFit.fill,
   );
   imagesList[248] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page249.png'),
+    image: AssetImage('images/img/page249.png'),
     fit: BoxFit.fill,
   );
 
   imagesList[249] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page250.png'),
+    image: AssetImage('images/img/page250.png'),
     fit: BoxFit.fill,
   );
   imagesList[250] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page251.png'),
+    image: AssetImage('images/img/page251.png'),
     fit: BoxFit.fill,
   );
   imagesList[251] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page252.png'),
+    image: AssetImage('images/img/page252.png'),
     fit: BoxFit.fill,
   );
   imagesList[252] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page253.png'),
+    image: AssetImage('images/img/page253.png'),
     fit: BoxFit.fill,
   );
   imagesList[253] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page254.png'),
+    image: AssetImage('images/img/page254.png'),
     fit: BoxFit.fill,
   );
   imagesList[254] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page255.png'),
+    image: AssetImage('images/img/page255.png'),
     fit: BoxFit.fill,
   );
   imagesList[255] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page256.png'),
+    image: AssetImage('images/img/page256.png'),
     fit: BoxFit.fill,
   );
   imagesList[256] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page257.png'),
+    image: AssetImage('images/img/page257.png'),
     fit: BoxFit.fill,
   );
   imagesList[257] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page258.png'),
+    image: AssetImage('images/img/page258.png'),
     fit: BoxFit.fill,
   );
   imagesList[258] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page259.png'),
+    image: AssetImage('images/img/page259.png'),
     fit: BoxFit.fill,
   );
 
   imagesList[259] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page260.png'),
+    image: AssetImage('images/img/page260.png'),
     fit: BoxFit.fill,
   );
   imagesList[260] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page261.png'),
+    image: AssetImage('images/img/page261.png'),
     fit: BoxFit.fill,
   );
   imagesList[261] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page262.png'),
+    image: AssetImage('images/img/page262.png'),
     fit: BoxFit.fill,
   );
   imagesList[262] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page263.png'),
+    image: AssetImage('images/img/page263.png'),
     fit: BoxFit.fill,
   );
   imagesList[263] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page264.png'),
+    image: AssetImage('images/img/page264.png'),
     fit: BoxFit.fill,
   );
   imagesList[264] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page265.png'),
+    image: AssetImage('images/img/page265.png'),
     fit: BoxFit.fill,
   );
   imagesList[265] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page266.png'),
+    image: AssetImage('images/img/page266.png'),
     fit: BoxFit.fill,
   );
   imagesList[266] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page267.png'),
+    image: AssetImage('images/img/page267.png'),
     fit: BoxFit.fill,
   );
   imagesList[267] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page268.png'),
+    image: AssetImage('images/img/page268.png'),
     fit: BoxFit.fill,
   );
   imagesList[268] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page269.png'),
+    image: AssetImage('images/img/page269.png'),
     fit: BoxFit.fill,
   );
 
   imagesList[269] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page270.png'),
+    image: AssetImage('images/img/page270.png'),
     fit: BoxFit.fill,
   );
   imagesList[270] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page271.png'),
+    image: AssetImage('images/img/page271.png'),
     fit: BoxFit.fill,
   );
   imagesList[271] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page272.png'),
+    image: AssetImage('images/img/page272.png'),
     fit: BoxFit.fill,
   );
   imagesList[272] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page273.png'),
+    image: AssetImage('images/img/page273.png'),
     fit: BoxFit.fill,
   );
   imagesList[273] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page274.png'),
+    image: AssetImage('images/img/page274.png'),
     fit: BoxFit.fill,
   );
   imagesList[274] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page275.png'),
+    image: AssetImage('images/img/page275.png'),
     fit: BoxFit.fill,
   );
   imagesList[275] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page276.png'),
+    image: AssetImage('images/img/page276.png'),
     fit: BoxFit.fill,
   );
   imagesList[276] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page277.png'),
+    image: AssetImage('images/img/page277.png'),
     fit: BoxFit.fill,
   );
   imagesList[277] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page278.png'),
+    image: AssetImage('images/img/page278.png'),
     fit: BoxFit.fill,
   );
   imagesList[278] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page279.png'),
+    image: AssetImage('images/img/page279.png'),
     fit: BoxFit.fill,
   );
 
   imagesList[279] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page280.png'),
+    image: AssetImage('images/img/page280.png'),
     fit: BoxFit.fill,
   );
   imagesList[280] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page281.png'),
+    image: AssetImage('images/img/page281.png'),
     fit: BoxFit.fill,
   );
   imagesList[281] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page282.png'),
+    image: AssetImage('images/img/page282.png'),
     fit: BoxFit.fill,
   );
   imagesList[282] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page283.png'),
+    image: AssetImage('images/img/page283.png'),
     fit: BoxFit.fill,
   );
   imagesList[283] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page284.png'),
+    image: AssetImage('images/img/page284.png'),
     fit: BoxFit.fill,
   );
   imagesList[284] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page285.png'),
+    image: AssetImage('images/img/page285.png'),
     fit: BoxFit.fill,
   );
   imagesList[285] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page286.png'),
+    image: AssetImage('images/img/page286.png'),
     fit: BoxFit.fill,
   );
   imagesList[286] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page287.png'),
+    image: AssetImage('images/img/page287.png'),
     fit: BoxFit.fill,
   );
   imagesList[287] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page288.png'),
+    image: AssetImage('images/img/page288.png'),
     fit: BoxFit.fill,
   );
   imagesList[288] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page289.png'),
+    image: AssetImage('images/img/page289.png'),
     fit: BoxFit.fill,
   );
 
   imagesList[289] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page290.png'),
+    image: AssetImage('images/img/page290.png'),
     fit: BoxFit.fill,
   );
   imagesList[290] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page291.png'),
+    image: AssetImage('images/img/page291.png'),
     fit: BoxFit.fill,
   );
   imagesList[291] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page292.png'),
+    image: AssetImage('images/img/page292.png'),
     fit: BoxFit.fill,
   );
   imagesList[292] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page293.png'),
+    image: AssetImage('images/img/page293.png'),
     fit: BoxFit.fill,
   );
   imagesList[293] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page294.png'),
+    image: AssetImage('images/img/page294.png'),
     fit: BoxFit.fill,
   );
   imagesList[294] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page295.png'),
+    image: AssetImage('images/img/page295.png'),
     fit: BoxFit.fill,
   );
   imagesList[295] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page296.png'),
+    image: AssetImage('images/img/page296.png'),
     fit: BoxFit.fill,
   );
   imagesList[296] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page297.png'),
+    image: AssetImage('images/img/page297.png'),
     fit: BoxFit.fill,
   );
   imagesList[297] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page298.png'),
+    image: AssetImage('images/img/page298.png'),
     fit: BoxFit.fill,
   );
   imagesList[298] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page299.png'),
+    image: AssetImage('images/img/page299.png'),
     fit: BoxFit.fill,
   );
 
   imagesList[299] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page300.png'),
+    image: AssetImage('images/img/page300.png'),
     fit: BoxFit.fill,
   );
   imagesList[300] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page301.png'),
+    image: AssetImage('images/img/page301.png'),
     fit: BoxFit.fill,
   );
   imagesList[301] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page302.png'),
+    image: AssetImage('images/img/page302.png'),
     fit: BoxFit.fill,
   );
   imagesList[302] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page303.png'),
+    image: AssetImage('images/img/page303.png'),
     fit: BoxFit.fill,
   );
   imagesList[303] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page304.png'),
+    image: AssetImage('images/img/page304.png'),
     fit: BoxFit.fill,
   );
   imagesList[304] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page305.png'),
+    image: AssetImage('images/img/page305.png'),
     fit: BoxFit.fill,
   );
   imagesList[305] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page306.png'),
+    image: AssetImage('images/img/page306.png'),
     fit: BoxFit.fill,
   );
   imagesList[306] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page307.png'),
+    image: AssetImage('images/img/page307.png'),
     fit: BoxFit.fill,
   );
   imagesList[307] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page308.png'),
+    image: AssetImage('images/img/page308.png'),
     fit: BoxFit.fill,
   );
   imagesList[308] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page309.png'),
+    image: AssetImage('images/img/page309.png'),
     fit: BoxFit.fill,
   );
 
   imagesList[309] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page310.png'),
+    image: AssetImage('images/img/page310.png'),
     fit: BoxFit.fill,
   );
   imagesList[310] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page311.png'),
+    image: AssetImage('images/img/page311.png'),
     fit: BoxFit.fill,
   );
   imagesList[311] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page312.png'),
+    image: AssetImage('images/img/page312.png'),
     fit: BoxFit.fill,
   );
   imagesList[312] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page313.png'),
+    image: AssetImage('images/img/page313.png'),
     fit: BoxFit.fill,
   );
   imagesList[313] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page314.png'),
+    image: AssetImage('images/img/page314.png'),
     fit: BoxFit.fill,
   );
   imagesList[314] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page315.png'),
+    image: AssetImage('images/img/page315.png'),
     fit: BoxFit.fill,
   );
   imagesList[315] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page316.png'),
+    image: AssetImage('images/img/page316.png'),
     fit: BoxFit.fill,
   );
   imagesList[316] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page317.png'),
+    image: AssetImage('images/img/page317.png'),
     fit: BoxFit.fill,
   );
   imagesList[317] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page318.png'),
+    image: AssetImage('images/img/page318.png'),
     fit: BoxFit.fill,
   );
   imagesList[318] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page319.png'),
+    image: AssetImage('images/img/page319.png'),
     fit: BoxFit.fill,
   );
 
   imagesList[319] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page320.png'),
+    image: AssetImage('images/img/page320.png'),
     fit: BoxFit.fill,
   );
   imagesList[320] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page321.png'),
+    image: AssetImage('images/img/page321.png'),
     fit: BoxFit.fill,
   );
   imagesList[321] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page322.png'),
+    image: AssetImage('images/img/page322.png'),
     fit: BoxFit.fill,
   );
   imagesList[322] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page323.png'),
+    image: AssetImage('images/img/page323.png'),
     fit: BoxFit.fill,
   );
   imagesList[323] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page324.png'),
+    image: AssetImage('images/img/page324.png'),
     fit: BoxFit.fill,
   );
   imagesList[324] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page325.png'),
+    image: AssetImage('images/img/page325.png'),
     fit: BoxFit.fill,
   );
   imagesList[325] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page326.png'),
+    image: AssetImage('images/img/page326.png'),
     fit: BoxFit.fill,
   );
   imagesList[326] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page327.png'),
+    image: AssetImage('images/img/page327.png'),
     fit: BoxFit.fill,
   );
   imagesList[327] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page328.png'),
+    image: AssetImage('images/img/page328.png'),
     fit: BoxFit.fill,
   );
   imagesList[328] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page329.png'),
+    image: AssetImage('images/img/page329.png'),
     fit: BoxFit.fill,
   );
 
   imagesList[329] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page330.png'),
+    image: AssetImage('images/img/page330.png'),
     fit: BoxFit.fill,
   );
   imagesList[330] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page331.png'),
+    image: AssetImage('images/img/page331.png'),
     fit: BoxFit.fill,
   );
   imagesList[331] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page332.png'),
+    image: AssetImage('images/img/page332.png'),
     fit: BoxFit.fill,
   );
   imagesList[332] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page333.png'),
+    image: AssetImage('images/img/page333.png'),
     fit: BoxFit.fill,
   );
   imagesList[333] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page334.png'),
+    image: AssetImage('images/img/page334.png'),
     fit: BoxFit.fill,
   );
   imagesList[334] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page335.png'),
+    image: AssetImage('images/img/page335.png'),
     fit: BoxFit.fill,
   );
   imagesList[335] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page336.png'),
+    image: AssetImage('images/img/page336.png'),
     fit: BoxFit.fill,
   );
   imagesList[336] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page337.png'),
+    image: AssetImage('images/img/page337.png'),
     fit: BoxFit.fill,
   );
   imagesList[337] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page338.png'),
+    image: AssetImage('images/img/page338.png'),
     fit: BoxFit.fill,
   );
   imagesList[338] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page339.png'),
+    image: AssetImage('images/img/page339.png'),
     fit: BoxFit.fill,
   );
 
   imagesList[339] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page340.png'),
+    image: AssetImage('images/img/page340.png'),
     fit: BoxFit.fill,
   );
   imagesList[340] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page341.png'),
+    image: AssetImage('images/img/page341.png'),
     fit: BoxFit.fill,
   );
   imagesList[341] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page342.png'),
+    image: AssetImage('images/img/page342.png'),
     fit: BoxFit.fill,
   );
   imagesList[342] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page343.png'),
+    image: AssetImage('images/img/page343.png'),
     fit: BoxFit.fill,
   );
   imagesList[343] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page344.png'),
+    image: AssetImage('images/img/page344.png'),
     fit: BoxFit.fill,
   );
   imagesList[344] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page345.png'),
+    image: AssetImage('images/img/page345.png'),
     fit: BoxFit.fill,
   );
   imagesList[345] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page346.png'),
+    image: AssetImage('images/img/page346.png'),
     fit: BoxFit.fill,
   );
   imagesList[346] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page347.png'),
+    image: AssetImage('images/img/page347.png'),
     fit: BoxFit.fill,
   );
   imagesList[347] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page348.png'),
+    image: AssetImage('images/img/page348.png'),
     fit: BoxFit.fill,
   );
   imagesList[348] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page349.png'),
+    image: AssetImage('images/img/page349.png'),
     fit: BoxFit.fill,
   );
 
   imagesList[349] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page350.png'),
+    image: AssetImage('images/img/page350.png'),
     fit: BoxFit.fill,
   );
   imagesList[350] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page351.png'),
+    image: AssetImage('images/img/page351.png'),
     fit: BoxFit.fill,
   );
   imagesList[351] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page352.png'),
+    image: AssetImage('images/img/page352.png'),
     fit: BoxFit.fill,
   );
   imagesList[352] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page353.png'),
+    image: AssetImage('images/img/page353.png'),
     fit: BoxFit.fill,
   );
   imagesList[353] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page354.png'),
+    image: AssetImage('images/img/page354.png'),
     fit: BoxFit.fill,
   );
   imagesList[354] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page355.png'),
+    image: AssetImage('images/img/page355.png'),
     fit: BoxFit.fill,
   );
   imagesList[355] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page356.png'),
+    image: AssetImage('images/img/page356.png'),
     fit: BoxFit.fill,
   );
   imagesList[356] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page357.png'),
+    image: AssetImage('images/img/page357.png'),
     fit: BoxFit.fill,
   );
   imagesList[357] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page358.png'),
+    image: AssetImage('images/img/page358.png'),
     fit: BoxFit.fill,
   );
   imagesList[358] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page359.png'),
+    image: AssetImage('images/img/page359.png'),
     fit: BoxFit.fill,
   );
 
   imagesList[359] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page360.png'),
+    image: AssetImage('images/img/page360.png'),
     fit: BoxFit.fill,
   );
   imagesList[360] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page361.png'),
+    image: AssetImage('images/img/page361.png'),
     fit: BoxFit.fill,
   );
   imagesList[361] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page362.png'),
+    image: AssetImage('images/img/page362.png'),
     fit: BoxFit.fill,
   );
   imagesList[362] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page363.png'),
+    image: AssetImage('images/img/page363.png'),
     fit: BoxFit.fill,
   );
   imagesList[363] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page364.png'),
+    image: AssetImage('images/img/page364.png'),
     fit: BoxFit.fill,
   );
   imagesList[364] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page365.png'),
+    image: AssetImage('images/img/page365.png'),
     fit: BoxFit.fill,
   );
   imagesList[365] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page366.png'),
+    image: AssetImage('images/img/page366.png'),
     fit: BoxFit.fill,
   );
   imagesList[366] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page367.png'),
+    image: AssetImage('images/img/page367.png'),
     fit: BoxFit.fill,
   );
   imagesList[367] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page368.png'),
+    image: AssetImage('images/img/page368.png'),
     fit: BoxFit.fill,
   );
   imagesList[368] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page369.png'),
+    image: AssetImage('images/img/page369.png'),
     fit: BoxFit.fill,
   );
 
   imagesList[369] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page370.png'),
+    image: AssetImage('images/img/page370.png'),
     fit: BoxFit.fill,
   );
   imagesList[370] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page371.png'),
+    image: AssetImage('images/img/page371.png'),
     fit: BoxFit.fill,
   );
   imagesList[371] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page372.png'),
+    image: AssetImage('images/img/page372.png'),
     fit: BoxFit.fill,
   );
   imagesList[372] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page373.png'),
+    image: AssetImage('images/img/page373.png'),
     fit: BoxFit.fill,
   );
   imagesList[373] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page374.png'),
+    image: AssetImage('images/img/page374.png'),
     fit: BoxFit.fill,
   );
   imagesList[374] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page375.png'),
+    image: AssetImage('images/img/page375.png'),
     fit: BoxFit.fill,
   );
   imagesList[375] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page376.png'),
+    image: AssetImage('images/img/page376.png'),
     fit: BoxFit.fill,
   );
   imagesList[376] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page377.png'),
+    image: AssetImage('images/img/page377.png'),
     fit: BoxFit.fill,
   );
   imagesList[377] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page378.png'),
+    image: AssetImage('images/img/page378.png'),
     fit: BoxFit.fill,
   );
   imagesList[378] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page379.png'),
+    image: AssetImage('images/img/page379.png'),
     fit: BoxFit.fill,
   );
 
   imagesList[379] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page380.png'),
+    image: AssetImage('images/img/page380.png'),
     fit: BoxFit.fill,
   );
   imagesList[380] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page381.png'),
+    image: AssetImage('images/img/page381.png'),
     fit: BoxFit.fill,
   );
   imagesList[381] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page382.png'),
+    image: AssetImage('images/img/page382.png'),
     fit: BoxFit.fill,
   );
   imagesList[382] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page383.png'),
+    image: AssetImage('images/img/page383.png'),
     fit: BoxFit.fill,
   );
   imagesList[383] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page384.png'),
+    image: AssetImage('images/img/page384.png'),
     fit: BoxFit.fill,
   );
   imagesList[384] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page385.png'),
+    image: AssetImage('images/img/page385.png'),
     fit: BoxFit.fill,
   );
   imagesList[385] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page386.png'),
+    image: AssetImage('images/img/page386.png'),
     fit: BoxFit.fill,
   );
   imagesList[386] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page387.png'),
+    image: AssetImage('images/img/page387.png'),
     fit: BoxFit.fill,
   );
   imagesList[387] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page388.png'),
+    image: AssetImage('images/img/page388.png'),
     fit: BoxFit.fill,
   );
   imagesList[388] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page389.png'),
+    image: AssetImage('images/img/page389.png'),
     fit: BoxFit.fill,
   );
 
   imagesList[389] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page390.png'),
+    image: AssetImage('images/img/page390.png'),
     fit: BoxFit.fill,
   );
   imagesList[390] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page391.png'),
+    image: AssetImage('images/img/page391.png'),
     fit: BoxFit.fill,
   );
   imagesList[391] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page392.png'),
+    image: AssetImage('images/img/page392.png'),
     fit: BoxFit.fill,
   );
   imagesList[392] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page393.png'),
+    image: AssetImage('images/img/page393.png'),
     fit: BoxFit.fill,
   );
   imagesList[393] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page394.png'),
+    image: AssetImage('images/img/page394.png'),
     fit: BoxFit.fill,
   );
   imagesList[394] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page395.png'),
+    image: AssetImage('images/img/page395.png'),
     fit: BoxFit.fill,
   );
   imagesList[395] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page396.png'),
+    image: AssetImage('images/img/page396.png'),
     fit: BoxFit.fill,
   );
   imagesList[396] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page397.png'),
+    image: AssetImage('images/img/page397.png'),
     fit: BoxFit.fill,
   );
   imagesList[397] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page398.png'),
+    image: AssetImage('images/img/page398.png'),
     fit: BoxFit.fill,
   );
   imagesList[398] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page399.png'),
+    image: AssetImage('images/img/page399.png'),
     fit: BoxFit.fill,
   );
 
   imagesList[399] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page400.png'),
+    image: AssetImage('images/img/page400.png'),
     fit: BoxFit.fill,
   );
   imagesList[400] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page401.png'),
+    image: AssetImage('images/img/page401.png'),
     fit: BoxFit.fill,
   );
   imagesList[401] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page402.png'),
+    image: AssetImage('images/img/page402.png'),
     fit: BoxFit.fill,
   );
   imagesList[402] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page403.png'),
+    image: AssetImage('images/img/page403.png'),
     fit: BoxFit.fill,
   );
   imagesList[403] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page404.png'),
+    image: AssetImage('images/img/page404.png'),
     fit: BoxFit.fill,
   );
   imagesList[404] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page405.png'),
+    image: AssetImage('images/img/page405.png'),
     fit: BoxFit.fill,
   );
   imagesList[405] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page406.png'),
+    image: AssetImage('images/img/page406.png'),
     fit: BoxFit.fill,
   );
   imagesList[406] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page407.png'),
+    image: AssetImage('images/img/page407.png'),
     fit: BoxFit.fill,
   );
   imagesList[407] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page408.png'),
+    image: AssetImage('images/img/page408.png'),
     fit: BoxFit.fill,
   );
   imagesList[408] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page409.png'),
+    image: AssetImage('images/img/page409.png'),
     fit: BoxFit.fill,
   );
 
   imagesList[409] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page410.png'),
+    image: AssetImage('images/img/page410.png'),
     fit: BoxFit.fill,
   );
   imagesList[410] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page411.png'),
+    image: AssetImage('images/img/page411.png'),
     fit: BoxFit.fill,
   );
   imagesList[411] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page412.png'),
+    image: AssetImage('images/img/page412.png'),
     fit: BoxFit.fill,
   );
   imagesList[412] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page413.png'),
+    image: AssetImage('images/img/page413.png'),
     fit: BoxFit.fill,
   );
   imagesList[413] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page414.png'),
+    image: AssetImage('images/img/page414.png'),
     fit: BoxFit.fill,
   );
   imagesList[414] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page415.png'),
+    image: AssetImage('images/img/page415.png'),
     fit: BoxFit.fill,
   );
   imagesList[415] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page416.png'),
+    image: AssetImage('images/img/page416.png'),
     fit: BoxFit.fill,
   );
   imagesList[416] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page417.png'),
+    image: AssetImage('images/img/page417.png'),
     fit: BoxFit.fill,
   );
   imagesList[417] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page418.png'),
+    image: AssetImage('images/img/page418.png'),
     fit: BoxFit.fill,
   );
   imagesList[418] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page419.png'),
+    image: AssetImage('images/img/page419.png'),
     fit: BoxFit.fill,
   );
 
   imagesList[419] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page420.png'),
+    image: AssetImage('images/img/page420.png'),
     fit: BoxFit.fill,
   );
   imagesList[420] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page421.png'),
+    image: AssetImage('images/img/page421.png'),
     fit: BoxFit.fill,
   );
   imagesList[421] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page422.png'),
+    image: AssetImage('images/img/page422.png'),
     fit: BoxFit.fill,
   );
   imagesList[422] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page423.png'),
+    image: AssetImage('images/img/page423.png'),
     fit: BoxFit.fill,
   );
   imagesList[423] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page424.png'),
+    image: AssetImage('images/img/page424.png'),
     fit: BoxFit.fill,
   );
   imagesList[424] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page425.png'),
+    image: AssetImage('images/img/page425.png'),
     fit: BoxFit.fill,
   );
   imagesList[425] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page426.png'),
+    image: AssetImage('images/img/page426.png'),
     fit: BoxFit.fill,
   );
   imagesList[426] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page427.png'),
+    image: AssetImage('images/img/page427.png'),
     fit: BoxFit.fill,
   );
   imagesList[427] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page428.png'),
+    image: AssetImage('images/img/page428.png'),
     fit: BoxFit.fill,
   );
   imagesList[428] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page429.png'),
+    image: AssetImage('images/img/page429.png'),
     fit: BoxFit.fill,
   );
 
   imagesList[429] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page430.png'),
+    image: AssetImage('images/img/page430.png'),
     fit: BoxFit.fill,
   );
   imagesList[430] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page431.png'),
+    image: AssetImage('images/img/page431.png'),
     fit: BoxFit.fill,
   );
   imagesList[431] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page432.png'),
+    image: AssetImage('images/img/page432.png'),
     fit: BoxFit.fill,
   );
   imagesList[432] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page433.png'),
+    image: AssetImage('images/img/page433.png'),
     fit: BoxFit.fill,
   );
   imagesList[433] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page434.png'),
+    image: AssetImage('images/img/page434.png'),
     fit: BoxFit.fill,
   );
   imagesList[434] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page435.png'),
+    image: AssetImage('images/img/page435.png'),
     fit: BoxFit.fill,
   );
   imagesList[435] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page436.png'),
+    image: AssetImage('images/img/page436.png'),
     fit: BoxFit.fill,
   );
   imagesList[436] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page437.png'),
+    image: AssetImage('images/img/page437.png'),
     fit: BoxFit.fill,
   );
   imagesList[437] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page438.png'),
+    image: AssetImage('images/img/page438.png'),
     fit: BoxFit.fill,
   );
   imagesList[438] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page439.png'),
+    image: AssetImage('images/img/page439.png'),
     fit: BoxFit.fill,
   );
 
   imagesList[439] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page440.png'),
+    image: AssetImage('images/img/page440.png'),
     fit: BoxFit.fill,
   );
   imagesList[440] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page441.png'),
+    image: AssetImage('images/img/page441.png'),
     fit: BoxFit.fill,
   );
   imagesList[441] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page442.png'),
+    image: AssetImage('images/img/page442.png'),
     fit: BoxFit.fill,
   );
   imagesList[442] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page443.png'),
+    image: AssetImage('images/img/page443.png'),
     fit: BoxFit.fill,
   );
   imagesList[443] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page444.png'),
+    image: AssetImage('images/img/page444.png'),
     fit: BoxFit.fill,
   );
   imagesList[444] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page445.png'),
+    image: AssetImage('images/img/page445.png'),
     fit: BoxFit.fill,
   );
   imagesList[445] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page446.png'),
+    image: AssetImage('images/img/page446.png'),
     fit: BoxFit.fill,
   );
   imagesList[446] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page447.png'),
+    image: AssetImage('images/img/page447.png'),
     fit: BoxFit.fill,
   );
   imagesList[447] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page448.png'),
+    image: AssetImage('images/img/page448.png'),
     fit: BoxFit.fill,
   );
   imagesList[448] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page449.png'),
+    image: AssetImage('images/img/page449.png'),
     fit: BoxFit.fill,
   );
 
   imagesList[449] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page450.png'),
+    image: AssetImage('images/img/page450.png'),
     fit: BoxFit.fill,
   );
   imagesList[450] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page451.png'),
+    image: AssetImage('images/img/page451.png'),
     fit: BoxFit.fill,
   );
   imagesList[451] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page452.png'),
+    image: AssetImage('images/img/page452.png'),
     fit: BoxFit.fill,
   );
   imagesList[452] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page453.png'),
+    image: AssetImage('images/img/page453.png'),
     fit: BoxFit.fill,
   );
   imagesList[453] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page454.png'),
+    image: AssetImage('images/img/page454.png'),
     fit: BoxFit.fill,
   );
   imagesList[454] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page455.png'),
+    image: AssetImage('images/img/page455.png'),
     fit: BoxFit.fill,
   );
   imagesList[455] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page456.png'),
+    image: AssetImage('images/img/page456.png'),
     fit: BoxFit.fill,
   );
   imagesList[456] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page457.png'),
+    image: AssetImage('images/img/page457.png'),
     fit: BoxFit.fill,
   );
   imagesList[457] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page458.png'),
+    image: AssetImage('images/img/page458.png'),
     fit: BoxFit.fill,
   );
   imagesList[458] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page459.png'),
+    image: AssetImage('images/img/page459.png'),
     fit: BoxFit.fill,
   );
 
   imagesList[459] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page460.png'),
+    image: AssetImage('images/img/page460.png'),
     fit: BoxFit.fill,
   );
   imagesList[460] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page461.png'),
+    image: AssetImage('images/img/page461.png'),
     fit: BoxFit.fill,
   );
   imagesList[461] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page462.png'),
+    image: AssetImage('images/img/page462.png'),
     fit: BoxFit.fill,
   );
   imagesList[462] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page463.png'),
+    image: AssetImage('images/img/page463.png'),
     fit: BoxFit.fill,
   );
   imagesList[463] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page464.png'),
+    image: AssetImage('images/img/page464.png'),
     fit: BoxFit.fill,
   );
   imagesList[464] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page465.png'),
+    image: AssetImage('images/img/page465.png'),
     fit: BoxFit.fill,
   );
   imagesList[465] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page466.png'),
+    image: AssetImage('images/img/page466.png'),
     fit: BoxFit.fill,
   );
   imagesList[466] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page467.png'),
+    image: AssetImage('images/img/page467.png'),
     fit: BoxFit.fill,
   );
   imagesList[467] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page468.png'),
+    image: AssetImage('images/img/page468.png'),
     fit: BoxFit.fill,
   );
   imagesList[468] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page469.png'),
+    image: AssetImage('images/img/page469.png'),
     fit: BoxFit.fill,
   );
 
   imagesList[469] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page470.png'),
+    image: AssetImage('images/img/page470.png'),
     fit: BoxFit.fill,
   );
   imagesList[470] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page471.png'),
+    image: AssetImage('images/img/page471.png'),
     fit: BoxFit.fill,
   );
   imagesList[471] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page472.png'),
+    image: AssetImage('images/img/page472.png'),
     fit: BoxFit.fill,
   );
   imagesList[472] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page473.png'),
+    image: AssetImage('images/img/page473.png'),
     fit: BoxFit.fill,
   );
   imagesList[473] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page474.png'),
+    image: AssetImage('images/img/page474.png'),
     fit: BoxFit.fill,
   );
   imagesList[474] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page475.png'),
+    image: AssetImage('images/img/page475.png'),
     fit: BoxFit.fill,
   );
   imagesList[475] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page476.png'),
+    image: AssetImage('images/img/page476.png'),
     fit: BoxFit.fill,
   );
   imagesList[476] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page477.png'),
+    image: AssetImage('images/img/page477.png'),
     fit: BoxFit.fill,
   );
   imagesList[477] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page478.png'),
+    image: AssetImage('images/img/page478.png'),
     fit: BoxFit.fill,
   );
   imagesList[478] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page479.png'),
+    image: AssetImage('images/img/page479.png'),
     fit: BoxFit.fill,
   );
 
   imagesList[479] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page480.png'),
+    image: AssetImage('images/img/page480.png'),
     fit: BoxFit.fill,
   );
   imagesList[480] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page481.png'),
+    image: AssetImage('images/img/page481.png'),
     fit: BoxFit.fill,
   );
   imagesList[481] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page482.png'),
+    image: AssetImage('images/img/page482.png'),
     fit: BoxFit.fill,
   );
   imagesList[482] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page483.png'),
+    image: AssetImage('images/img/page483.png'),
     fit: BoxFit.fill,
   );
   imagesList[483] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page484.png'),
+    image: AssetImage('images/img/page484.png'),
     fit: BoxFit.fill,
   );
   imagesList[484] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page485.png'),
+    image: AssetImage('images/img/page485.png'),
     fit: BoxFit.fill,
   );
   imagesList[485] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page486.png'),
+    image: AssetImage('images/img/page486.png'),
     fit: BoxFit.fill,
   );
   imagesList[486] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page487.png'),
+    image: AssetImage('images/img/page487.png'),
     fit: BoxFit.fill,
   );
   imagesList[487] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page488.png'),
+    image: AssetImage('images/img/page488.png'),
     fit: BoxFit.fill,
   );
   imagesList[488] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page489.png'),
+    image: AssetImage('images/img/page489.png'),
     fit: BoxFit.fill,
   );
 
   imagesList[489] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page490.png'),
+    image: AssetImage('images/img/page490.png'),
     fit: BoxFit.fill,
   );
   imagesList[490] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page491.png'),
+    image: AssetImage('images/img/page491.png'),
     fit: BoxFit.fill,
   );
   imagesList[491] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page492.png'),
+    image: AssetImage('images/img/page492.png'),
     fit: BoxFit.fill,
   );
   imagesList[492] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page493.png'),
+    image: AssetImage('images/img/page493.png'),
     fit: BoxFit.fill,
   );
   imagesList[493] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page494.png'),
+    image: AssetImage('images/img/page494.png'),
     fit: BoxFit.fill,
   );
   imagesList[494] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page495.png'),
+    image: AssetImage('images/img/page495.png'),
     fit: BoxFit.fill,
   );
   imagesList[495] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page496.png'),
+    image: AssetImage('images/img/page496.png'),
     fit: BoxFit.fill,
   );
   imagesList[496] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page497.png'),
+    image: AssetImage('images/img/page497.png'),
     fit: BoxFit.fill,
   );
   imagesList[497] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page498.png'),
+    image: AssetImage('images/img/page498.png'),
     fit: BoxFit.fill,
   );
   imagesList[498] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page499.png'),
+    image: AssetImage('images/img/page499.png'),
     fit: BoxFit.fill,
   );
 
   imagesList[499] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page500.png'),
+    image: AssetImage('images/img/page500.png'),
     fit: BoxFit.fill,
   );
   imagesList[500] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page501.png'),
+    image: AssetImage('images/img/page501.png'),
     fit: BoxFit.fill,
   );
   imagesList[501] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page502.png'),
+    image: AssetImage('images/img/page502.png'),
     fit: BoxFit.fill,
   );
   imagesList[502] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page503.png'),
+    image: AssetImage('images/img/page503.png'),
     fit: BoxFit.fill,
   );
   imagesList[503] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page504.png'),
+    image: AssetImage('images/img/page504.png'),
     fit: BoxFit.fill,
   );
   imagesList[504] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page505.png'),
+    image: AssetImage('images/img/page505.png'),
     fit: BoxFit.fill,
   );
   imagesList[505] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page506.png'),
+    image: AssetImage('images/img/page506.png'),
     fit: BoxFit.fill,
   );
   imagesList[506] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page507.png'),
+    image: AssetImage('images/img/page507.png'),
     fit: BoxFit.fill,
   );
   imagesList[507] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page508.png'),
+    image: AssetImage('images/img/page508.png'),
     fit: BoxFit.fill,
   );
   imagesList[508] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page509.png'),
+    image: AssetImage('images/img/page509.png'),
     fit: BoxFit.fill,
   );
 
   imagesList[509] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page510.png'),
+    image: AssetImage('images/img/page510.png'),
     fit: BoxFit.fill,
   );
   imagesList[510] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page511.png'),
+    image: AssetImage('images/img/page511.png'),
     fit: BoxFit.fill,
   );
   imagesList[511] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page512.png'),
+    image: AssetImage('images/img/page512.png'),
     fit: BoxFit.fill,
   );
   imagesList[512] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page513.png'),
+    image: AssetImage('images/img/page513.png'),
     fit: BoxFit.fill,
   );
   imagesList[513] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page514.png'),
+    image: AssetImage('images/img/page514.png'),
     fit: BoxFit.fill,
   );
   imagesList[514] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page515.png'),
+    image: AssetImage('images/img/page515.png'),
     fit: BoxFit.fill,
   );
   imagesList[515] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page516.png'),
+    image: AssetImage('images/img/page516.png'),
     fit: BoxFit.fill,
   );
   imagesList[516] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page517.png'),
+    image: AssetImage('images/img/page517.png'),
     fit: BoxFit.fill,
   );
   imagesList[517] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page518.png'),
+    image: AssetImage('images/img/page518.png'),
     fit: BoxFit.fill,
   );
   imagesList[518] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page519.png'),
+    image: AssetImage('images/img/page519.png'),
     fit: BoxFit.fill,
   );
 
   imagesList[519] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page520.png'),
+    image: AssetImage('images/img/page520.png'),
     fit: BoxFit.fill,
   );
   imagesList[520] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page521.png'),
+    image: AssetImage('images/img/page521.png'),
     fit: BoxFit.fill,
   );
   imagesList[521] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page522.png'),
+    image: AssetImage('images/img/page522.png'),
     fit: BoxFit.fill,
   );
   imagesList[522] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page523.png'),
+    image: AssetImage('images/img/page523.png'),
     fit: BoxFit.fill,
   );
   imagesList[523] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page524.png'),
+    image: AssetImage('images/img/page524.png'),
     fit: BoxFit.fill,
   );
   imagesList[524] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page525.png'),
+    image: AssetImage('images/img/page525.png'),
     fit: BoxFit.fill,
   );
   imagesList[525] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page526.png'),
+    image: AssetImage('images/img/page526.png'),
     fit: BoxFit.fill,
   );
   imagesList[526] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page527.png'),
+    image: AssetImage('images/img/page527.png'),
     fit: BoxFit.fill,
   );
   imagesList[527] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page528.png'),
+    image: AssetImage('images/img/page528.png'),
     fit: BoxFit.fill,
   );
   imagesList[528] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page529.png'),
+    image: AssetImage('images/img/page529.png'),
     fit: BoxFit.fill,
   );
 
   imagesList[529] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page530.png'),
+    image: AssetImage('images/img/page530.png'),
     fit: BoxFit.fill,
   );
   imagesList[530] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page531.png'),
+    image: AssetImage('images/img/page531.png'),
     fit: BoxFit.fill,
   );
   imagesList[531] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page532.png'),
+    image: AssetImage('images/img/page532.png'),
     fit: BoxFit.fill,
   );
   imagesList[532] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page533.png'),
+    image: AssetImage('images/img/page533.png'),
     fit: BoxFit.fill,
   );
   imagesList[533] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page534.png'),
+    image: AssetImage('images/img/page534.png'),
     fit: BoxFit.fill,
   );
   imagesList[534] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page535.png'),
+    image: AssetImage('images/img/page535.png'),
     fit: BoxFit.fill,
   );
   imagesList[535] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page536.png'),
+    image: AssetImage('images/img/page536.png'),
     fit: BoxFit.fill,
   );
   imagesList[536] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page537.png'),
+    image: AssetImage('images/img/page537.png'),
     fit: BoxFit.fill,
   );
   imagesList[537] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page538.png'),
+    image: AssetImage('images/img/page538.png'),
     fit: BoxFit.fill,
   );
   imagesList[538] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page539.png'),
+    image: AssetImage('images/img/page539.png'),
     fit: BoxFit.fill,
   );
 
   imagesList[539] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page540.png'),
+    image: AssetImage('images/img/page540.png'),
     fit: BoxFit.fill,
   );
   imagesList[540] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page541.png'),
+    image: AssetImage('images/img/page541.png'),
     fit: BoxFit.fill,
   );
   imagesList[541] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page542.png'),
+    image: AssetImage('images/img/page542.png'),
     fit: BoxFit.fill,
   );
   imagesList[542] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page543.png'),
+    image: AssetImage('images/img/page543.png'),
     fit: BoxFit.fill,
   );
   imagesList[543] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page544.png'),
+    image: AssetImage('images/img/page544.png'),
     fit: BoxFit.fill,
   );
   imagesList[544] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page545.png'),
+    image: AssetImage('images/img/page545.png'),
     fit: BoxFit.fill,
   );
   imagesList[545] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page546.png'),
+    image: AssetImage('images/img/page546.png'),
     fit: BoxFit.fill,
   );
   imagesList[546] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page547.png'),
+    image: AssetImage('images/img/page547.png'),
     fit: BoxFit.fill,
   );
   imagesList[547] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page548.png'),
+    image: AssetImage('images/img/page548.png'),
     fit: BoxFit.fill,
   );
   imagesList[548] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page549.png'),
+    image: AssetImage('images/img/page549.png'),
     fit: BoxFit.fill,
   );
 
   imagesList[549] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page550.png'),
+    image: AssetImage('images/img/page550.png'),
     fit: BoxFit.fill,
   );
   imagesList[550] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page551.png'),
+    image: AssetImage('images/img/page551.png'),
     fit: BoxFit.fill,
   );
   imagesList[551] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page552.png'),
+    image: AssetImage('images/img/page552.png'),
     fit: BoxFit.fill,
   );
   imagesList[552] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page553.png'),
+    image: AssetImage('images/img/page553.png'),
     fit: BoxFit.fill,
   );
   imagesList[553] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page554.png'),
+    image: AssetImage('images/img/page554.png'),
     fit: BoxFit.fill,
   );
   imagesList[554] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page555.png'),
+    image: AssetImage('images/img/page555.png'),
     fit: BoxFit.fill,
   );
   imagesList[555] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page556.png'),
+    image: AssetImage('images/img/page556.png'),
     fit: BoxFit.fill,
   );
   imagesList[556] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page557.png'),
+    image: AssetImage('images/img/page557.png'),
     fit: BoxFit.fill,
   );
   imagesList[557] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page558.png'),
+    image: AssetImage('images/img/page558.png'),
     fit: BoxFit.fill,
   );
   imagesList[558] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page559.png'),
+    image: AssetImage('images/img/page559.png'),
     fit: BoxFit.fill,
   );
 
   imagesList[559] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page560.png'),
+    image: AssetImage('images/img/page560.png'),
     fit: BoxFit.fill,
   );
   imagesList[560] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page561.png'),
+    image: AssetImage('images/img/page561.png'),
     fit: BoxFit.fill,
   );
   imagesList[561] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page562.png'),
+    image: AssetImage('images/img/page562.png'),
     fit: BoxFit.fill,
   );
   imagesList[562] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page563.png'),
+    image: AssetImage('images/img/page563.png'),
     fit: BoxFit.fill,
   );
   imagesList[563] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page564.png'),
+    image: AssetImage('images/img/page564.png'),
     fit: BoxFit.fill,
   );
   imagesList[564] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page565.png'),
+    image: AssetImage('images/img/page565.png'),
     fit: BoxFit.fill,
   );
   imagesList[565] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page566.png'),
+    image: AssetImage('images/img/page566.png'),
     fit: BoxFit.fill,
   );
   imagesList[566] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page567.png'),
+    image: AssetImage('images/img/page567.png'),
     fit: BoxFit.fill,
   );
   imagesList[567] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page568.png'),
+    image: AssetImage('images/img/page568.png'),
     fit: BoxFit.fill,
   );
   imagesList[568] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page569.png'),
+    image: AssetImage('images/img/page569.png'),
     fit: BoxFit.fill,
   );
 
   imagesList[569] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page570.png'),
+    image: AssetImage('images/img/page570.png'),
     fit: BoxFit.fill,
   );
   imagesList[570] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page571.png'),
+    image: AssetImage('images/img/page571.png'),
     fit: BoxFit.fill,
   );
   imagesList[571] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page572.png'),
+    image: AssetImage('images/img/page572.png'),
     fit: BoxFit.fill,
   );
   imagesList[572] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page573.png'),
+    image: AssetImage('images/img/page573.png'),
     fit: BoxFit.fill,
   );
   imagesList[573] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page574.png'),
+    image: AssetImage('images/img/page574.png'),
     fit: BoxFit.fill,
   );
   imagesList[574] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page575.png'),
+    image: AssetImage('images/img/page575.png'),
     fit: BoxFit.fill,
   );
   imagesList[575] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page576.png'),
+    image: AssetImage('images/img/page576.png'),
     fit: BoxFit.fill,
   );
   imagesList[576] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page577.png'),
+    image: AssetImage('images/img/page577.png'),
     fit: BoxFit.fill,
   );
   imagesList[577] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page578.png'),
+    image: AssetImage('images/img/page578.png'),
     fit: BoxFit.fill,
   );
   imagesList[578] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page579.png'),
+    image: AssetImage('images/img/page579.png'),
     fit: BoxFit.fill,
   );
 
   imagesList[579] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page580.png'),
+    image: AssetImage('images/img/page580.png'),
     fit: BoxFit.fill,
   );
   imagesList[580] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page581.png'),
+    image: AssetImage('images/img/page581.png'),
     fit: BoxFit.fill,
   );
   imagesList[581] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page582.png'),
+    image: AssetImage('images/img/page582.png'),
     fit: BoxFit.fill,
   );
   imagesList[582] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page583.png'),
+    image: AssetImage('images/img/page583.png'),
     fit: BoxFit.fill,
   );
   imagesList[583] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page584.png'),
+    image: AssetImage('images/img/page584.png'),
     fit: BoxFit.fill,
   );
   imagesList[584] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page585.png'),
+    image: AssetImage('images/img/page585.png'),
     fit: BoxFit.fill,
   );
   imagesList[585] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page586.png'),
+    image: AssetImage('images/img/page586.png'),
     fit: BoxFit.fill,
   );
   imagesList[586] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page587.png'),
+    image: AssetImage('images/img/page587.png'),
     fit: BoxFit.fill,
   );
   imagesList[587] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page588.png'),
+    image: AssetImage('images/img/page588.png'),
     fit: BoxFit.fill,
   );
   imagesList[588] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page589.png'),
+    image: AssetImage('images/img/page589.png'),
     fit: BoxFit.fill,
   );
 
   imagesList[589] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page590.png'),
+    image: AssetImage('images/img/page590.png'),
     fit: BoxFit.fill,
   );
   imagesList[590] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page591.png'),
+    image: AssetImage('images/img/page591.png'),
     fit: BoxFit.fill,
   );
   imagesList[591] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page592.png'),
+    image: AssetImage('images/img/page592.png'),
     fit: BoxFit.fill,
   );
   imagesList[592] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page593.png'),
+    image: AssetImage('images/img/page593.png'),
     fit: BoxFit.fill,
   );
   imagesList[593] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page594.png'),
+    image: AssetImage('images/img/page594.png'),
     fit: BoxFit.fill,
   );
   imagesList[594] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page595.png'),
+    image: AssetImage('images/img/page595.png'),
     fit: BoxFit.fill,
   );
   imagesList[595] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page596.png'),
+    image: AssetImage('images/img/page596.png'),
     fit: BoxFit.fill,
   );
   imagesList[596] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page597.png'),
+    image: AssetImage('images/img/page597.png'),
     fit: BoxFit.fill,
   );
   imagesList[597] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page598.png'),
+    image: AssetImage('images/img/page598.png'),
     fit: BoxFit.fill,
   );
   imagesList[598] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page599.png'),
+    image: AssetImage('images/img/page599.png'),
     fit: BoxFit.fill,
   );
 
   imagesList[599] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page600.png'),
+    image: AssetImage('images/img/page600.png'),
     fit: BoxFit.fill,
   );
   imagesList[600] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page601.png'),
+    image: AssetImage('images/img/page601.png'),
     fit: BoxFit.fill,
   );
   imagesList[601] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page602.png'),
+    image: AssetImage('images/img/page602.png'),
     fit: BoxFit.fill,
   );
   imagesList[602] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page603.png'),
+    image: AssetImage('images/img/page603.png'),
     fit: BoxFit.fill,
   );
   imagesList[603] = const Image(
-    image: AssetImage('images/mushaf_photos_2/page604.png'),
+    image: AssetImage('images/img/page604.png'),
     fit: BoxFit.fill,
   );
 

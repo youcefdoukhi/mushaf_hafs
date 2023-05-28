@@ -24,7 +24,7 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - images/mushaf_photos_2/
+    - images/img/
     - images/
     - data/
     
