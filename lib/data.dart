@@ -167,7 +167,7 @@ final scrollOrNotProvider = StateProvider<bool>(
 
 final imagesProvider = Provider.family<Image, int>((ref, index) {
 //final imagesProvider = Provider<List<Image>>((ref) {
-  print("\n XXXXXX");
+
 /*
   final List<Image> imagesList = [];
 
