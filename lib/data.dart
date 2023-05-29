@@ -165,9 +165,8 @@ final scrollOrNotProvider = StateProvider<bool>(
   },
 );
 
-final imagesProvider = Provider.family<Image, int>((ref, index) {
-//final imagesProvider = Provider<List<Image>>((ref) {
-
+//final imagesProvider = Provider.family<Image, int>((ref, index) {
+final imagesProvider = Provider<List<Image>>((ref) {
 /*
   final List<Image> imagesList = [];
 
@@ -2677,12 +2676,12 @@ final imagesProvider = Provider.family<Image, int>((ref, index) {
     fit: BoxFit.fill,
   );
 
-  return imagesList[index];
-  //return imagesList;
+  //return imagesList[index];
+  return imagesList;
 });
 
-final pageWidgetProvider = Provider.family<PageWidget, int>((ref, index) {
-//final pageWidgetProvider = Provider<List<PageWidget>>((ref) {
+//final pageWidgetProvider = Provider.family<PageWidget, int>((ref, index) {
+final pageWidgetProvider = Provider<List<PageWidget>>((ref) {
   final objets = List<PageWidget>.filled(604, const PageWidget(index: 0));
 
   objets[0] = const PageWidget(index: 0);
@@ -3295,7 +3294,7 @@ final pageWidgetProvider = Provider.family<PageWidget, int>((ref, index) {
   objets[601] = const PageWidget(index: 601);
   objets[602] = const PageWidget(index: 602);
   objets[603] = const PageWidget(index: 603);
-  return objets[index];
+  return objets;
 });
 
 final hideWidgetAfterScrollProvider = ChangeNotifierProvider.autoDispose(

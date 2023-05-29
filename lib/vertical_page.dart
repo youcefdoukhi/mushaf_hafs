@@ -70,7 +70,7 @@ class VerticalPage extends ConsumerWidget {
         itemCount: 604,
         //itemCount: 150,
         itemBuilder: (context, index) {
-          return ref.read(pageWidgetProvider(index));
+          return ref.read(pageWidgetProvider)[index];
         },
         initialScrollIndex: ref.read(pageIndexProvider),
         itemScrollController: ref.read(itemScrollControllerProvider),

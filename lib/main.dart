@@ -1,24 +1,14 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mushaf_hafs/reader.dart';
-
-import 'dart:ui' as ui;
-
 import 'data.dart';
 
+/*
 void main() {
   runApp(const Test());
-  //setCustomImageCacheSize(); // Set the custom cache size
-}
-
-void setCustomImageCacheSize() {
-  const int megabytes = 0; // Define the desired cache size in megabytes
-  const int cacheSize = megabytes * 1024 * 1024;
-  PaintingBinding.instance.imageCache.maximumSize = cacheSize;
 }
 
 class Test extends StatelessWidget {
@@ -43,9 +33,8 @@ class Test extends StatelessWidget {
               } else {
                 pageNum = "${index + 1}";
               }
-              return Image(
-                image: AssetImage('images/img/page$pageNum.png'),
-                fit: BoxFit.fill,
+              return TestWidget(
+                index: pageNum,
               );
             },
           ),
@@ -55,7 +44,39 @@ class Test extends StatelessWidget {
   }
 }
 
-/*
+class TestWidget extends ConsumerStatefulWidget {
+  final String index;
+
+  const TestWidget({super.key, required this.index});
+
+  @override
+  ConsumerState<TestWidget> createState() => PageWidgetState();
+}
+
+class PageWidgetState extends ConsumerState<TestWidget> {
+  @override
+  void initState() {
+    super.initState();
+    //------------
+  }
+
+  @override
+  void dispose() {
+    print("\nXXXXXXXXXx");
+    PaintingBinding.instance.imageCache.clear();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Image(
+      image: AssetImage('images/img/page${widget.index}.png'),
+      fit: BoxFit.fill,
+    );
+  }
+}
+*/
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
@@ -124,6 +145,3 @@ class MainApp extends StatelessWidget {
     );
   }
 }
-
-*/
-

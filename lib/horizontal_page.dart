@@ -39,7 +39,7 @@ class HorizontalPage extends ConsumerWidget {
           saveCurrentPage()
         },
         itemBuilder: (context, index) {
-          return ref.read(pageWidgetProvider(index));
+          return ref.read(pageWidgetProvider)[index];
         },
         itemCount: 604,
       ),

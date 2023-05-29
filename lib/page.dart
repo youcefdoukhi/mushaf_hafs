@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mushaf_hafs/data.dart';
 
+//PaintingBinding.instance.imageCache.clear();
+// PaintingBinding.instance.imageCache.clearLiveImages();
+
 class PageWidget extends ConsumerWidget {
   final int index;
 
@@ -42,8 +45,8 @@ class PageWidget extends ConsumerWidget {
                     ),
                   ),
           ),
-          child: ref.read(imagesProvider(index)),
-          //child: ref.read(imagesProvider)[index],
+          // child: ref.read(imagesProvider(index)),
+          child: ref.read(imagesProvider)[index],
         ),
         Visibility(
           visible: ref.watch(savedBookmarkProvider) == index ? true : false,
