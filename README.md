@@ -1,3 +1,3 @@
 # mushaf_hafs
 
-A new Flutter project.
+Mushaf Hafs Without Pub.
