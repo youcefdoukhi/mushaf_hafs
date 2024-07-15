@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mushaf_hafs/models/chapters.dart';
+import 'package:mushaf_hafs/providers/chapter_provider.dart';
+import 'package:mushaf_hafs/providers/meta_data_coran_pages_provider.dart';
+import 'package:mushaf_hafs/providers/user_pref_provider.dart';
 import 'package:screen_brightness/screen_brightness.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -18,6 +22,7 @@ class MyPageInfo extends ConsumerWidget {
     Key? key,
   }) : super(key: key);
 
+  // modify the Brightness of the phone
   Future<void> setBrightness(double brightness) async {
     try {
       await ScreenBrightness().setScreenBrightness(brightness);
@@ -27,6 +32,7 @@ class MyPageInfo extends ConsumerWidget {
     }
   }
 
+  // resete the Brightness of the phone
   Future<void> resetBrightness() async {
     try {
       await ScreenBrightness().resetScreenBrightness();
@@ -36,6 +42,7 @@ class MyPageInfo extends ConsumerWidget {
     }
   }
 
+  // save the page as book mark
   Future<void> _saveBookmark(ref) async {
     final prefs = await SharedPreferences.getInstance();
     prefs.setInt('mushaf01_bookmark', ref.read(pageIndexProvider));
@@ -44,6 +51,7 @@ class MyPageInfo extends ConsumerWidget {
     ref.read(showPageInfoProvider.notifier).state = false;
   }
 
+  // Ask User if sure to save bookmark
   displaySaveBookmarkDialog(BuildContext context, WidgetRef ref) async {
     return showDialog(
         context: context,

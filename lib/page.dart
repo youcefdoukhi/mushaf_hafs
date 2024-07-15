@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:mushaf_hafs/data.dart';
+import 'package:mushaf_hafs/providers/meta_data_coran_pages_provider.dart';
+import 'package:mushaf_hafs/providers/user_pref_provider.dart';
 
 //PaintingBinding.instance.imageCache.clear();
 // PaintingBinding.instance.imageCache.clearLiveImages();
 
 class PageWidget extends ConsumerWidget {
-  final int index;
-
   const PageWidget({
     Key? key,
     required this.index,
   }) : super(key: key);
+
+  // index of the coran page in images the list
+  final int index;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -46,7 +48,7 @@ class PageWidget extends ConsumerWidget {
                   ),
           ),
           // child: ref.read(imagesProvider(index)),
-          child: ref.read(imagesProvider)[index],
+          child: ref.read(imagesProvider).elementAt(index),
         ),
         Visibility(
           visible: ref.watch(savedBookmarkProvider) == index ? true : false,

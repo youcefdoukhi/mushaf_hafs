@@ -11,10 +11,8 @@ class ReaderWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return WillPopScope(
-      onWillPop: () async {
-        return false;
-      },
+    // use PopScope new Widget instead of WillPopScope
+    return PopScope(
       child: Scaffold(
         body: SafeArea(
           child: Stack(
@@ -25,11 +23,12 @@ class ReaderWidget extends ConsumerWidget {
                       ? ref.read(showPageInfoProvider.notifier).state = false
                       : ref.read(showPageInfoProvider.notifier).state = true,
                 },
+                // return a widget depend on the orientation of the phone {H or V}
                 child: OrientationBuilder(
                   builder: (context, orientation) {
                     return orientation == Orientation.portrait
                         ? const HorizontalPage()
-                        : const VerticalPage();
+                        : VerticalPage();
                   },
                 ),
               ),

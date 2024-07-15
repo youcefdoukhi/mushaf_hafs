@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mushaf_hafs/data.dart';
+import 'package:mushaf_hafs/providers/chapter_provider.dart';
+
+import 'providers/user_pref_provider.dart';
 
 class TOCWidget extends ConsumerWidget {
   const TOCWidget({Key? key}) : super(key: key);

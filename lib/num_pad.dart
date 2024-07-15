@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'data.dart';
+import 'providers/user_pref_provider.dart';
 
 const fontText = "ScheherazadeNew";
 const fontTitre = "Lateef";

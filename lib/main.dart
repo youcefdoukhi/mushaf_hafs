@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mushaf_hafs/providers/chapter_provider.dart';
+import 'package:mushaf_hafs/providers/meta_data_coran_pages_provider.dart';
+import 'package:mushaf_hafs/providers/user_pref_provider.dart';
 import 'package:mushaf_hafs/reader.dart';
-import 'data.dart';
 
 /*
 void main() {
@@ -108,16 +110,21 @@ class MainApp extends StatelessWidget {
       title: _title,
       home: Consumer(
         builder: (context, ref, child) {
+          // return the last user visited  page if exist
+          // otherwise go to the first page
           final pageIndex = ref.watch(pageIndexFromSharedPref);
+
           return pageIndex.when(
             data: (objets2) {
               return Consumer(
                 builder: (context, ref, child) {
+                  // get coran metadata provider
                   final rub = ref.watch(rubProvider);
                   return rub.when(
                     data: (objets3) {
                       return Consumer(
                         builder: (context, ref, child) {
+                          // get the Surah List provider
                           final listSurah = ref.watch(chaptersProvider);
                           return listSurah.when(
                             data: (objets4) {

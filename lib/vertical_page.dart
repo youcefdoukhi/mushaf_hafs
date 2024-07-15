@@ -3,15 +3,19 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'data.dart';
+import 'providers/meta_data_coran_pages_provider.dart';
+import 'providers/user_pref_provider.dart';
 
 class VerticalPage extends ConsumerWidget {
-  const VerticalPage({super.key});
+  VerticalPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // item position listener of pages instance
     final ItemPositionsListener itemPositionsListener =
         ItemPositionsListener.create();
 
+    // go to the user last visited page
     ref.listen<int>(
       pageIndexProvider,
       (int? previousCount, int newCount) {
@@ -24,11 +28,13 @@ class VerticalPage extends ConsumerWidget {
       },
     );
 
+    // save the current page that the user is visiting
     Future<void> saveCurrentPage() async {
       final prefs = await SharedPreferences.getInstance();
       prefs.setInt('mushaf01_page', ref.read(pageIndexProvider));
     }
 
+    // save the page whetever the user change the page
     itemPositionsListener.itemPositions.addListener(
       () {
         int? min;
@@ -68,9 +74,9 @@ class VerticalPage extends ConsumerWidget {
       behavior: AppBehavior(),
       child: ScrollablePositionedList.builder(
         itemCount: 604,
-        //itemCount: 150,
         itemBuilder: (context, index) {
-          return ref.read(pageWidgetProvider)[index];
+          // return coran pages into the list builder
+          return ref.read(coranPagesProvider)[index];
         },
         initialScrollIndex: ref.read(pageIndexProvider),
         itemScrollController: ref.read(itemScrollControllerProvider),
